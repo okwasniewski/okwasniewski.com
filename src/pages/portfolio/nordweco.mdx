@@ -1,0 +1,18 @@
+import BlogLayout from 'src/templates/BlogLayout';
+import HomeImage from 'src/assets/home.svg';
+
+export const meta = {
+  title: 'Nordweco',
+  subtitle: 'Strona internetowa dla firmy Nordweco',
+  featuredImage: HomeImage,
+  badge: {
+    text: 'Side project',
+    color: 'green',
+  }
+}
+
+### Wykorzystane technologie 
+* Wordpress
+
+
+export default ({ children }) => <BlogLayout meta={meta}>{children}</BlogLayout>

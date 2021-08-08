@@ -1,0 +1,15 @@
+.full-width {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+}
+  
+.gtc-auto {
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(min(calc(220px + 12vmin), 100%), 1fr)
+  );
+}

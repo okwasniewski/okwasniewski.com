@@ -1,0 +1,23 @@
+import BlogLayout from 'src/templates/BlogLayout';
+import Button from 'src/components/Button';
+import HomeImage from 'src/assets/home.svg';
+
+export const meta = {
+  title: 'Lugiewicz.pl',
+  subtitle: 'Strona internetowa dla Magdaleny Lugiewicz',
+  featuredImage: HomeImage,
+  badge: {
+    text: 'Client',
+    color: 'blue',
+  }
+}
+
+## Zrzuty ekranu
+![Lugiewicz screenshot](https://i.imgur.com/ym42pmC.png)
+
+### Wykorzystane technologie 
+* Tailwind CSS
+
+[Zobacz stronę](https://lugiewicz.pl)
+
+export default ({ children }) => <BlogLayout meta={meta}>{children}</BlogLayout>
