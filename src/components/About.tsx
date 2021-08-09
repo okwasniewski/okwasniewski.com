@@ -1,8 +1,8 @@
 import Heading from 'src/components/Heading';
 import Image from 'next/image';
-import AboutImage from 'src/assets/about.svg';
+import AboutImage from 'public/about.svg';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
-import Link from 'next/link';
+
 const About = () => {
   return (
     <>

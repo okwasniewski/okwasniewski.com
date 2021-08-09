@@ -1,25 +1,33 @@
 import Link from 'next/link';
-import Button from './Button';
+import BurgerMenu from './BurgerMenu';
+import MenuItem from './MenuItem';
+import { FaBars } from 'react-icons/fa';
 const Header = () => {
+  const HandleAddClass = () => {
+    document.querySelector('#burger_menu').classList.toggle('hidden');
+  };
   return (
-    <header className='w-full px-4 py-8 bg-white shadow-sm'>
-      <div className='container flex items-center justify-between mx-auto'>
-        <Link href='/'>
-          <p className='text-xl font-bold cursor-pointer'>okwasniewski</p>
-        </Link>
-        <div>
-          <Link href='/#about'>
-            <a className='mx-2'>O mnie</a>
+    <>
+      <header className='w-full px-4 py-8 bg-white shadow-sm'>
+        <div className='container flex items-center justify-between mx-auto'>
+          <Link href='/'>
+            <p className='z-50 text-xl font-bold cursor-pointer'>
+              okwasniewski
+            </p>
           </Link>
-          <Link href='/portfolio'>
-            <a className='mx-2'>Portfolio</a>
-          </Link>
-          <Link href='/#contact'>
-            <a className='mx-2'>Kontakt</a>
-          </Link>
+          <div className='hidden md:block'>
+            <MenuItem href='/#about' text='O mnie' />
+            <MenuItem href='/portfolio' text='Portfolio' />
+            <MenuItem href='/#contact' text='Kontakt' />
+          </div>
+          <FaBars
+            onClick={HandleAddClass}
+            className='z-50 w-8 h-8 cursor-pointer md:hidden'
+          />
         </div>
-      </div>
-    </header>
+      </header>
+      <BurgerMenu />
+    </>
   );
 };
 

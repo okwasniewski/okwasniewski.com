@@ -5,7 +5,7 @@ import Badge, { BadgeProps } from './Badge';
 interface CardProps {
   href: string;
   src: string;
-  badge: BadgeProps,
+  badge: BadgeProps;
   title: string;
   description: string;
 }
@@ -21,8 +21,8 @@ const Card = ({
     <Link href={href}>
       <div className='transform'>
         <div className='flex flex-col justify-center transition bg-white border-2 border-gray-200 rounded-lg shadow-sm cursor-pointer h-96 hover:shadow-lg hover:-translate-y-2'>
-          <div className='flex justify-center mb-4 border-b-2 border-gray-200'>
-            <Image src={src} width={200} height={200} />
+          <div className='relative flex justify-center mb-4 border-b-2 border-gray-200 h-1/2'>
+            <Image src={src} layout='fill' />
           </div>
           <div className='px-4 mb-4'>
             <Badge color={color} text={text} />

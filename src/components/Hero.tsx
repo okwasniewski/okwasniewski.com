@@ -1,6 +1,6 @@
 import Button from 'src/components/Button';
 import Image from 'next/image';
-import HomeImage from 'src/assets/home.svg';
+import HomeImage from 'public/home.svg';
 
 const Hero = () => {
   return (
