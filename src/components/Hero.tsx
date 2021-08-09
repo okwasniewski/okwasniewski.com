@@ -7,7 +7,7 @@ const Hero = () => {
     <div className='flex items-center justify-around mx-auto mt-10 mb-20'>
       <div className='w-full'>
         <h1 className='mb-6 text-3xl font-bold text-gray-900 md:text-5xl'>
-          Pomagam małym firmom
+          Pomagam firmom
         </h1>
         <h2 className='mb-6 text-2xl font-bold text-gray-900 md:text-4xl'>
           zwiększać sprzedaż
@@ -17,7 +17,7 @@ const Hero = () => {
         </h3>
         <div className='mt-8'>
           <Button href='/portfolio'> Zobacz więcej </Button>
-          <Button href='#kontakt' secondary>
+          <Button href='#contact' secondary>
             Kontakt
           </Button>
         </div>

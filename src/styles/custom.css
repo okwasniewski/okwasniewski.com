@@ -1,3 +1,6 @@
+body {
+  overflow-x: hidden;
+}
 .full-width {
   width: 100vw;
   position: relative;
