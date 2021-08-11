@@ -17,7 +17,7 @@ const Hero = () => {
         </h3>
         <div className='mt-8'>
           <Button href='/portfolio'> Zobacz więcej </Button>
-          <Button href='#contact' secondary>
+          <Button href='/contact' secondary>
             Kontakt
           </Button>
         </div>
