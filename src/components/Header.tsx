@@ -18,7 +18,7 @@ const Header = () => {
           <div className='hidden md:block'>
             <MenuItem href='/#about' text='O mnie' />
             <MenuItem href='/portfolio' text='Portfolio' />
-            <MenuItem href='/#contact' text='Kontakt' />
+            <MenuItem href='/contact' text='Kontakt' />
           </div>
           <FaBars
             onClick={HandleAddClass}

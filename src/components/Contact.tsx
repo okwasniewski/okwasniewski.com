@@ -10,7 +10,7 @@ const Contact = () => {
         <h2 className='text-2xl font-bold'>Kontakt</h2>
         <p>Chcesz podjąć współpracę?</p>
       </div>
-      <Button href='mailto:oskarkwasniewski@icloud.com'> Kontakt </Button>
+      <Button href='/contact'> Kontakt </Button>
     </div>
   );
 };
