@@ -22,7 +22,8 @@ const MainTemplate = ({
         <meta name='description' content={description} />
         <meta property="og:site_name" content="Oskar Kwaśniewski" key="ogsitename" />
         <meta property="og:url" content="okwasniewski.com" key="ogurl" />
-        <meta property="og:image" content='/preview_image.jpg' key="ogimage" />
+        <meta property="og:image" content='https://okwasniewski.com/preview_image.jpg' key="ogimage" />
+        <meta property="og:type" content="website" />
         <meta property="og:title" content={`Oskar Kwaśniewski - ${title}`} key="ogtitle" />
 +       <meta property="og:description" content={description} key="ogdesc" />
         <link rel='icon' href='/favicon.ico' />
