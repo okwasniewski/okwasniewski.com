@@ -6,7 +6,7 @@ import contactImage from 'public/contact.svg';
 
 const Contact = () => {
   return (
-    <MainTemplate title='Kontakt'>
+    <MainTemplate title='Kontakt' description="Chcesz nawiązać współpracę? Napisz do mnie!">
       <div className='mt-10 mb-32'>
         <Heading heading='Kontakt' subHeading='Masz jakieś pytania?' />
         <div className='flex flex-col items-center justify-around md:flex-row'>
