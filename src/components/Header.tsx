@@ -15,11 +15,11 @@ const Header = () => {
               okwasniewski
             </p>
           </Link>
-          <div className='hidden md:block'>
+          <nav className='hidden md:block'>
             <MenuItem href='/#about' text='O mnie' />
             <MenuItem href='/portfolio' text='Portfolio' />
             <MenuItem href='/contact' text='Kontakt' />
-          </div>
+          </nav>
           <FaBars
             onClick={HandleAddClass}
             className='z-50 w-8 h-8 cursor-pointer md:hidden'

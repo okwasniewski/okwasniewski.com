@@ -31,7 +31,7 @@ const Contact = () => {
                 oskarkwasniewski@icloud.com
             </li>
           </ul>
-            <Image src={contactImage} width={500} height={250} />
+            <Image src={contactImage} width={500} height={250} alt='Kontakt' />
         </div>
       </div>
     </MainTemplate>

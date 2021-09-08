@@ -40,7 +40,7 @@ const About = () => {
           </ul>
         </div>
         <div className='flex justify-center mt-10 md:mt-0 md:w-1/2'>
-          <Image src={AboutImage} />
+          <Image src={AboutImage} alt='O mnie'/>
         </div>
       </div>
     </>

@@ -23,7 +23,7 @@ const Hero = () => {
         </div>
       </div>
       <div className='hidden md:block'>
-        <Image src={HomeImage} width={500} />
+        <Image src={HomeImage} width={500} alt='Zdjęcie na stronie głównej' />
       </div>
     </div>
   );

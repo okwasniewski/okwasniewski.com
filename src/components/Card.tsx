@@ -19,18 +19,18 @@ const Card = ({
 }: CardProps) => {
   return (
     <Link href={href}>
-      <div className='transform'>
-        <div className='flex flex-col justify-center transition bg-white border-2 border-gray-200 rounded-lg shadow-sm cursor-pointer h-96 hover:shadow-lg hover:-translate-y-2'>
+      <article className='transform'>
+        <div className='flex flex-col justify-center transition bg-white border-2 border-gray-200 rounded-lg shadow-sm cursor-pointer h-80 hover:shadow-lg hover:-translate-y-2'>
           <div className='relative flex justify-center mb-4 border-b-2 border-gray-200 h-1/2'>
-            <Image src={src} layout='fill' />
+            <Image src={src} layout='fill' alt={title} />
           </div>
           <div className='px-4 mb-4'>
             <Badge color={color} text={text} />
-            <h4 className='text-xl font-semibold'>{title}</h4>
+            <h3 className='text-xl font-semibold'>{title}</h3>
             <p>{description}</p>
           </div>
         </div>
-      </div>
+      </article>
     </Link>
   );
 };
