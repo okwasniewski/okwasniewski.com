@@ -18,7 +18,7 @@ interface Posts {
 
 const postsDirectory = join(process.cwd(), "src/pages/portfolio")
 
-export function getPostSlugs(numberOfPosts = 20, offset = 1): string[] {
+export function getPostSlugs(numberOfPosts = 20, offset = 0): string[] {
   return fs.readdirSync(postsDirectory).slice(offset, numberOfPosts).filter((item) => item.endsWith('.mdx')).map((item) => item.replace(/\.mdx$/, ''))
 }
 

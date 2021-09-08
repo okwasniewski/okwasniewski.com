@@ -22,7 +22,7 @@ const MainTemplate = ({
         />
       </Head>
       <Header />
-      <div className='container w-full h-full px-4 mx-auto'>{children}</div>
+      <main className='container w-full h-full px-4 mx-auto'>{children}</main>
       <Footer />
     </>
   );

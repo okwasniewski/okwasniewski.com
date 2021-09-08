@@ -13,6 +13,6 @@ body {
 .gtc-auto {
   grid-template-columns: repeat(
     auto-fill,
-    minmax(min(calc(220px + 12vmin), 100%), 1fr)
+    minmax(min(calc(180px + 12vmin), 100%), 1fr)
   );
 }
