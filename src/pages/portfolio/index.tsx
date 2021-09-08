@@ -4,7 +4,7 @@ import Work from 'src/components/Work';
 
 export default function IndexPage({ posts }) {
   return (
-    <MainTemplate title='Portfolio'>
+    <MainTemplate title='Portfolio' description="Moje ostatnie realizacje dla klientów">
       <div className='mt-10'>
         <Work posts={posts} />
       </div>

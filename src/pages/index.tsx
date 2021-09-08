@@ -8,7 +8,7 @@ import Contact from 'src/components/Contact';
 
 export default function Home({ posts }) {
   return (
-    <MainTemplate title='Home'>
+    <MainTemplate title='Strona główna'>
       <Hero />
       <Work posts={posts} />
       <About />
