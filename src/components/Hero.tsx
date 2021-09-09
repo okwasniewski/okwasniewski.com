@@ -57,17 +57,20 @@ const Hero = () => {
       </div>
       <motion.div
         initial={{ x: 200, opacity: 0 }}
-        animate={intersection?.isIntersecting
-          ?{
-          x: 0,
-          opacity: 1,
-          transition: {
-            duration: 1,
-            delay: 0.5,
-            type: 'spring',
-            stiffness: 100,
-          },
-        } : { x: 200, opacity: 0 }}
+        animate={
+          intersection?.isIntersecting
+            ? {
+                x: 0,
+                opacity: 1,
+                transition: {
+                  duration: 1,
+                  delay: 0.5,
+                  type: 'spring',
+                  stiffness: 100,
+                },
+              }
+            : { x: 200, opacity: 0 }
+        }
         className='hidden md:block'
       >
         <Image src={HomeImage} width={500} alt='Zdjęcie na stronie głównej' />
