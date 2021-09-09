@@ -1,25 +1,12 @@
 import Image from 'next/image';
 import Heading from 'src/components/Heading';
+import { itemVariants, containerVariants } from 'src/lib/animations';
 import MainTemplate from 'src/templates/MainTemplate';
 import { FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa';
 import contactImage from 'public/contact.svg';
 import { motion } from 'framer-motion';
 
 const Contact = () => {
-  const container = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.3,
-      },
-    },
-  };
-
-  const item = {
-    hidden: { y: 20, opacity: 0, transition: { duration: 0.5 } },
-    show: { y: 0, opacity: 1, transition: { duration: 0.5 } },
-  };
   return (
     <MainTemplate
       title='Kontakt'
@@ -31,16 +18,16 @@ const Contact = () => {
           <motion.ul
             initial='hidden'
             animate='show'
-            variants={container}
+            variants={containerVariants}
             className='mb-10 md:mb-0'
           >
-            <motion.li className='flex m-2' variants={item}>
+            <motion.li className='flex m-2' variants={itemVariants}>
               <FaGithub className='w-6 h-6 mr-2' />
               <a href='https://github.com/okwasniewski' target='_blank'>
                 Github
               </a>
             </motion.li>
-            <motion.li className='flex m-2' variants={item}>
+            <motion.li className='flex m-2' variants={itemVariants}>
               <FaLinkedin className='w-6 h-6 mr-2' />
               <a
                 target='_blank'
@@ -49,7 +36,7 @@ const Contact = () => {
                 Linkedin
               </a>
             </motion.li>
-            <motion.li className='flex m-2' variants={item}>
+            <motion.li className='flex m-2' variants={itemVariants}>
               <FaEnvelope className='w-6 h-6 mr-2' />
               oskarkwasniewski@icloud.com
             </motion.li>

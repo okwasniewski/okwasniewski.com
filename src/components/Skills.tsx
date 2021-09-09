@@ -1,15 +1,17 @@
-import Heading from 'src/components/Heading'
-import Icon from 'src/components/Icon'
-import {
-    FaReact,
-    FaJs,
-    FaGit,
-    FaPhp,
-  } from 'react-icons/fa';
-  
+import { motion } from 'framer-motion';
+import Heading from 'src/components/Heading';
+import Icon from 'src/components/Icon';
+import { FaReact, FaJs, FaGit, FaPhp } from 'react-icons/fa';
+import { useIntersectionRef } from 'src/lib/useIntersectionRef';
+
 const Skills = () => {
+  const [sectionRef, intersection] = useIntersectionRef();
   return (
-    <div className='px-2 py-10 mt-10 bg-blue-500 full-width'>
+    <motion.div
+      ref={sectionRef}
+      animate={intersection?.isIntersecting ? { opacity: 1 } : { opacity: 0 }}
+      className='px-2 py-10 mt-10 bg-blue-500 full-width'
+    >
       <div className='container mx-auto'>
         <Heading
           heading='Technologie'
@@ -23,8 +25,8 @@ const Skills = () => {
           <Icon Element={FaJs} text='Javascript' />
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
-export default Skills
+export default Skills;

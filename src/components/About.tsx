@@ -2,13 +2,24 @@ import Heading from 'src/components/Heading';
 import Image from 'next/image';
 import AboutImage from 'public/about.svg';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
+import { useIntersectionRef } from 'src/lib/useIntersectionRef';
+import { motion } from 'framer-motion';
 
 const About = () => {
+  const [sectionRef, intersection] = useIntersectionRef();
   return (
-    <>
+    <div ref={sectionRef}>
       <Heading heading='O mnie' subHeading='Kilka słów o mnie' />
       <div id='about' className='flex flex-col justify-between md:flex-row'>
-        <div className='md:w-1/2'>
+        <motion.div
+          className='md:w-1/2'
+          initial={{ x: -200, opacity: 0 }}
+          animate={
+            intersection?.isIntersecting
+              ? { x: 0, opacity: 1, transition: { delay: 0.4, type: 'spring' } }
+              : { x: -200, opacity: 0 }
+          }
+        >
           <p>
             Nazywam się Oskar Kwaśniewski, tworzeniem stron i programowaniem
             zajmuje się od ponad 2 lat. Aktualnie pracuję jako Front-end
@@ -38,12 +49,20 @@ const About = () => {
               </a>
             </li>
           </ul>
-        </div>
-        <div className='flex justify-center mt-10 md:mt-0 md:w-1/2'>
-          <Image src={AboutImage} alt='O mnie'/>
-        </div>
+        </motion.div>
+        <motion.div
+          initial={{ scale: 0.4, opacity: 0 }}
+          animate={
+            intersection?.isIntersecting
+              ? { scale: 1, opacity: 1, transition: { delay: 0.4, type: 'spring', stiffness: 100 } }
+              : { scale: 0.8, opacity: 0 }
+          }
+          className='flex justify-center mt-10 md:mt-0 md:w-1/2'
+        >
+          <Image src={AboutImage} alt='O mnie' />
+        </motion.div>
       </div>
-    </>
+    </div>
   );
 };
 export default About;

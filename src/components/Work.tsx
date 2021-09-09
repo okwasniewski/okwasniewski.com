@@ -1,29 +1,19 @@
 import Heading from 'src/components/Heading';
 import Card from 'src/components/Card';
+import { itemVariants, containerVariants } from 'src/lib/animations';
 import { motion } from 'framer-motion';
+import { useIntersectionRef } from 'src/lib/useIntersectionRef';
 
 const Work = ({ posts }) => {
-  const container = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.3,
-      },
-    },
-  };
-
-  const item = {
-    hidden: { y: 20, opacity: 0, transition: { duration: 0.5 } },
-    show: { y: 0, opacity: 1, transition: { duration: 0.5 } },
-  };
+  const [sectionRef, intersection] = useIntersectionRef();
   return (
     <>
       <Heading heading='Portfolio' subHeading='Moje ostatnie prace' />
       <motion.div
-        variants={container}
+        ref={sectionRef}
+        variants={containerVariants}
         initial='hidden'
-        animate='show'
+        animate={intersection?.isIntersecting ? 'show' : 'hidden'}
         className='grid gap-10 mb-20 gtc-auto'
       >
         {posts.map(({ slug, meta }) => (
@@ -34,7 +24,7 @@ const Work = ({ posts }) => {
             badge={meta.badge}
             description={meta.subtitle}
             title={meta.title}
-            variants={item}
+            variants={itemVariants}
           />
         ))}
       </motion.div>
