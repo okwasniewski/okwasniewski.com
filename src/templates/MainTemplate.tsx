@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import Head from 'next/head';
+import { Toaster } from 'react-hot-toast';
 import Footer from 'src/components/Footer';
 import Header from 'src/components/Header';
 
@@ -49,6 +50,7 @@ const MainTemplate = ({
           rel='stylesheet'
         />
       </Head>
+      <Toaster />
       <Header />
       <motion.main
         variants={variants}

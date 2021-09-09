@@ -5,6 +5,7 @@ import MainTemplate from 'src/templates/MainTemplate';
 import { FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa';
 import contactImage from 'public/contact.svg';
 import { motion } from 'framer-motion';
+import toast from 'react-hot-toast';
 
 const Contact = () => {
   return (
@@ -38,7 +39,27 @@ const Contact = () => {
             </motion.li>
             <motion.li className='flex m-2' variants={itemVariants}>
               <FaEnvelope className='w-6 h-6 mr-2' />
-              oskarkwasniewski@icloud.com
+              <span
+                onClick={() => {
+                  toast(
+                    <div>
+                      <p>Ten link nie jest klikalny!</p> Jeżeli chcesz otworzyć
+                      domyślną aplikacje <span> </span>
+                      <a
+                        className='font-bold text-blue-500'
+                        href='mailto:oskarkwasniewski@icloud.com'
+                      >
+                        kliknij tutaj!
+                      </a>
+                    </div>,
+                    {
+                      icon: '📤',
+                    }
+                  );
+                }}
+              >
+                oskarkwasniewski@icloud.com
+              </span>
             </motion.li>
           </motion.ul>
           <motion.div

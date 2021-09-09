@@ -1,4 +1,6 @@
 import { motion, Variants } from 'framer-motion';
+import { useState } from 'react';
+import toast from 'react-hot-toast';
 import { IconType } from 'react-icons';
 
 interface IconProps {
@@ -7,9 +9,20 @@ interface IconProps {
   variants?: Variants;
 }
 const Icon = ({ Element, text, variants }: IconProps) => {
+  const [dragged, setDragged] = useState(false);
   return (
     <motion.div
       drag
+      onDragEnd={() => {
+        if (!dragged) {
+          toast((t) => (
+            <span className="flex items-center justify-center">
+               <Element className='w-8 h-8 mr-4 ' /> {text}
+            </span>
+          ));
+          setDragged(true);
+        }
+      }}
       dragConstraints={{
         top: -20,
         left: -20,
@@ -17,7 +30,7 @@ const Icon = ({ Element, text, variants }: IconProps) => {
         bottom: 20,
       }}
       variants={variants}
-      style={{width: 'fit-content'}}
+      style={{ width: 'fit-content' }}
       className='flex flex-col items-center justify-center mt-6 text-white cursor-move'
     >
       <Element className='w-16 h-16 mb-4' />
