@@ -2,10 +2,9 @@ import Link from 'next/link';
 import BurgerMenu from './BurgerMenu';
 import MenuItem from './MenuItem';
 import { FaBars } from 'react-icons/fa';
+import { useState } from 'react';
 const Header = () => {
-  const HandleAddClass = () => {
-    document.querySelector('#burger_menu').classList.toggle('hidden');
-  };
+  const [isOpen, setIsOpen] = useState(false);
   return (
     <>
       <header className='w-full px-4 py-8 bg-white shadow-sm'>
@@ -21,12 +20,12 @@ const Header = () => {
             <MenuItem href='/contact' text='Kontakt' />
           </nav>
           <FaBars
-            onClick={HandleAddClass}
+            onClick={() => setIsOpen(!isOpen)}
             className='z-50 w-8 h-8 cursor-pointer md:hidden'
           />
         </div>
       </header>
-      <BurgerMenu />
+      <BurgerMenu isOpen={isOpen} />
     </>
   );
 };
