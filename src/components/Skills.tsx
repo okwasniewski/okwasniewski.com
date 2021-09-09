@@ -3,7 +3,7 @@ import Heading from 'src/components/Heading';
 import Icon from 'src/components/Icon';
 import { FaReact, FaJs, FaGit, FaPhp } from 'react-icons/fa';
 import { useIntersectionRef } from 'src/lib/useIntersectionRef';
-
+import { itemVariants, containerVariants } from 'src/lib/animations';
 const Skills = () => {
   const [sectionRef, intersection] = useIntersectionRef();
   return (
@@ -18,12 +18,17 @@ const Skills = () => {
           subHeading='Korzystam z najnowszych technologii'
           white
         />
-        <div className='grid justify-between mt-10 mb-10 gtc-auto'>
-          <Icon Element={FaReact} text='React' />
-          <Icon Element={FaPhp} text='PHP' />
-          <Icon Element={FaGit} text='Git' />
-          <Icon Element={FaJs} text='Javascript' />
-        </div>
+        <motion.div
+          variants={containerVariants}
+          initial='hidden'
+          animate={intersection?.isIntersecting ? 'show' : 'hidden'}
+          className='grid justify-between mt-10 mb-10 gtc-auto'
+        >
+          <Icon Element={FaReact} text='React' variants={itemVariants} />
+          <Icon Element={FaPhp} text='PHP' variants={itemVariants} />
+          <Icon Element={FaGit} text='Git' variants={itemVariants} />
+          <Icon Element={FaJs} text='Javascript' variants={itemVariants} />
+        </motion.div>
       </div>
     </motion.div>
   );
