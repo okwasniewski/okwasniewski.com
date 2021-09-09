@@ -9,6 +9,7 @@ const BurgerMenu = ({ isOpen }) => {
   return (
     <motion.div
       animate={isOpen ? 'open' : 'closed'}
+      initial='closed'
       variants={variants}
       id='burger_menu'
       className='fixed top-0 left-0 z-10 flex flex-col items-center justify-center w-screen h-screen bg-white md:hidden'

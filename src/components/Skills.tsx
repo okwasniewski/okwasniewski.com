@@ -22,7 +22,7 @@ const Skills = () => {
           variants={containerVariants}
           initial='hidden'
           animate={intersection?.isIntersecting ? 'show' : 'hidden'}
-          className='grid justify-between mt-10 mb-10 gtc-auto'
+          className='flex flex-col items-center justify-center mb-10 md:justify-around md:flex-row'
         >
           <Icon Element={FaReact} text='React' variants={itemVariants} />
           <Icon Element={FaPhp} text='PHP' variants={itemVariants} />

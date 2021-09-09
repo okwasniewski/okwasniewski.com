@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import Badge, { BadgeProps } from './Badge';
-import { motion } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 
 interface CardProps {
   href: string;
@@ -9,7 +9,7 @@ interface CardProps {
   badge: BadgeProps;
   title: string;
   description: string;
-  variants: any,
+  variants: Variants,
 }
 
 const Card = ({
