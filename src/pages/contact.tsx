@@ -24,7 +24,11 @@ const Contact = () => {
           >
             <motion.li className='flex m-2' variants={itemVariants}>
               <FaGithub className='w-6 h-6 mr-2' />
-              <a href='https://github.com/okwasniewski' target='_blank'>
+              <a
+                href='https://github.com/okwasniewski'
+                target='_blank'
+                rel='noreferrer'
+              >
                 Github
               </a>
             </motion.li>
@@ -33,6 +37,7 @@ const Contact = () => {
               <a
                 target='_blank'
                 href='https://www.linkedin.com/in/oskar-kwa%C5%9Bniewski-452977207/'
+                rel='noreferrer'
               >
                 Linkedin
               </a>

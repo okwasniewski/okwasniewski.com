@@ -9,7 +9,7 @@ const Header = () => {
     <>
       <header className='w-full px-4 py-8 bg-white shadow-sm'>
         <div className='container flex items-center justify-between mx-auto'>
-          <Link href='/'>
+          <Link href='/' passHref>
             <p className='z-50 text-xl font-bold cursor-pointer'>
               okwasniewski
             </p>

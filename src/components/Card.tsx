@@ -9,7 +9,7 @@ interface CardProps {
   badge: BadgeProps;
   title: string;
   description: string;
-  variants: Variants,
+  variants: Variants;
 }
 
 const Card = ({
@@ -21,7 +21,7 @@ const Card = ({
   variants,
 }: CardProps) => {
   return (
-    <Link href={href}>
+    <Link href={href} passHref>
       <motion.article variants={variants} className='transform'>
         <div className='flex flex-col justify-center transition bg-white border-2 border-gray-200 rounded-lg shadow-sm cursor-pointer h-80 hover:shadow-lg hover:-translate-y-2'>
           <div className='relative flex justify-center mb-4 border-b-2 border-gray-200 h-1/2'>

@@ -35,7 +35,11 @@ const About = () => {
           <ul>
             <li className='flex m-2'>
               <FaGithub className='w-6 h-6 mr-2' />
-              <a href='https://github.com/okwasniewski' target='_blank'>
+              <a
+                href='https://github.com/okwasniewski'
+                target='_blank'
+                rel='noreferrer'
+              >
                 Github
               </a>
             </li>
@@ -44,6 +48,7 @@ const About = () => {
               <a
                 target='_blank'
                 href='https://www.linkedin.com/in/oskar-kwa%C5%9Bniewski-452977207/'
+                rel='noreferrer'
               >
                 Linkedin
               </a>
@@ -54,7 +59,11 @@ const About = () => {
           initial={{ scale: 0.4, opacity: 0 }}
           animate={
             intersection?.isIntersecting
-              ? { scale: 1, opacity: 1, transition: { delay: 0.4, type: 'spring', stiffness: 100 } }
+              ? {
+                  scale: 1,
+                  opacity: 1,
+                  transition: { delay: 0.4, type: 'spring', stiffness: 100 },
+                }
               : { scale: 0.8, opacity: 0 }
           }
           className='flex justify-center mt-10 md:mt-0 md:w-1/2'
