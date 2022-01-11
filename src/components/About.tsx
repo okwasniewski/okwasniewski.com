@@ -1,9 +1,9 @@
-import Heading from 'src/components/Heading';
-import Image from 'next/image';
-import AboutImage from 'public/about.svg';
-import { FaGithub, FaLinkedin } from 'react-icons/fa';
-import { useIntersectionRef } from 'src/lib/useIntersectionRef';
-import { motion } from 'framer-motion';
+import Heading from "src/components/Heading";
+import Image from "next/image";
+import AboutImage from "public/about.svg";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { useIntersectionRef } from "src/lib/useIntersectionRef";
+import { motion } from "framer-motion";
 
 const About = () => {
   const [sectionRef, intersection] = useIntersectionRef();
@@ -16,14 +16,18 @@ const About = () => {
           initial={{ x: -200, opacity: 0 }}
           animate={
             intersection?.isIntersecting
-              ? { x: 0, opacity: 1, transition: { delay: 0.4, type: 'spring' } }
+              ? { x: 0, opacity: 1, transition: { delay: 0.4, type: "spring" } }
               : { x: -200, opacity: 0 }
           }
         >
           <p>
             Nazywam się Oskar Kwaśniewski, tworzeniem stron i programowaniem
-            zajmuje się od ponad 2 lat. Aktualnie pracuję jako Front-end
-            Developer w firmie eTechnologie. <br></br>
+            zajmuje się od ponad 3 lat. Aktualnie pracuję jako React Native
+            Developer w{" "}
+            <a href='https://mymusic.pl/' target='__blank' rel='noopener'>
+              MyMusic
+            </a>
+            . <br></br>
             <br></br> Studiuję na Wydziale Informatyki na Zachodniopomorskim
             Uniwersytecie Technologicznym. Mam doświadczenie w pracy zwarówno z
             dużymi jaki i małymi firmami. Lubię tworzyć strony i korzystać z
@@ -54,7 +58,11 @@ const About = () => {
           initial={{ scale: 0.4, opacity: 0 }}
           animate={
             intersection?.isIntersecting
-              ? { scale: 1, opacity: 1, transition: { delay: 0.4, type: 'spring', stiffness: 100 } }
+              ? {
+                  scale: 1,
+                  opacity: 1,
+                  transition: { delay: 0.4, type: "spring", stiffness: 100 },
+                }
               : { scale: 0.8, opacity: 0 }
           }
           className='flex justify-center mt-10 md:mt-0 md:w-1/2'
