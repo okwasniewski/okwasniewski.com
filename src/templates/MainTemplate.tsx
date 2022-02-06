@@ -1,8 +1,8 @@
-import { motion } from 'framer-motion';
-import Head from 'next/head';
-import { Toaster } from 'react-hot-toast';
-import Footer from 'src/components/Footer';
-import Header from 'src/components/Header';
+import { motion } from "framer-motion";
+import Head from "next/head";
+import { Toaster } from "react-hot-toast";
+import Footer from "src/components/Footer";
+import Header from "src/components/Header";
 
 interface MainTemplateProps {
   children: React.ReactNode;
@@ -12,8 +12,8 @@ interface MainTemplateProps {
 
 const MainTemplate = ({
   children,
-  title = 'Home',
-  description = 'Nazywam się Oskar Kwaśniewski, pomagam firmom zwiększać sprzedać tworząc przejrzyste strony internetowe.',
+  title = "Home",
+  description = "Nazywam się Oskar Kwaśniewski, pomagam firmom zwiększać sprzedać tworząc przejrzyste strony internetowe.",
 }: MainTemplateProps): JSX.Element => {
   const variants = {
     hidden: { opacity: 0 },
@@ -43,7 +43,7 @@ const MainTemplate = ({
           content={`Oskar Kwaśniewski - ${title}`}
           key='ogtitle'
         />
-        + <meta property='og:description' content={description} key='ogdesc' />
+        <meta property='og:description' content={description} key='ogdesc' />
         <link rel='icon' href='/favicon.ico' />
         <link
           href='https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700&display=swap'
@@ -57,8 +57,8 @@ const MainTemplate = ({
         initial='hidden'
         animate='enter'
         exit='exit'
-        transition={{ type: 'spring' }}
-        className='container w-full h-full px-4 mx-auto'
+        transition={{ type: "spring" }}
+        className='container w-full h-full px-16 mx-auto'
       >
         {children}
       </motion.main>

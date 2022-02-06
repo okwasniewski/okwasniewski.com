@@ -1,9 +1,9 @@
-import { motion } from 'framer-motion';
-import { itemVariants } from 'src/lib/animations';
-import Button from 'src/components/Button';
-import Image from 'next/image';
-import HomeImage from 'public/home.svg';
-import { useIntersectionRef } from 'src/lib/useIntersectionRef';
+import { motion } from "framer-motion";
+import { itemVariants } from "src/lib/animations";
+import Button from "src/components/Button";
+import Image from "next/image";
+import HomeImage from "public/home.svg";
+import { useIntersectionRef } from "src/lib/useIntersectionRef";
 
 const Hero = () => {
   const [sectionRef, intersection] = useIntersectionRef();
@@ -22,11 +22,11 @@ const Hero = () => {
         <motion.div
           variants={container}
           initial='hidden'
-          animate={intersection?.isIntersecting ? 'show' : 'hidden'}
+          animate={intersection?.isIntersecting ? "show" : "hidden"}
         >
           <motion.h1
             variants={itemVariants}
-            className='mb-6 text-3xl font-bold text-gray-900 md:text-5xl'
+            className='mb-3 text-3xl font-bold text-gray-900 md:text-5xl'
           >
             Pomagam firmom
           </motion.h1>
@@ -65,7 +65,7 @@ const Hero = () => {
                 transition: {
                   duration: 1,
                   delay: 0.5,
-                  type: 'spring',
+                  type: "spring",
                   stiffness: 100,
                 },
               }
