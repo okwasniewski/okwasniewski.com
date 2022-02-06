@@ -1,7 +1,7 @@
-import Link from 'next/link';
-import Image from 'next/image';
-import Badge, { BadgeProps } from './Badge';
-import { motion, Variants } from 'framer-motion';
+import Link from "next/link";
+import Image from "next/image";
+import Badge, { BadgeProps } from "./Badge";
+import { motion, Variants } from "framer-motion";
 
 interface CardProps {
   href: string;
@@ -9,7 +9,7 @@ interface CardProps {
   badge: BadgeProps;
   title: string;
   description: string;
-  variants: Variants,
+  variants: Variants;
 }
 
 const Card = ({
@@ -24,8 +24,10 @@ const Card = ({
     <Link href={href}>
       <motion.article variants={variants} className='transform'>
         <div className='flex flex-col justify-center transition bg-white border-2 border-gray-200 rounded-lg shadow-sm cursor-pointer h-80 hover:shadow-lg hover:-translate-y-2'>
-          <div className='relative flex justify-center mb-4 border-b-2 border-gray-200 h-1/2'>
-            <Image src={src} layout='fill' alt={title} />
+          <div className='flex justify-center mb-4 border-b-2 border-gray-200 h-1/2'>
+            <div className='relative w-full h-full max-w-xs'>
+              <Image src={src} layout='fill' alt={title} />
+            </div>
           </div>
           <div className='px-4 mb-4'>
             <Badge color={color} text={text} />
