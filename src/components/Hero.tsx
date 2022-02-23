@@ -48,42 +48,31 @@ const Hero = () => {
           className='flex flex-col items-center justify-center'
           animate={intersection?.isIntersecting ? "show" : "hidden"}
         >
-          <motion.h1
+          <motion.div
             variants={itemVariants}
-            className='mb-3 text-4xl font-bold text-gray-900 md:text-6xl overflow-hidden py-2 text-center'
+            className='flex flex-col lg:flex-row items-center'
           >
-            Pomagam firmom <span></span>
-            {texts.map((text, index) => {
-              if (activeIndex !== index) {
-                return null;
-              }
-              return (
-                <span className='relative bg-blue-50 overflow-hidden'>
+            <motion.h1 className='mb-3 text-4xl font-bold text-gray-900 md:text-6xl overflow-hidden py-2 text-center mr-3'>
+              Pomagam firmom <span></span>
+            </motion.h1>
+            <motion.h1 className='mb-3 text-3xl font-bold text-gray-900 md:text-5xl overflow-hidden py-2 text-center bg-blue-100 rounded-full px-3 pb-3'>
+              {texts.map((text, index) => {
+                if (activeIndex !== index) {
+                  return null;
+                }
+                return (
                   <motion.span
-                    variants={item}
-                    initial='hidden'
-                    animate='show'
-                    exit='exit'
-                    className='absolute font-medium'
+                    className='font-medium  block text-gray-800 italic'
+                    initial={{ translateY: -100 }}
+                    animate={{ translateY: 0 }}
+                    exit={{ translateY: 100 }}
                   >
                     {text}
                   </motion.span>
-                  <span className='opacity-0'>{text}</span>
-                </span>
-              );
-              // return (
-              //   <>
-              //     <motion.span
-              //       key={index}
-              //       className='underline text-blue-500 font-medium '
-              //     >
-              //       {text}
-              //     </motion.span>
-              //     {/* <span className='opacity-0'>{text}</span> */}
-              //   </>
-              // );
-            })}
-          </motion.h1>
+                );
+              })}
+            </motion.h1>
+          </motion.div>
           <motion.h3
             variants={itemVariants}
             className='text-2xl md:text-3xl text-gray-800 text-center'
