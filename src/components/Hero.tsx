@@ -1,21 +1,41 @@
 import { motion } from "framer-motion";
-import { itemVariants } from "src/lib/animations";
+import { itemVariants, containerVariants } from "src/lib/animations";
 import Button from "src/components/Button";
-import Image from "next/image";
-import HomeImage from "public/home.svg";
 import { useIntersectionRef } from "src/lib/useIntersectionRef";
+import { useEffect, useState } from "react";
+const texts = ["zwiększać sprzedaż", "docierać do klientów", "osiągnąć sukces"];
+
+const item = {
+  hidden: { y: -30 },
+  show: { y: 0 },
+};
+
+const container = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2,
+    },
+  },
+};
 
 const Hero = () => {
   const [sectionRef, intersection] = useIntersectionRef();
-  const container = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-      },
-    },
-  };
+  const [activeIndex, setActiveIndex] = useState(0);
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      if (activeIndex === texts.length - 1) {
+        setActiveIndex(0);
+        return;
+      }
+      setActiveIndex((prev) => prev + 1);
+    }, 3500);
+    return () => {
+      clearInterval(intervalId);
+    };
+  });
+
   return (
     <div className='flex items-center justify-around mx-auto mb-20 bg-center h-[45vh]'>
       <div
@@ -30,9 +50,39 @@ const Hero = () => {
         >
           <motion.h1
             variants={itemVariants}
-            className='mb-3 text-4xl text-center font-bold text-gray-900 md:text-6xl'
+            className='mb-3 text-4xl font-bold text-gray-900 md:text-6xl overflow-hidden py-2 text-center'
           >
-            Pomagam firmom zwiększać sprzedaż
+            Pomagam firmom <span></span>
+            {texts.map((text, index) => {
+              if (activeIndex !== index) {
+                return null;
+              }
+              return (
+                <span className='relative bg-blue-50 overflow-hidden'>
+                  <motion.span
+                    variants={item}
+                    initial='hidden'
+                    animate='show'
+                    exit='exit'
+                    className='absolute font-medium'
+                  >
+                    {text}
+                  </motion.span>
+                  <span className='opacity-0'>{text}</span>
+                </span>
+              );
+              // return (
+              //   <>
+              //     <motion.span
+              //       key={index}
+              //       className='underline text-blue-500 font-medium '
+              //     >
+              //       {text}
+              //     </motion.span>
+              //     {/* <span className='opacity-0'>{text}</span> */}
+              //   </>
+              // );
+            })}
           </motion.h1>
           <motion.h3
             variants={itemVariants}
