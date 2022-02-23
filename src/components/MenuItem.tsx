@@ -7,14 +7,20 @@ interface MenuItemProps {
 
 const MenuItem = ({ href, text }: MenuItemProps) => {
   const router = useRouter();
+  const isActive = router.pathname === href;
   return (
     <Link href={href}>
       <a
-        className={`my-4 text-lg md:mx-2 md:text-base md:my-0 ${
-          router.pathname === href ? "font-bold" : ""
+        className={`my-4 text-lg md:mx-2 font-medium md:my-0 group relative text-gray-600 ${
+          isActive ? "font-bold" : ""
         }`}
       >
         {text}
+        <span
+          className={`h-[3px] bg-blue-600 absolute -bottom-[1px] left-0 -rotate-1 group-hover:w-full transition-all ${
+            isActive ? "w-full" : "w-0"
+          }`}
+        />
       </a>
     </Link>
   );

@@ -20,7 +20,7 @@ const About = () => {
               : { x: -200, opacity: 0 }
           }
         >
-          <p>
+          <p className='text-gray-500'>
             Nazywam się Oskar Kwaśniewski, tworzeniem stron i programowaniem
             zajmuje się od ponad 3 lat. Aktualnie pracuję jako React Native
             Developer w{" "}

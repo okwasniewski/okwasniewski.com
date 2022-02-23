@@ -17,26 +17,27 @@ const Hero = () => {
     },
   };
   return (
-    <div className='flex items-center justify-around mx-auto mt-10 mb-20'>
-      <div className='w-full' ref={sectionRef}>
+    <div className='flex items-center justify-around mx-auto mb-20 bg-center h-[45vh]'>
+      <div
+        className='w-full flex flex-col items-center justify-center'
+        ref={sectionRef}
+      >
         <motion.div
           variants={container}
           initial='hidden'
+          className='flex flex-col items-center justify-center'
           animate={intersection?.isIntersecting ? "show" : "hidden"}
         >
           <motion.h1
             variants={itemVariants}
-            className='mb-3 text-3xl font-bold text-gray-900 md:text-5xl'
+            className='mb-3 text-4xl text-center font-bold text-gray-900 md:text-6xl'
           >
-            Pomagam firmom
+            Pomagam firmom zwiększać sprzedaż
           </motion.h1>
-          <motion.h2
+          <motion.h3
             variants={itemVariants}
-            className='mb-6 text-2xl font-bold text-gray-900 md:text-4xl'
+            className='text-2xl md:text-3xl text-gray-800 text-center'
           >
-            zwiększać sprzedaż
-          </motion.h2>
-          <motion.h3 variants={itemVariants} className='text-xl text-gray-900'>
             tworząc <strong>przejrzyste</strong> strony internetowe
           </motion.h3>
         </motion.div>
@@ -47,34 +48,16 @@ const Hero = () => {
               ? { opacity: 1, transition: { duration: 1 } }
               : { opacity: 0 }
           }
-          className='mt-8'
+          className='mt-8 flex md:flex-row flex-col items-center'
         >
-          <Button href='/portfolio'> Zobacz więcej </Button>
+          <Button href='/portfolio'>Zobacz więcej</Button>
+          <div className='m-2 md:hidden block' />
           <Button href='/contact' secondary>
             Kontakt
           </Button>
         </motion.div>
       </div>
-      <motion.div
-        initial={{ x: 200, opacity: 0 }}
-        animate={
-          intersection?.isIntersecting
-            ? {
-                x: 0,
-                opacity: 1,
-                transition: {
-                  duration: 1,
-                  delay: 0.5,
-                  type: "spring",
-                  stiffness: 100,
-                },
-              }
-            : { x: 200, opacity: 0 }
-        }
-        className='hidden md:block'
-      >
-        <Image src={HomeImage} width={500} alt='Zdjęcie na stronie głównej' />
-      </motion.div>
+      <div className='absolute inset-0 bg-[url("/hero.jpg")] opacity-50 -z-10 bg-center bg-no-repeat md:h-[56vh] h-[58vh]' />
     </div>
   );
 };

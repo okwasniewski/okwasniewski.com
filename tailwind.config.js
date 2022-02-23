@@ -9,7 +9,6 @@ module.exports = {
       "text-green-500",
     ],
   },
-  darkMode: false, // or 'media' or 'class'
   theme: {
     fontFamily: {
       display: ["Satoshi"],

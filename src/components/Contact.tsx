@@ -1,4 +1,4 @@
-import Button from './Button';
+import Button from "./Button";
 
 const Contact = () => {
   return (
@@ -8,7 +8,7 @@ const Contact = () => {
     >
       <div className='mb-2 text-center md:w-1/2 md:text-left'>
         <h2 className='text-2xl font-bold'>Kontakt</h2>
-        <p>Chcesz podjąć współpracę?</p>
+        <p className='text-gray-500'>Chcesz podjąć współpracę?</p>
       </div>
       <Button href='/contact'> Kontakt </Button>
     </div>
