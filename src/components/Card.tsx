@@ -23,16 +23,16 @@ const Card = ({
   return (
     <Link href={href}>
       <motion.article variants={variants} className='transform'>
-        <div className='flex flex-col justify-center transition bg-white border-2 border-gray-200 rounded-lg shadow-sm cursor-pointer h-80 hover:shadow-lg hover:-translate-y-2'>
-          <div className='flex justify-center mb-4 border-b-2 border-gray-200 h-1/2'>
+        <div className='flex flex-col justify-center transition bg-white border border-gray-200 rounded-lg shadow-sm cursor-pointer h-80 hover:shadow-lg hover:-translate-y-2'>
+          <div className='flex justify-center mb-4 border-b border-gray-200 h-1/2'>
             <div className='relative w-full h-full max-w-xs'>
               <Image src={src} layout='fill' alt={title} />
             </div>
           </div>
           <div className='px-4 mb-4'>
             <Badge color={color} text={text} />
-            <h3 className='text-xl font-semibold'>{title}</h3>
-            <p>{description}</p>
+            <h3 className='text-xl font-semibold text-gray-900'>{title}</h3>
+            <p className='text-gray-500'>{description}</p>
           </div>
         </div>
       </motion.article>

@@ -58,7 +58,7 @@ const MainTemplate = ({
         animate='enter'
         exit='exit'
         transition={{ type: "spring" }}
-        className='container w-full h-full px-16 mx-auto'
+        className='container w-full h-full md:px-16 px-4 mx-auto scroll-smooth min-h-[88vh]'
       >
         {children}
       </motion.main>

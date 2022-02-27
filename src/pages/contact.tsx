@@ -1,11 +1,11 @@
-import Image from 'next/image';
-import Heading from 'src/components/Heading';
-import { itemVariants, containerVariants } from 'src/lib/animations';
-import MainTemplate from 'src/templates/MainTemplate';
-import { FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa';
-import contactImage from 'public/contact.svg';
-import { motion } from 'framer-motion';
-import toast from 'react-hot-toast';
+import Image from "next/image";
+import Heading from "src/components/Heading";
+import { itemVariants, containerVariants } from "src/lib/animations";
+import MainTemplate from "src/templates/MainTemplate";
+import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
+import contactImage from "public/contact.svg";
+import { motion } from "framer-motion";
+import toast from "react-hot-toast";
 
 const Contact = () => {
   return (
@@ -13,7 +13,7 @@ const Contact = () => {
       title='Kontakt'
       description='Chcesz nawiązać współpracę? Napisz do mnie!'
     >
-      <div className='mt-10 mb-32'>
+      <div className='mt-10'>
         <Heading heading='Kontakt' subHeading='Masz jakieś pytania?' />
         <div className='flex flex-col items-center justify-around md:flex-row'>
           <motion.ul
@@ -53,7 +53,7 @@ const Contact = () => {
                       </a>
                     </div>,
                     {
-                      icon: '📤',
+                      icon: "📤",
                     }
                   );
                 }}

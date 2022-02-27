@@ -14,7 +14,9 @@ const Heading = ({ heading, subHeading, white = false }: HeadingProps) => {
       className={`mb-4 ${white ? "text-white" : "text-gray-900"}`}
     >
       <h2 className='text-3xl font-bold'>{heading}</h2>
-      <p className='text-md'>{subHeading}</p>
+      <p className={`text-md ${white ? "text-gray-50" : "text-gray-500"}`}>
+        {subHeading}
+      </p>
     </motion.div>
   );
 };
