@@ -15,7 +15,7 @@ const Skills = () => {
     <motion.div
       ref={sectionRef}
       animate={intersection?.isIntersecting ? { opacity: 1 } : { opacity: 0 }}
-      className='px-2 py-10 mt-10 bg-[url("/hero.jpg")] bg-center bg-cover bg-no-repeat full-width'
+      className='px-2 py-10 mt-10 bg-[url("/hero.jpg")] bg-fixed bg-center bg-cover bg-no-repeat full-width'
     >
       <div className='container mx-auto'>
         <Heading

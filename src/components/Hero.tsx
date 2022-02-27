@@ -93,7 +93,7 @@ const Hero = () => {
           </Button>
         </motion.div>
       </div>
-      <div className='absolute inset-0 bg-[url("/hero.jpg")] opacity-80 shadow-inner -z-10 bg-center bg-no-repeat md:h-[56vh] h-[63vh]' />
+      <div className='absolute bg-fixed inset-0 bg-[url("/hero.jpg")] opacity-80 shadow-inner -z-10 bg-center bg-no-repeat md:h-[56vh] h-[63vh]' />
     </div>
   );
 };
