@@ -11,7 +11,7 @@ const MenuItem = ({ href, text }: MenuItemProps) => {
   return (
     <Link href={href}>
       <a
-        className={`my-4 text-lg md:mx-2 font-medium md:my-0 group relative text-gray-600 ${
+        className={`my-4 text-lg md:mx-2 font-medium md:my-0 group relative text-gray-800 ${
           isActive ? "font-bold" : ""
         }`}
       >

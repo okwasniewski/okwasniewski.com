@@ -5,11 +5,6 @@ import { useIntersectionRef } from "src/lib/useIntersectionRef";
 import { useEffect, useState } from "react";
 const texts = ["zwiększać sprzedaż", "docierać do klientów", "osiągnąć sukces"];
 
-const item = {
-  hidden: { y: -30 },
-  show: { y: 0 },
-};
-
 const container = {
   hidden: { opacity: 0 },
   show: {
@@ -50,18 +45,19 @@ const Hero = () => {
         >
           <motion.div
             variants={itemVariants}
-            className='flex flex-col lg:flex-row items-center'
+            className='flex flex-col lg:flex-row items-center mb-3'
           >
-            <motion.h1 className='mb-3 text-4xl font-bold text-gray-900 md:text-6xl overflow-hidden py-2 text-center mr-3'>
+            <motion.h1 className='text-4xl font-semibold text-gray-900 md:text-6xl overflow-hidden py-2 text-center mr-1'>
               Pomagam firmom <span></span>
             </motion.h1>
-            <motion.h1 className='mb-3 text-3xl font-bold text-gray-900 md:text-5xl overflow-hidden py-2 text-center bg-blue-100 rounded-full px-3 pb-3'>
+            <motion.h1 className='text-3xl font-semibold text-gray-900 md:text-6xl overflow-hidden py-2 text-center px-3'>
               {texts.map((text, index) => {
                 if (activeIndex !== index) {
                   return null;
                 }
                 return (
                   <motion.span
+                    key={index}
                     className='font-medium  block text-gray-800 italic'
                     initial={{ translateY: -100 }}
                     animate={{ translateY: 0 }}
@@ -77,7 +73,8 @@ const Hero = () => {
             variants={itemVariants}
             className='text-2xl md:text-3xl text-gray-800 text-center'
           >
-            tworząc <strong>przejrzyste</strong> strony internetowe
+            tworząc <strong>przejrzyste</strong> strony internetowe i aplikacje
+            mobilne
           </motion.h3>
         </motion.div>
         <motion.div
@@ -96,7 +93,7 @@ const Hero = () => {
           </Button>
         </motion.div>
       </div>
-      <div className='absolute inset-0 bg-[url("/hero.jpg")] opacity-50 -z-10 bg-center bg-no-repeat md:h-[56vh] h-[63vh]' />
+      <div className='absolute inset-0 bg-[url("/hero.jpg")] opacity-80 shadow-inner -z-10 bg-center bg-no-repeat md:h-[56vh] h-[63vh]' />
     </div>
   );
 };

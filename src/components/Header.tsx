@@ -3,11 +3,19 @@ import BurgerMenu from "./BurgerMenu";
 import MenuItem from "./MenuItem";
 import { FaBars } from "react-icons/fa";
 import { useState } from "react";
+import { useWindowScroll } from "react-use";
 const Header = () => {
+  const { y } = useWindowScroll();
   const [isOpen, setIsOpen] = useState(false);
   return (
     <>
-      <header className='w-full px-4 py-5 backdrop-blur shadow-sm fixed top-0 z-50 bg-white/30 supports-backdrop-blur:bg-white/60'>
+      <header
+        className={`w-full px-4 py-5 fixed top-0 z-50  ${
+          y > 100
+            ? "bg-white/30 supports-backdrop-blur:bg-white/60 backdrop-blur shadow-sm"
+            : ""
+        }`}
+      >
         <div className='container flex items-center justify-between mx-auto'>
           <Link href='/'>
             <p className='z-50 text-xl font-bold cursor-pointer text-gray-800'>
