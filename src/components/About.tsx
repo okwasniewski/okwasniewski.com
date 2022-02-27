@@ -65,7 +65,7 @@ const About = () => {
                 }
               : { scale: 0.8, opacity: 0 }
           }
-          className='flex justify-center mt-10 md:mt-0 md:w-1/2'
+          className='justify-center mt-10 md:mt-0 md:w-1/2 hidden md:flex'
         >
           <Image src={AboutImage} alt='O mnie' />
         </motion.div>
