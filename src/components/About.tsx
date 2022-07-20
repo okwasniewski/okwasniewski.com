@@ -24,8 +24,8 @@ const About = () => {
             Nazywam się Oskar Kwaśniewski, tworzeniem stron i programowaniem
             zajmuje się od ponad 3 lat. Aktualnie pracuję jako React Native
             Developer w{" "}
-            <a href='https://mymusic.pl/' target='__blank' rel='noopener'>
-              MyMusic
+            <a href='https://www.callstack.com/' target='__blank' rel='noopener'>
+              {`{Callstack}`}
             </a>
             . <br></br>
             <br></br> Studiuję na Wydziale Informatyki na Zachodniopomorskim
