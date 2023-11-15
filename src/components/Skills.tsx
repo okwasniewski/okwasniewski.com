@@ -17,39 +17,39 @@ const Skills = () => {
       animate={intersection?.isIntersecting ? { opacity: 1 } : { opacity: 0 }}
       className='px-2 py-10 mt-10 bg-[url("/hero.jpg")] bg-fixed bg-center bg-cover bg-no-repeat full-width'
     >
-      <div className='container mx-auto'>
+      <div className="container mx-auto">
         <Heading
-          heading='Technologie'
-          subHeading='Korzystam z najnowszych technologii'
+          heading="Tech stack"
+          subHeading="Technologies I'm focused on"
         />
         <motion.div
           variants={containerVariants}
-          initial='hidden'
+          initial="hidden"
           animate={intersection?.isIntersecting ? "show" : "hidden"}
-          className='flex flex-col text-gray-800 items-center justify-center mb-10 md:justify-around md:flex-row'
+          className="flex flex-col text-gray-800 items-center justify-center mb-10 md:justify-around md:flex-row"
         >
           <Icon
             Element={SiTypescript}
-            text='Typescript'
+            text="Typescript"
             variants={itemVariants}
           />
           <Icon
             Element={FaReact}
-            text='React + React Native'
+            text="React + React Native"
             variants={itemVariants}
           />
           <Icon
             Element={SiVisualstudiocode}
-            text='Visual Studio Code'
+            text="Visual Studio Code"
             variants={itemVariants}
           />
           <Icon
             Element={SiTailwindcss}
-            text='Tailwind CSS'
+            text="Tailwind CSS"
             variants={itemVariants}
           />
-          <Icon Element={FaGit} text='Git' variants={itemVariants} />
-          <Icon Element={FaGithub} text='Github' variants={itemVariants} />
+          <Icon Element={FaGit} text="Git" variants={itemVariants} />
+          <Icon Element={FaGithub} text="Github" variants={itemVariants} />
         </motion.div>
       </div>
     </motion.div>

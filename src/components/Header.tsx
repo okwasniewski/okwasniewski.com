@@ -16,25 +16,26 @@ const Header = () => {
             : ""
         }`}
       >
-        <div className='container flex items-center justify-between mx-auto'>
-          <Link href='/'>
-            <p className='z-50 text-xl font-bold cursor-pointer text-gray-800'>
+        <div className="container flex items-center justify-between mx-auto">
+          <Link href="/">
+            <p className="z-50 text-xl font-bold cursor-pointer text-gray-800">
               okwasniewski
             </p>
           </Link>
-          <nav className='hidden md:block'>
-            <MenuItem href='/#about' text='O mnie' />
-            <MenuItem href='/portfolio' text='Portfolio' />
-            <MenuItem href='/contact' text='Kontakt' />
+          <nav className="hidden md:block">
+            <MenuItem href="/#about" text="About me" />
+            <MenuItem href="/portfolio" text="Portfolio" />
+            <MenuItem href="/blog" text="Blog" />
+            <MenuItem href="/contact" text="Contact" />
           </nav>
           <FaBars
-            onClick={() => setIsOpen(!isOpen)}
-            className='text-blue-300 z-50 w-8 h-8 cursor-pointer md:hidden'
+            onClick={() => setIsOpen((prev) => !prev)}
+            className="text-blue-300 z-50 w-8 h-8 cursor-pointer md:hidden"
           />
         </div>
       </header>
       <BurgerMenu isOpen={isOpen} />
-      <div className='mb-16 h-10' />
+      <div className="mb-8 h-10" />
     </>
   );
 };

@@ -1,23 +1,24 @@
-import BlogLayout from 'src/templates/BlogLayout';
+import BlogLayout from "src/templates/BlogLayout";
 
 export const meta = {
-  title: 'Senren',
-  subtitle: 'Aplikacja do odkrywania nowych seriali i filmów.',
+  title: "Senren",
+  subtitle: "App to explore movies and tv shows.",
   order: 1,
-  featuredImage: '/portfolio/senren.jpg',
+  featuredImage: "/portfolio/senren.jpg",
   badge: {
-    text: 'Side project',
-    color: 'green',
-  }
-}
+    text: "Open source",
+    color: "green",
+  },
+};
 
 [Link do aplikacji](https://senren.vercel.app/)
 
 ### Wykorzystane technologie
-* React
-* Next JS
-* Styled Components
-* Firebase
+
+- React
+- Next JS
+- Styled Components
+- Firebase
 
 ## Zrzuty ekranu
 
@@ -33,4 +34,6 @@ export const meta = {
 
 ![Senren Light Mode screenshot 2](https://i.imgur.com/ah5xaJl.png)
 
-export default ({ children }) => <BlogLayout meta={meta}>{children}</BlogLayout>
+export default ({ children }) => (
+  <BlogLayout meta={meta}>{children}</BlogLayout>
+);

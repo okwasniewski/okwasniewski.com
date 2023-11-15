@@ -1,35 +1,49 @@
-import fs from "fs"
-import { join } from "path"
+import fs from "fs";
+import { join } from "path";
 
 interface PostMeta {
-  title: string,
-  subtitle: string,
-  featuredImage: string,
-  order: number,
+  title: string;
+  subtitle: string;
+  featuredImage: string;
+  order: number;
   badge: {
-    badgeText: string,
-    badgeColor: 'blue' | 'green',
-  }
+    badgeText: string;
+    badgeColor: "blue" | "green";
+  };
 }
 
 interface Posts {
-  slug: string,
-  meta: PostMeta
+  slug: string;
+  meta: PostMeta;
 }
 
-const postsDirectory = join(process.cwd(), "src/pages/portfolio")
+type Directories = "blog" | "portfolio";
 
-export function getPostSlugs(): string[] {
-  return fs.readdirSync(postsDirectory).filter((item) => item.endsWith('.mdx')).map((item) => item.replace(/\.mdx$/, ''))
+interface Options {
+  directory: Directories;
+  limit?: number;
 }
 
-export function getPosts(numberOfPosts: number): Posts[] {
-  const slugs = getPostSlugs();
-  const posts = slugs.map((slug: string) => {
-    const realSlug = slug.replace(/\.md$/, '')
-    const { meta } = require(`../pages/portfolio/${realSlug}.mdx`)
-    return { slug, meta };
-  }).sort((post1, post2) => (post1.meta.order > post2.meta.order) ? 1 : -1).slice(0, numberOfPosts)
-  
+const getDirectory = (dir: string) => join(process.cwd(), `src/pages/${dir}`);
+
+export function getPostSlugs(options: Options): string[] {
+  return fs
+    .readdirSync(getDirectory(options.directory))
+    .filter((item) => item.endsWith(".mdx"))
+    .slice(0, options.limit == -1 ? undefined : options.limit)
+    .map((item) => item.replace(/\.mdx$/, ""));
+}
+
+export async function getPosts(options: Options): Promise<Posts[]> {
+  const slugs = getPostSlugs(options);
+  const posts = await Promise.all(
+    slugs.map(async (slug: string) => {
+      const realSlug = slug.replace(/\.md$/, "");
+      const { meta } =
+        await require(`../pages/${options.directory}/${realSlug}.mdx`);
+      return { slug, meta };
+    })
+  );
+
   return posts;
 }

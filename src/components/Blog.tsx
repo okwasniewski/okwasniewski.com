@@ -4,11 +4,11 @@ import { itemVariants, containerVariants } from "src/lib/animations";
 import { motion } from "framer-motion";
 import { useIntersectionRef } from "src/lib/useIntersectionRef";
 
-const Work = ({ posts }) => {
+const Blog = ({ posts }) => {
   const [sectionRef, intersection] = useIntersectionRef();
   return (
     <>
-      <Heading heading="Portfolio" subHeading="My latest projects" />
+      <Heading heading="Blog" subHeading="My latest posts" />
       <motion.div
         ref={sectionRef}
         variants={containerVariants}
@@ -20,7 +20,7 @@ const Work = ({ posts }) => {
           <Card
             key={slug}
             src={meta.featuredImage}
-            href={`/portfolio/${slug}`}
+            href={`/blog/${slug}`}
             badge={meta.badge}
             description={meta.subtitle}
             title={meta.title}
@@ -32,4 +32,4 @@ const Work = ({ posts }) => {
   );
 };
 
-export default Work;
+export default Blog;

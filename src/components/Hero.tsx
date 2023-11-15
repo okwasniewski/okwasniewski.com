@@ -3,7 +3,7 @@ import { itemVariants, containerVariants } from "src/lib/animations";
 import Button from "src/components/Button";
 import { useIntersectionRef } from "src/lib/useIntersectionRef";
 import { useEffect, useState } from "react";
-const texts = ["zwiększać sprzedaż", "docierać do klientów", "osiągnąć sukces"];
+const texts = ["Oskar", "a Software Engineer", "a React Native Developer"];
 
 const container = {
   hidden: { opacity: 0 },
@@ -32,25 +32,25 @@ const Hero = () => {
   });
 
   return (
-    <div className='flex items-center justify-around mx-auto mb-20 bg-center h-[45vh]'>
+    <div className="flex items-center justify-around mx-auto mb-20 bg-center h-[45vh]">
       <div
-        className='w-full flex flex-col items-center justify-center'
+        className="w-full flex flex-col items-center justify-center"
         ref={sectionRef}
       >
         <motion.div
           variants={container}
-          initial='hidden'
-          className='flex flex-col items-center justify-center'
+          initial="hidden"
+          className="flex flex-col items-center justify-center"
           animate={intersection?.isIntersecting ? "show" : "hidden"}
         >
           <motion.div
             variants={itemVariants}
-            className='flex flex-col lg:flex-row items-center mb-3'
+            className="flex flex-col lg:flex-row items-center mb-3"
           >
-            <motion.h1 className='text-4xl font-semibold text-gray-900 md:text-6xl overflow-hidden py-2 text-center mr-1'>
-              Pomagam firmom <span></span>
+            <motion.h1 className="text-4xl font-semibold text-gray-900 md:text-6xl overflow-hidden py-2 text-center mr-1">
+              {activeIndex == 0 ? "Hey!" : null} I'm <span></span>
             </motion.h1>
-            <motion.h1 className='text-3xl font-semibold text-gray-900 md:text-6xl overflow-hidden py-2 text-center px-3'>
+            <motion.h1 className="text-3xl font-semibold text-gray-900 md:text-6xl overflow-hidden py-2 text-center px-3">
               {texts.map((text, index) => {
                 if (activeIndex !== index) {
                   return null;
@@ -58,7 +58,7 @@ const Hero = () => {
                 return (
                   <motion.span
                     key={index}
-                    className='font-medium  block text-gray-800 italic'
+                    className="font-medium  block text-gray-800 italic"
                     initial={{ translateY: -100 }}
                     animate={{ translateY: 0 }}
                     exit={{ translateY: 100 }}
@@ -71,10 +71,9 @@ const Hero = () => {
           </motion.div>
           <motion.h3
             variants={itemVariants}
-            className='text-2xl md:text-3xl text-gray-800 text-center'
+            className="text-2xl md:text-3xl text-gray-800 text-center"
           >
-            tworząc <strong>przejrzyste</strong> strony internetowe i aplikacje
-            mobilne
+            I enjoy building things for the web and mobile.
           </motion.h3>
         </motion.div>
         <motion.div
@@ -84,12 +83,12 @@ const Hero = () => {
               ? { opacity: 1, transition: { duration: 1 } }
               : { opacity: 0 }
           }
-          className='mt-8 flex md:flex-row flex-col items-center'
+          className="mt-8 flex md:flex-row flex-col items-center"
         >
-          <Button href='/portfolio'>Zobacz więcej</Button>
-          <div className='m-2 md:hidden block' />
-          <Button href='/contact' secondary>
-            Kontakt
+          <Button href="/portfolio">Portfolio</Button>
+          <div className="m-2 md:hidden block" />
+          <Button href="/contact" secondary>
+            Contact
           </Button>
         </motion.div>
       </div>

@@ -8,7 +8,7 @@ import Contact from "src/components/Contact";
 
 export default function Home({ posts }) {
   return (
-    <MainTemplate title='Strona główna'>
+    <MainTemplate title="Main Page">
       <Hero />
       <Work posts={posts} />
       <About />
@@ -18,10 +18,10 @@ export default function Home({ posts }) {
   );
 }
 export async function getStaticProps() {
-  const posts = getPosts(3);
+  // const posts = getPosts({ directory: "portfolio", limit: 3 });
   return {
     props: {
-      posts,
+      posts: [],
     },
   };
 }

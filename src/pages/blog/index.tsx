@@ -1,19 +1,20 @@
 import MainTemplate from "src/templates/MainTemplate";
 import { getPosts } from "src/lib/getAllPosts";
-import Work from "src/components/Work";
+import Blog from "src/components/Blog";
 
 export default function IndexPage({ posts }) {
   return (
-    <MainTemplate title="Portfolio" description="My latest projects">
+    <MainTemplate title="Blog" description="My latest posts">
       <div className="mt-10">
-        <Work posts={posts} />
+        <Blog posts={posts} />
       </div>
     </MainTemplate>
   );
 }
 
 export async function getStaticProps() {
-  const posts = await getPosts({ directory: "portfolio", limit: -1 });
+  const posts = await getPosts({ directory: "blog", limit: -1 });
+
   return {
     props: {
       posts,
