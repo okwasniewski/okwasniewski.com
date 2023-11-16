@@ -1,33 +1,22 @@
-import MainTemplate from "./MainTemplate";
+import type { PostMeta } from 'src/lib/getAllPosts';
+import BlogHeader from 'src/components/BlogHeader';
+import MainTemplate from './MainTemplate';
 
 interface BlogLayoutProps {
-  meta: {
-    title: string;
-    subtitle: string;
-    featuredImage: string;
-  };
+  meta: PostMeta;
   children: React.ReactNode;
 }
 
 const BlogLayout = ({
-  meta: { title, subtitle, featuredImage },
+  meta: { title, subtitle, badges },
   children,
-}: BlogLayoutProps) => {
-  return (
-    <MainTemplate title={title} description={subtitle}>
-      <div className="p-4 md:p-0 bg-gray-50 dark:bg-gray-800 full-width">
-        <div className="container pb-10 mx-auto mb-8 pt-14">
-          <h1 className="mb-1 text-3xl font-semibold dark:text-gray-200">
-            {title}
-          </h1>
-          <p className="mb-4 dark:text-gray-200/80">{subtitle}</p>
-        </div>
-      </div>
-      <div className="mx-auto prose dark:prose-invert lg:prose-lg">
-        {children}
-      </div>
-    </MainTemplate>
-  );
-};
+}: BlogLayoutProps) => (
+  <MainTemplate title={title} description={subtitle}>
+    <BlogHeader title={title} subtitle={subtitle} badges={badges} />
+    <div className="mx-auto prose dark:prose-invert lg:prose-lg">
+      {children}
+    </div>
+  </MainTemplate>
+);
 
 export default BlogLayout;

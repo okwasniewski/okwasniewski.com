@@ -1,10 +1,11 @@
-import { motion } from "framer-motion";
-import { itemVariants, containerVariants } from "src/lib/animations";
-import Button from "src/components/Button";
-import { useIntersectionRef } from "src/lib/useIntersectionRef";
-import { useEffect, useState } from "react";
-import Image from "next/image";
-const texts = ["Oskar", "a Software Engineer", "a React Native Developer"];
+import { motion } from 'framer-motion';
+import { itemVariants } from 'src/lib/animations';
+import Button from 'src/components/Button';
+import { useIntersectionRef } from 'src/lib/useIntersectionRef';
+import { useEffect, useState } from 'react';
+import Image from 'next/image';
+
+const texts = ['Oskar', 'a Software Engineer', 'a React Native Developer'];
 
 const container = {
   hidden: { opacity: 0 },
@@ -34,7 +35,7 @@ const Hero = () => {
   });
 
   return (
-    <div className="flex items-center justify-around mx-auto mb-32 bg-center h-[45vh]">
+    <div className="flex items-center justify-around mx-auto mb-24 bg-center h-[45vh]">
       <div
         className="w-full flex flex-col items-center justify-center"
         ref={sectionRef}
@@ -43,7 +44,7 @@ const Hero = () => {
           variants={container}
           initial="hidden"
           className="flex flex-col items-center justify-center"
-          animate={intersection?.isIntersecting ? "show" : "hidden"}
+          animate={intersection?.isIntersecting ? 'show' : 'hidden'}
         >
           <motion.div
             variants={itemVariants}
@@ -57,7 +58,7 @@ const Hero = () => {
               className="hidden lg:flex rounded-full lg:mr-5 shadow-md"
             />
             <motion.h1 className="text-4xl font-semibold text-gray-900 dark:text-gray-200 md:text-6xl overflow-hidden py-2 text-center mr-1">
-              {activeIndex == 0 ? "Hey!" : null} I'm <span></span>
+              {activeIndex === 0 ? 'Hey!' : null} I'm <span />
             </motion.h1>
             <motion.h1 className="text-3xl font-semibold text-gray-900 dark:text-gray-200 md:text-6xl overflow-hidden py-2 text-center px-3">
               {texts.map((text, index) => {
@@ -101,9 +102,7 @@ const Hero = () => {
           </Button>
         </motion.div>
       </div>
-      <div
-        className={`hero-background absolute bg-fixed inset-0 opacity-80 shadow-inner -z-10 bg-center bg-no-repeat md:h-[56vh] h-[63vh]`}
-      />
+      <div className="hero-background absolute bg-fixed inset-0 opacity-80 shadow-inner -z-10 bg-center bg-no-repeat md:h-[56vh] h-[63vh]" />
     </div>
   );
 };

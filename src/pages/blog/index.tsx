@@ -1,8 +1,11 @@
-import MainTemplate from "src/templates/MainTemplate";
-import { getPosts } from "src/lib/getAllPosts";
-import Blog from "src/components/Blog";
+import MainTemplate from 'src/templates/MainTemplate';
+import { getPosts } from 'src/lib/getAllPosts';
+import Blog from 'src/components/Blog';
+import { InferGetStaticPropsType } from 'next';
 
-export default function IndexPage({ posts }) {
+export default function IndexPage({
+  posts,
+}: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <MainTemplate title="Blog" description="My latest posts">
       <div className="mt-10">
@@ -13,7 +16,7 @@ export default function IndexPage({ posts }) {
 }
 
 export async function getStaticProps() {
-  const posts = await getPosts({ directory: "blog", limit: -1 });
+  const posts = await getPosts({ directory: 'blog', limit: -1 });
 
   return {
     props: {

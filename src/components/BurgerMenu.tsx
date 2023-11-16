@@ -1,14 +1,18 @@
-import { motion } from "framer-motion";
-import MenuItem from "src/components/MenuItem";
+import { motion } from 'framer-motion';
+import MenuItem from 'src/components/MenuItem';
 
-const BurgerMenu = ({ isOpen }) => {
+interface BurgerMenuProps {
+  isOpen: boolean;
+}
+
+const BurgerMenu = ({ isOpen }: BurgerMenuProps) => {
   const variants = {
-    open: { x: 0, transition: { type: "linear" } },
-    closed: { x: "100%", transition: { type: "linear" } },
+    open: { x: 0, transition: { type: 'linear' } },
+    closed: { x: '100%', transition: { type: 'linear' } },
   };
   return (
     <motion.div
-      animate={isOpen ? "open" : "closed"}
+      animate={isOpen ? 'open' : 'closed'}
       initial="closed"
       variants={variants}
       id="burger_menu"
@@ -21,4 +25,5 @@ const BurgerMenu = ({ isOpen }) => {
     </motion.div>
   );
 };
+
 export default BurgerMenu;
