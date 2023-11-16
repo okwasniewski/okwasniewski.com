@@ -20,7 +20,7 @@ const About = () => {
               : { x: -200, opacity: 0 }
           }
         >
-          <p className="text-gray-500">
+          <p className="text-gray-500 dark:text-gray-200">
             My name is Oskar Kwasniewski. I'm a Senior Recent Native Developer
             at{" "}
             <a
@@ -36,8 +36,10 @@ const About = () => {
             native development in Swift, Objective-C, Java and Kotlin. In my
             free time I enjoy gravel cycling and learning new things.
           </p>
-          <h3 className="mt-4 text-lg font-semibold">Links</h3>
-          <ul>
+          <h3 className="mt-4 text-lg font-semibold dark:text-gray-200">
+            Links
+          </h3>
+          <ul className="dark:text-gray-200">
             <li className="flex m-2">
               <FaGithub className="w-6 h-6 mr-2" />
               <a href="https://github.com/okwasniewski" target="_blank">
@@ -68,7 +70,7 @@ const About = () => {
           }
           className="justify-center mt-10 md:mt-0 md:w-1/2 hidden md:flex"
         >
-          <Image src={AboutImage} alt="About me" />
+          <Image src={AboutImage} alt="About me" className="dark:invert" />
         </motion.div>
       </div>
     </div>

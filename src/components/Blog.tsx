@@ -21,7 +21,7 @@ const Blog = ({ posts }) => {
             key={slug}
             src={meta.featuredImage}
             href={`/blog/${slug}`}
-            badge={meta.badge}
+            badges={meta.badges}
             description={meta.subtitle}
             title={meta.title}
             variants={itemVariants}

@@ -21,7 +21,7 @@ const Work = ({ posts }) => {
             key={slug}
             src={meta.featuredImage}
             href={`/portfolio/${slug}`}
-            badge={meta.badge}
+            badges={meta.badges}
             description={meta.subtitle}
             title={meta.title}
             variants={itemVariants}

@@ -35,6 +35,21 @@ body {
   overflow-x: hidden;
 }
 
+.hero-background {
+  background: url("/hero.jpg");
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #1F2029;
+  }
+  .hero-background {
+    background: url("/hero-dark.jpg");
+  }
+}
+
+
+
 .full-width {
   width: 100vw;
   position: relative;

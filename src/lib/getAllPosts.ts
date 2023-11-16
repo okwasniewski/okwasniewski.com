@@ -1,15 +1,16 @@
 import fs from "fs";
 import { join } from "path";
 
+interface Badge {
+  badgeText: string;
+  badgeColor: "blue" | "green";
+}
 interface PostMeta {
   title: string;
   subtitle: string;
   featuredImage: string;
   order: number;
-  badge: {
-    badgeText: string;
-    badgeColor: "blue" | "green";
-  };
+  badges: Badge[];
 }
 
 interface Posts {

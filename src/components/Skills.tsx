@@ -15,7 +15,7 @@ const Skills = () => {
     <motion.div
       ref={sectionRef}
       animate={intersection?.isIntersecting ? { opacity: 1 } : { opacity: 0 }}
-      className='px-2 py-10 mt-10 bg-[url("/hero.jpg")] bg-fixed bg-center bg-cover bg-no-repeat full-width'
+      className={`hero-background px-2 py-10 mt-10 bg-fixed bg-center bg-cover bg-no-repeat full-width`}
     >
       <div className="container mx-auto">
         <Heading
@@ -26,7 +26,7 @@ const Skills = () => {
           variants={containerVariants}
           initial="hidden"
           animate={intersection?.isIntersecting ? "show" : "hidden"}
-          className="flex flex-col text-gray-800 items-center justify-center mb-10 md:justify-around md:flex-row"
+          className="flex flex-col text-gray-800 dark:text-gray-200 items-center justify-center mb-10 md:justify-around md:flex-row"
         >
           <Icon
             Element={SiTypescript}

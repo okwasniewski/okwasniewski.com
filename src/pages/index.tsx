@@ -19,6 +19,7 @@ export default function Home({ posts }) {
 }
 export async function getStaticProps() {
   const posts = await getPosts({ directory: "portfolio", limit: 4 });
+  console.log(posts);
   return {
     props: {
       posts: posts,

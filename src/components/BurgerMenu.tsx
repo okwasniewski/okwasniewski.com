@@ -12,11 +12,11 @@ const BurgerMenu = ({ isOpen }) => {
       initial="closed"
       variants={variants}
       id="burger_menu"
-      className="fixed top-0 left-0 z-10 flex flex-col items-center justify-center w-screen h-screen bg-white md:hidden"
+      className="fixed top-0 left-0 z-10 flex flex-col items-center justify-center w-screen h-screen bg-white dark:bg-black md:hidden"
     >
       <MenuItem href="/#about" text="About me" />
       <MenuItem href="/portfolio" text="Portfolio" />
-      <MenuItem href="/portfolio" text="Blog" />
+      <MenuItem href="/blog" text="Blog" />
       <MenuItem href="/contact" text="Contact" />
     </motion.div>
   );

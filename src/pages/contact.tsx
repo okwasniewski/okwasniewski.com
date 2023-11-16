@@ -17,7 +17,7 @@ const Contact = () => {
             initial="hidden"
             animate="show"
             variants={containerVariants}
-            className="mb-10 md:mb-0"
+            className="mb-10 md:mb-0 dark:text-gray-200"
           >
             <motion.li className="flex m-2" variants={itemVariants}>
               <FaGithub className="w-6 h-6 mr-2" />
@@ -69,7 +69,13 @@ const Contact = () => {
               },
             }}
           >
-            <Image src={contactImage} width={500} height={250} alt="Kontakt" />
+            <Image
+              src={contactImage}
+              width={500}
+              height={250}
+              alt="Contact"
+              className="dark:invert"
+            />
           </motion.div>
         </div>
       </div>

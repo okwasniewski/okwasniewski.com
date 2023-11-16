@@ -12,13 +12,13 @@ const Header = () => {
       <header
         className={`w-full px-4 py-5 fixed top-0 z-50  ${
           y > 100
-            ? "bg-white/30 supports-backdrop-blur:bg-white/60 backdrop-blur shadow-sm"
+            ? "bg-white/30 dark:bg-black/20 supports-backdrop-blur:bg-white/60 backdrop-blur shadow-sm"
             : ""
         }`}
       >
         <div className="container flex items-center justify-between mx-auto">
           <Link href="/">
-            <p className="z-50 text-xl font-bold cursor-pointer text-gray-800">
+            <p className="z-50 text-xl font-bold cursor-pointer text-gray-800 dark:text-gray-200">
               okwasniewski
             </p>
           </Link>

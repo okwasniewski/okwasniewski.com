@@ -3,6 +3,7 @@ import { itemVariants, containerVariants } from "src/lib/animations";
 import Button from "src/components/Button";
 import { useIntersectionRef } from "src/lib/useIntersectionRef";
 import { useEffect, useState } from "react";
+import Image from "next/image";
 const texts = ["Oskar", "a Software Engineer", "a React Native Developer"];
 
 const container = {
@@ -18,6 +19,7 @@ const container = {
 const Hero = () => {
   const [sectionRef, intersection] = useIntersectionRef();
   const [activeIndex, setActiveIndex] = useState(0);
+
   useEffect(() => {
     const intervalId = setInterval(() => {
       if (activeIndex === texts.length - 1) {
@@ -32,7 +34,7 @@ const Hero = () => {
   });
 
   return (
-    <div className="flex items-center justify-around mx-auto mb-20 bg-center h-[45vh]">
+    <div className="flex items-center justify-around mx-auto mb-32 bg-center h-[45vh]">
       <div
         className="w-full flex flex-col items-center justify-center"
         ref={sectionRef}
@@ -47,10 +49,17 @@ const Hero = () => {
             variants={itemVariants}
             className="flex flex-col lg:flex-row items-center mb-3"
           >
-            <motion.h1 className="text-4xl font-semibold text-gray-900 md:text-6xl overflow-hidden py-2 text-center mr-1">
+            <Image
+              src="/oskar.jpg"
+              width={130}
+              height={130}
+              alt="Oskar Kwaśniewski"
+              className="hidden lg:flex rounded-full lg:mr-5 shadow-md"
+            />
+            <motion.h1 className="text-4xl font-semibold text-gray-900 dark:text-gray-200 md:text-6xl overflow-hidden py-2 text-center mr-1">
               {activeIndex == 0 ? "Hey!" : null} I'm <span></span>
             </motion.h1>
-            <motion.h1 className="text-3xl font-semibold text-gray-900 md:text-6xl overflow-hidden py-2 text-center px-3">
+            <motion.h1 className="text-3xl font-semibold text-gray-900 dark:text-gray-200 md:text-6xl overflow-hidden py-2 text-center px-3">
               {texts.map((text, index) => {
                 if (activeIndex !== index) {
                   return null;
@@ -58,7 +67,7 @@ const Hero = () => {
                 return (
                   <motion.span
                     key={index}
-                    className="font-medium  block text-gray-800 italic"
+                    className="font-medium  block text-gray-800 dark:text-gray-200 italic"
                     initial={{ translateY: -100 }}
                     animate={{ translateY: 0 }}
                     exit={{ translateY: 100 }}
@@ -71,7 +80,7 @@ const Hero = () => {
           </motion.div>
           <motion.h3
             variants={itemVariants}
-            className="text-2xl md:text-3xl text-gray-800 text-center"
+            className="text-2xl md:text-3xl text-gray-800 dark:text-gray-200/80 text-center"
           >
             I enjoy building things for the web and mobile.
           </motion.h3>
@@ -92,7 +101,9 @@ const Hero = () => {
           </Button>
         </motion.div>
       </div>
-      <div className='absolute bg-fixed inset-0 bg-[url("/hero.jpg")] opacity-80 shadow-inner -z-10 bg-center bg-no-repeat md:h-[56vh] h-[63vh]' />
+      <div
+        className={`hero-background absolute bg-fixed inset-0 opacity-80 shadow-inner -z-10 bg-center bg-no-repeat md:h-[56vh] h-[63vh]`}
+      />
     </div>
   );
 };

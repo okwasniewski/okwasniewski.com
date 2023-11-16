@@ -16,8 +16,8 @@ const Icon = ({ Element, text, variants }: IconProps) => {
       onDragEnd={() => {
         if (!dragged) {
           toast(() => (
-            <span className='flex items-center justify-center'>
-              <Element className='w-8 h-8 mr-4 ' /> {text}
+            <span className="flex items-center justify-center">
+              <Element className="w-8 h-8 mr-4" /> {text}
             </span>
           ));
           setDragged(true);
@@ -31,9 +31,9 @@ const Icon = ({ Element, text, variants }: IconProps) => {
       }}
       variants={variants}
       style={{ width: "fit-content" }}
-      className='flex flex-col items-center justify-center mt-6 text-gray-800 cursor-move'
+      className="flex flex-col items-center justify-center mt-6 text-gray-800 dark:text-gray-200 cursor-move"
     >
-      <Element className='w-16 h-16 mb-4' />
+      <Element className="w-16 h-16 mb-4" />
       <p>{text}</p>
     </motion.div>
   );
