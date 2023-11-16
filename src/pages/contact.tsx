@@ -44,7 +44,7 @@ const Contact = () => {
                       default mail app <span> </span>
                       <a
                         className="font-bold text-blue-500"
-                        href="mailto:oskarkwasniewski@icloud.com"
+                        href="mailto:hello@oskarkwasniewski.dev"
                       >
                         click here!
                       </a>
@@ -55,7 +55,7 @@ const Contact = () => {
                   );
                 }}
               >
-                oskarkwasniewski@icloud.com
+                hello@oskarkwasniewski.dev
               </span>
             </motion.li>
           </motion.ul>

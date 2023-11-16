@@ -18,10 +18,10 @@ export default function Home({ posts }) {
   );
 }
 export async function getStaticProps() {
-  // const posts = getPosts({ directory: "portfolio", limit: 3 });
+  const posts = await getPosts({ directory: "portfolio", limit: 4 });
   return {
     props: {
-      posts: [],
+      posts: posts,
     },
   };
 }

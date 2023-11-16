@@ -21,9 +21,8 @@ const About = () => {
           }
         >
           <p className="text-gray-500">
-            Nazywam się Oskar Kwaśniewski, tworzeniem stron i programowaniem
-            zajmuje się od ponad 3 lat. Aktualnie pracuję jako React Native
-            Developer w{" "}
+            My name is Oskar Kwasniewski. I'm a Senior Recent Native Developer
+            at{" "}
             <a
               href="https://www.callstack.com/"
               target="__blank"
@@ -31,13 +30,11 @@ const About = () => {
             >
               {`{Callstack}`}
             </a>
-            . <br></br>
-            <br></br> Studiuję na Wydziale Informatyki na Zachodniopomorskim
-            Uniwersytecie Technologicznym. Mam doświadczenie w pracy zwarówno z
-            dużymi jaki i małymi firmami. Lubię tworzyć strony i korzystać z
-            nieszablonowych rozwiązań. <br></br>
-            <br></br> W wolnym czasie jeżdżę na rowerze 🚴🏻 lub uczę się czegoś
-            nowego 💻.
+            . I'm an open source enthusiast contributing to libraries from the
+            React Native ecosystem. I have over 10+ merged PRs to React Native
+            Core. <br></br>I'm focused on strengthening my knowledge around
+            native development in Swift, Objective-C, Java and Kotlin. In my
+            free time I enjoy gravel cycling and learning new things.
           </p>
           <h3 className="mt-4 text-lg font-semibold">Links</h3>
           <ul>
