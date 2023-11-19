@@ -1,5 +1,6 @@
 import type { PostMeta } from 'src/lib/getAllPosts';
 import BlogHeader from 'src/components/BlogHeader';
+import Head from 'next/head';
 import MainTemplate from './MainTemplate';
 
 interface BlogLayoutProps {
@@ -10,19 +11,35 @@ interface BlogLayoutProps {
 const BlogLayout = ({
   meta: { title, subtitle, badges, date, primaryAction },
   children,
-}: BlogLayoutProps) => (
-  <MainTemplate title={title} description={subtitle}>
-    <BlogHeader
-      title={title}
-      subtitle={subtitle}
-      badges={badges}
-      date={date}
-      primaryAction={primaryAction}
-    />
-    <div className="mx-auto prose dark:prose-invert lg:prose-lg">
-      {children}
-    </div>
-  </MainTemplate>
-);
+}: BlogLayoutProps) => {
+  const metaImageParams = new URLSearchParams({
+    title,
+    subtitle,
+    date,
+    author: 'Oskar Kwaśniewski',
+  }).toString();
+
+  return (
+    <MainTemplate title={title} description={subtitle}>
+      <Head>
+        <meta
+          property="og:image"
+          content={`https://oskarkwasniewski.dev/api/og?${metaImageParams}`}
+          key="ogimage"
+        />
+      </Head>
+      <BlogHeader
+        title={title}
+        subtitle={subtitle}
+        badges={badges}
+        date={date}
+        primaryAction={primaryAction}
+      />
+      <div className="mx-auto prose dark:prose-invert lg:prose-lg">
+        {children}
+      </div>
+    </MainTemplate>
+  );
+};
 
 export default BlogLayout;
