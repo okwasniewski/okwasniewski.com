@@ -23,18 +23,18 @@ const Card = ({
 }: CardProps) => (
   <Link href={href}>
     <motion.article variants={variants} className="transform">
-      <div className="flex flex-col justify-center transition bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg overflow-hidden shadow-sm cursor-pointer h-80 hover:shadow-lg hover:-translate-y-2">
-        <div className="flex justify-center mb-2 h-1/2 relative">
+      <div className="flex flex-col justify-center overflow-hidden transition bg-white border border-gray-200 rounded-lg shadow-sm cursor-pointer dark:bg-gray-900 dark:border-gray-800 h-80 hover:shadow-lg hover:-translate-y-2">
+        <div className="relative flex justify-center mb-2 h-1/2">
           <Image
             src={src}
             sizes="100vw"
             alt={title}
-            className="w-full object-cover -mt-[16px] border-b border-gray-200"
+            className="w-full object-cover -mt-[16px] border-b border-gray-200 dark:brightness-[0.85]"
             fill
           />
         </div>
         <div className="px-4 mb-4">
-          <div className="flex gap-2 flex-row">
+          <div className="flex flex-row gap-2">
             {badges?.map(({ color, text }, index) => (
               <Badge key={index} color={color} text={text} />
             ))}

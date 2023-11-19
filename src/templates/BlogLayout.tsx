@@ -8,11 +8,17 @@ interface BlogLayoutProps {
 }
 
 const BlogLayout = ({
-  meta: { title, subtitle, badges },
+  meta: { title, subtitle, badges, date, primaryAction },
   children,
 }: BlogLayoutProps) => (
   <MainTemplate title={title} description={subtitle}>
-    <BlogHeader title={title} subtitle={subtitle} badges={badges} />
+    <BlogHeader
+      title={title}
+      subtitle={subtitle}
+      badges={badges}
+      date={date}
+      primaryAction={primaryAction}
+    />
     <div className="mx-auto prose dark:prose-invert lg:prose-lg">
       {children}
     </div>
