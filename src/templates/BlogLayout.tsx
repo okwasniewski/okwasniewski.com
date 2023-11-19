@@ -1,27 +1,43 @@
+import type { PostMeta } from 'src/lib/getAllPosts';
+import BlogHeader from 'src/components/BlogHeader';
+import Head from 'next/head';
 import MainTemplate from './MainTemplate';
 
 interface BlogLayoutProps {
-  meta: {
-    title: string;
-    subtitle: string;
-    featuredImage: string;
-  };
+  meta: PostMeta;
   children: React.ReactNode;
 }
 
 const BlogLayout = ({
-  meta: { title, subtitle, featuredImage },
+  meta: { title, subtitle, badges, date, primaryAction },
   children,
 }: BlogLayoutProps) => {
+  const metaImageParams = new URLSearchParams({
+    title,
+    subtitle,
+    date,
+    author: 'Oskar Kwaśniewski',
+  }).toString();
+
   return (
     <MainTemplate title={title} description={subtitle}>
-      <div className='p-4 md:p-0 bg-gray-50 full-width'>
-        <div className='container pb-10 mx-auto mb-8 pt-14'>
-          <h1 className='mb-1 text-3xl font-semibold '>{title}</h1>
-          <p className='mb-4'>{subtitle}</p>
-        </div>
+      <Head>
+        <meta
+          property="og:image"
+          content={`https://oskarkwasniewski.dev/api/og?${metaImageParams}`}
+          key="ogimage"
+        />
+      </Head>
+      <BlogHeader
+        title={title}
+        subtitle={subtitle}
+        badges={badges}
+        date={date}
+        primaryAction={primaryAction}
+      />
+      <div className="mx-auto prose dark:prose-invert lg:prose-lg">
+        {children}
       </div>
-      <div className='mx-auto prose'>{children}</div>
     </MainTemplate>
   );
 };

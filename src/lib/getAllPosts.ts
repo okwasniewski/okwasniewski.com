@@ -1,35 +1,54 @@
-import fs from "fs"
-import { join } from "path"
+import fs from 'fs';
+import { join } from 'path';
 
-interface PostMeta {
-  title: string,
-  subtitle: string,
-  featuredImage: string,
-  order: number,
-  badge: {
-    badgeText: string,
-    badgeColor: 'blue' | 'green',
-  }
+export interface Badge {
+  text: string;
+  color: 'blue' | 'green';
+}
+export interface PostMeta {
+  title?: string;
+  subtitle?: string;
+  featuredImage?: string;
+  date?: string;
+  badges?: Badge[];
+  primaryAction?: {
+    text: string;
+    href: string;
+  };
 }
 
-interface Posts {
-  slug: string,
-  meta: PostMeta
+export interface Post {
+  slug: string;
+  meta: PostMeta;
 }
 
-const postsDirectory = join(process.cwd(), "src/pages/portfolio")
+type Directories = 'blog' | 'portfolio';
 
-export function getPostSlugs(): string[] {
-  return fs.readdirSync(postsDirectory).filter((item) => item.endsWith('.mdx')).map((item) => item.replace(/\.mdx$/, ''))
+interface Options {
+  directory: Directories;
+  limit?: number;
 }
 
-export function getPosts(numberOfPosts: number): Posts[] {
-  const slugs = getPostSlugs();
-  const posts = slugs.map((slug: string) => {
-    const realSlug = slug.replace(/\.md$/, '')
-    const { meta } = require(`../pages/portfolio/${realSlug}.mdx`)
-    return { slug, meta };
-  }).sort((post1, post2) => (post1.meta.order > post2.meta.order) ? 1 : -1).slice(0, numberOfPosts)
-  
+const getDirectory = (dir: string) => join(process.cwd(), `src/pages/${dir}`);
+
+export function getPostSlugs(options: Options): string[] {
+  return fs
+    .readdirSync(getDirectory(options.directory))
+    .filter((item) => item.endsWith('.mdx'))
+    .slice(0, options.limit === -1 ? undefined : options.limit);
+}
+
+export async function getPosts(options: Options): Promise<Post[]> {
+  const slugs = getPostSlugs(options);
+  const posts = await Promise.all(
+    slugs.map(async (slug: string) => {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, import/no-dynamic-require, global-require
+      const { meta } = (await require(
+        `../pages/${options.directory}/${slug}`,
+      )) as { meta: PostMeta };
+      return { slug: slug.replace('.mdx', ''), meta };
+    }),
+  );
+
   return posts;
 }

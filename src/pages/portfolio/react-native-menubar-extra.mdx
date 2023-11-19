@@ -1,0 +1,64 @@
+import BlogLayout from "src/templates/BlogLayout";
+
+export const meta = {
+  title: "React Native MenuBar Extra",
+  subtitle: "Easily add MenuBar to your React Native MacOS Application",
+  featuredImage: "https://res.cloudinary.com/dangiiuvf/image/upload/f_auto,q_auto/pxgjrwucriby0krwfxu4",
+  primaryAction: { 
+    text: 'Open GitHub',
+    href: 'https://github.com/okwasniewski/react-native-menubar-extra',
+  },
+  badges: [
+    {
+      text: "Library",
+      color: "blue",
+    },
+    {
+      text: "Open Source",
+      color: "green",
+    }
+  ],
+};
+
+Easily add native menubar (`NSMenu`) to your React Native MacOS App.
+
+<p align="center">
+  <img src="https://github.com/okwasniewski/react-native-menubar-extra/blob/main/img/example-usage.png?raw=true" alt="ViewPager" width="450"/>
+</p>
+
+> This library supports only [react-native-macos](https://github.com/microsoft/react-native-macos#readme)
+
+## Installation
+
+```sh
+yarn add react-native-menubar-extra
+# or ---
+npm install react-native-menubar-extra
+```
+
+```sh
+cd macos && pod install
+```
+
+## Usage
+
+```tsx
+import { MenuBarExtraItem, MenubarExtraView } from 'react-native-menubar-extra';
+
+const MenuBar = () => {
+  return (
+    <MenubarExtraView icon="car">
+      <MenuBarExtraItem
+        title="Item 1"
+        onItemPress={() => {
+          console.log('Item pressed');
+        }}
+      />
+    </MenubarExtraView>
+  );
+};
+```
+
+export default ({ children }) => (
+  <BlogLayout meta={meta}>{children}</BlogLayout>
+);

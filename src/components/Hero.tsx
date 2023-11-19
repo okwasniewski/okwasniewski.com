@@ -1,9 +1,11 @@
-import { motion } from "framer-motion";
-import { itemVariants, containerVariants } from "src/lib/animations";
-import Button from "src/components/Button";
-import { useIntersectionRef } from "src/lib/useIntersectionRef";
-import { useEffect, useState } from "react";
-const texts = ["zwiększać sprzedaż", "docierać do klientów", "osiągnąć sukces"];
+import { motion } from 'framer-motion';
+import { itemVariants } from 'src/lib/animations';
+import Button from 'src/components/Button';
+import { useIntersectionRef } from 'src/lib/useIntersectionRef';
+import { useEffect, useState } from 'react';
+import Image from 'next/image';
+
+const texts = ['Oskar', 'a Software Engineer', 'a React Native Developer'];
 
 const container = {
   hidden: { opacity: 0 },
@@ -18,6 +20,7 @@ const container = {
 const Hero = () => {
   const [sectionRef, intersection] = useIntersectionRef();
   const [activeIndex, setActiveIndex] = useState(0);
+
   useEffect(() => {
     const intervalId = setInterval(() => {
       if (activeIndex === texts.length - 1) {
@@ -32,25 +35,32 @@ const Hero = () => {
   });
 
   return (
-    <div className='flex items-center justify-around mx-auto mb-20 bg-center h-[45vh]'>
+    <div className="flex items-center justify-around mx-auto mb-24 bg-center h-[45vh]">
       <div
-        className='w-full flex flex-col items-center justify-center'
+        className="flex flex-col items-center justify-center w-full"
         ref={sectionRef}
       >
         <motion.div
           variants={container}
-          initial='hidden'
-          className='flex flex-col items-center justify-center'
-          animate={intersection?.isIntersecting ? "show" : "hidden"}
+          initial="hidden"
+          className="flex flex-col items-center justify-center"
+          animate={intersection?.isIntersecting ? 'show' : 'hidden'}
         >
           <motion.div
             variants={itemVariants}
-            className='flex flex-col lg:flex-row items-center mb-3'
+            className="flex flex-col items-center mb-3 lg:flex-row"
           >
-            <motion.h1 className='text-4xl font-semibold text-gray-900 md:text-6xl overflow-hidden py-2 text-center mr-1'>
-              Pomagam firmom <span></span>
+            <Image
+              src="/oskar.jpg"
+              width={130}
+              height={130}
+              alt="Oskar Kwaśniewski"
+              className="hidden rounded-full shadow-md lg:flex lg:mr-5"
+            />
+            <motion.h1 className="py-2 mr-1 overflow-hidden text-4xl font-semibold text-center text-gray-900 dark:text-gray-200 md:text-6xl">
+              {activeIndex === 0 ? 'Hey!' : null} I'm <span />
             </motion.h1>
-            <motion.h1 className='text-3xl font-semibold text-gray-900 md:text-6xl overflow-hidden py-2 text-center px-3'>
+            <motion.h1 className="px-3 py-2 overflow-hidden text-3xl font-semibold text-center text-gray-900 dark:text-gray-200 md:text-6xl">
               {texts.map((text, index) => {
                 if (activeIndex !== index) {
                   return null;
@@ -58,7 +68,7 @@ const Hero = () => {
                 return (
                   <motion.span
                     key={index}
-                    className='font-medium  block text-gray-800 italic'
+                    className="block italic font-medium text-gray-800 dark:text-gray-200"
                     initial={{ translateY: -100 }}
                     animate={{ translateY: 0 }}
                     exit={{ translateY: 100 }}
@@ -71,10 +81,9 @@ const Hero = () => {
           </motion.div>
           <motion.h3
             variants={itemVariants}
-            className='text-2xl md:text-3xl text-gray-800 text-center'
+            className="text-2xl text-center text-gray-800 md:text-3xl dark:text-gray-200/80"
           >
-            tworząc <strong>przejrzyste</strong> strony internetowe i aplikacje
-            mobilne
+            I enjoy building things for the web and mobile.
           </motion.h3>
         </motion.div>
         <motion.div
@@ -84,16 +93,16 @@ const Hero = () => {
               ? { opacity: 1, transition: { duration: 1 } }
               : { opacity: 0 }
           }
-          className='mt-8 flex md:flex-row flex-col items-center'
+          className="flex flex-col items-center mt-8 md:flex-row"
         >
-          <Button href='/portfolio'>Zobacz więcej</Button>
-          <div className='m-2 md:hidden block' />
-          <Button href='/contact' secondary>
-            Kontakt
+          <Button href="/portfolio">Portfolio</Button>
+          <div className="block m-2 md:hidden" />
+          <Button href="/contact" secondary>
+            Contact
           </Button>
         </motion.div>
       </div>
-      <div className='absolute bg-fixed inset-0 bg-[url("/hero.jpg")] opacity-80 shadow-inner -z-10 bg-center bg-no-repeat md:h-[56vh] h-[63vh]' />
+      <div className="hero-background absolute bg-fixed inset-0 opacity-80 shadow-inner -z-10 bg-center bg-no-repeat md:h-[56vh] h-[63vh]" />
     </div>
   );
 };

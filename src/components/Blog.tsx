@@ -5,15 +5,15 @@ import { motion } from 'framer-motion';
 import { useIntersectionRef } from 'src/lib/useIntersectionRef';
 import { Post } from 'src/lib/getAllPosts';
 
-interface WorkProps {
+interface BlogProps {
   posts: Post[];
 }
 
-const Work = ({ posts }: WorkProps) => {
+const Blog = ({ posts }: BlogProps) => {
   const [sectionRef, intersection] = useIntersectionRef();
   return (
     <>
-      <Heading heading="Portfolio" subHeading="My latest projects" />
+      <Heading heading="Blog" subHeading="My latest posts" />
       <motion.div
         ref={sectionRef}
         variants={containerVariants}
@@ -25,7 +25,7 @@ const Work = ({ posts }: WorkProps) => {
           <Card
             key={slug}
             src={meta.featuredImage}
-            href={`/portfolio/${slug}`}
+            href={`/blog/${slug}`}
             badges={meta.badges}
             description={meta.subtitle}
             title={meta.title}
@@ -37,4 +37,4 @@ const Work = ({ posts }: WorkProps) => {
   );
 };
 
-export default Work;
+export default Blog;
