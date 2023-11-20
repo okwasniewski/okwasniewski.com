@@ -1,12 +1,13 @@
 import createMDX from "@next/mdx";
 import rehypeHighlight from "rehype-highlight";
 import remarkGfm from "remark-gfm";
+import remarkHint from "remark-hint";
 
 const mdxConfig = {
   extension: /\.mdx?$/,
   options: {
     jsx: true,
-    remarkPlugins: [remarkGfm],
+    remarkPlugins: [remarkGfm, remarkHint],
     rehypePlugins: [rehypeHighlight],
   },
 };

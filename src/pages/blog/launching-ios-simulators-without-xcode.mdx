@@ -13,33 +13,60 @@ export const meta = {
   ]
 }
 
-# Test
+## Introduction
 
-```js
-console.log('Everything is awesome!')
+For many of us using Xcode is a daily routine. We use it to build, test and deploy our apps. But what if we want to launch a simulator without opening Xcode? 
+You may already have the latest version of your app and you don't want to rebuild it. In this short article we will learn how to launch a simulator without Xcode.
+
+!> **Note:** Keep in mind that you will need to have Xcode installed on your machine.
+
+## Launching a simulator from command line
+
+First of all we need to know the name of the simulator we want to launch. In order to list all available simulators we can run the following command:
+
+```bash
+xcrun simctl list devices
 ```
-## Autolink literals
 
-www.example.com, https://example.com, and contact@example.com.
+?> 💡 `xcrun` is a command line tool shipped with Xcode. It allows you to locate or run development tools and other executable programs provided by Xcode.
 
-## Footnote
+To launch simulator we can use the `boot` command. For example, if we want to launch the iPhone 15 Pro simulator we can run the following command:
 
-A note[^1]
+```bash
+xcrun simctl boot "iPhone 15 Pro"
+```
 
-[^1]: Big note.
+## Launching a simulator from dock
 
-## Strikethrough
+If you want a quicker way of launching simulators you open `Simulator.app` and then right click on it in the dock and select `Devices > iOS 17.0 > iPhone 15 Pro` (or any other simulator you want to launch).
 
-~one~ or ~~two~~ tildes.
+<img src='https://res.cloudinary.com/dangiiuvf/image/upload/f_auto,q_auto/ukyq8bqea1ysmnqv7b93'  />
 
-## Table
+## Using Minisim
 
-| a | b  |  c |  d  |
-| - | :- | -: | :-: |
+Third way of launching simulators is by using [Minisim](https://minisim.app) a free and open source app that allows you to launch simulators from the menu bar. 
+It also allows you to launch Android emulators, execute custom commands and more.
 
-## Tasklist
+<img className='center' width="450" src='https://user-images.githubusercontent.com/52801365/223483262-aa3bad72-2948-4893-87a0-578e5d3d8e89.png'/>
 
-* [ ] to do
-* [x] done
+Some of the features include:
+- Launching simulators
+- Launching Android emulators
+- Executing ADB commands
+  - Copy device ID / name
+  - Toggle talkback
+  - Cold boot
+- Executing xcrun commands
+  - Copy UUID/name 
+  - Delete simulator
+- Executing custom commands
+- Pass custom parameters
+- Clear Xcode derived data
+- **Raycast extension**
+
+
+## That's a wrap
+
+Thanks for reading! I hope you found this article useful. If you have any questions or feedback feel free to reach out to me on [Twitter](https://twitter.com/o_kwasniewski).
 
 export default ({ children }) => <BlogLayout meta={meta}>{children}</BlogLayout>
