@@ -50,6 +50,29 @@ body {
 
 
 
+.hint { 
+  border-radius: 0.5rem;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.tip { 
+  background-color: rgba(47, 129, 247, 0.15);
+}
+.warn { 
+  background-color: rgba(214, 119, 64, 0.15);
+}
+.error { 
+  background-color: rgba(208, 66, 85, 0.15);
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
 .full-width {
   width: 100vw;
   position: relative;
