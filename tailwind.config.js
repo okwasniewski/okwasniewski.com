@@ -15,7 +15,12 @@ module.exports = {
       body: ["Satoshi"],
       sans: ["Satoshi"],
     },
-    extend: {},
+    extend: {
+      colors: { 
+        "dark-surface": "#1E1D1D",
+        "dark-surface-accent": "#2D2C2C"
+      },
+    },
   },
   variants: {
     extend: {},

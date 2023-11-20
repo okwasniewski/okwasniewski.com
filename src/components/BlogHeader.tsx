@@ -18,8 +18,8 @@ export default function BlogHeader({
   primaryAction,
 }: BlogHeaderProps) {
   return (
-    <div className="p-4 md:p-0 bg-gray-50 dark:bg-gray-800 full-width mb-4">
-      <div className="container flex flex-row items-center justify-between pb-10 mx-auto mb-4 pt-14">
+    <div className="p-4 mb-4 md:p-0 bg-gray-50 dark:bg-dark-surface full-width">
+      <div className="container flex flex-col items-start justify-between pt-6 mx-auto mb-4 md:pb-10 gap-y-5 lg:gap-y-0 lg:items-center lg:flex-row md:pt-14">
         <div>
           <p className="text-xs dark:text-gray-200/80">{date}</p>
           <h1 className="mb-2 text-3xl font-semibold dark:text-gray-200">
@@ -28,7 +28,7 @@ export default function BlogHeader({
           <p className="mb-2 dark:text-gray-200/80">{subtitle}</p>
           <div className="flex flex-row gap-2">
             {badges?.map(({ color, text }, index) => (
-              <Badge key={index} color={color} text={text} />
+              <Badge key={index} color={color} text={text} className="mb-4" />
             ))}
           </div>
         </div>

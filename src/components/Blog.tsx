@@ -19,7 +19,7 @@ const Blog = ({ posts }: BlogProps) => {
         variants={containerVariants}
         initial="hidden"
         animate={intersection?.isIntersecting ? 'show' : 'hidden'}
-        className="grid gap-10 mb-20 gtc-auto"
+        className="flex flex-col gap-5"
       >
         {posts.map(({ slug, meta }) => (
           <Card
@@ -30,6 +30,7 @@ const Blog = ({ posts }: BlogProps) => {
             description={meta.subtitle}
             title={meta.title}
             variants={itemVariants}
+            compact
           />
         ))}
       </motion.div>
