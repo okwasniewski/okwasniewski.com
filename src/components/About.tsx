@@ -22,7 +22,7 @@ const About = () => {
           }
         >
           <p className="text-gray-500 dark:text-gray-200">
-            My name is Oskar Kwasniewski. I&#39;m a Senior Recent Native
+            My name is Oskar Kwaśniewski. I&#39;m a Senior React Native
             Developer at{' '}
             <a
               href="https://www.callstack.com/"
@@ -75,7 +75,7 @@ const About = () => {
                 }
               : { scale: 0.8, opacity: 0 }
           }
-          className="justify-center mt-10 md:mt-0 md:w-1/2 hidden md:flex"
+          className="justify-center hidden mt-10 md:mt-0 md:w-1/2 md:flex"
         >
           <Image
             // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
