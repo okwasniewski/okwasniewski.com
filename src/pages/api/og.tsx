@@ -29,21 +29,23 @@ export default async function handler(request: NextRequest) {
     return new ImageResponse(
       (
         <div
-          // eslint-disable-next-line react/no-unknown-property
           tw="flex flex-col justify-center items-center w-full h-full"
           style={{
             backgroundColor: gradientFrom,
             background: `linear-gradient(to right, ${gradientFrom}, ${gradientTo})`,
           }}
         >
-          <div
-            // eslint-disable-next-line react/no-unknown-property
-            tw="flex flex-col text-white p-12"
-          >
+          <div tw="flex flex-col text-white p-24 w-full">
             <h1 style={{ fontSize: 80 }}>{title}</h1>
-            <h3 style={{ fontSize: 35 }}>{subtitle}</h3>
-            <p>{date}</p>
-            <p>{author}</p>
+            <div tw="flex w-full justify-between items-center">
+              <div tw="flex flex-col">
+                <h3 style={{ fontSize: 35 }}>{subtitle}</h3>
+                <p>{date}</p>
+              </div>
+              <div style={{ fontSize: 20 }} tw="flex flex-row">
+                <p>{author}</p>
+              </div>
+            </div>
           </div>
         </div>
       ),
