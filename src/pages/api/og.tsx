@@ -38,7 +38,7 @@ export default async function handler(request: NextRequest) {
           <div tw="flex flex-col text-white p-24 w-full">
             <h1 style={{ fontSize: 80 }}>{title}</h1>
             <div tw="flex w-full justify-between items-center">
-              <div tw="flex flex-col">
+              <div tw="flex flex-col max-w-xl">
                 <h3 style={{ fontSize: 35 }}>{subtitle}</h3>
                 <p>{date}</p>
               </div>

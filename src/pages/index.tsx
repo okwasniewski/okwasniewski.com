@@ -11,7 +11,7 @@ export default function Home({
   posts,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
-    <MainTemplate title="Main Page">
+    <MainTemplate title="Oskar Kwaśniewski - React Native Developer">
       <Hero />
       <Work posts={posts} />
       <About />

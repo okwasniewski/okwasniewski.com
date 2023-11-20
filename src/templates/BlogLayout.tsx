@@ -15,7 +15,7 @@ const BlogLayout = ({
   const metaImageParams = new URLSearchParams({
     title,
     subtitle,
-    date,
+    date: date || '',
     author: 'Oskar Kwaśniewski',
   }).toString();
 

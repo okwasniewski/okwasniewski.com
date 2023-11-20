@@ -48,7 +48,9 @@ const Card = ({
               : 'mb-4'
           }`}
         >
-          <div className="flex-row hidden gap-2 md:flex">
+          <div
+            className={`flex-row gap-2 ${compact ? 'hidden md:flex' : 'flex'}`}
+          >
             {badges?.map(({ color, text }, index) => (
               <Badge
                 key={index}
