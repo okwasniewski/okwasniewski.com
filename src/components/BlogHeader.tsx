@@ -28,7 +28,7 @@ export default function BlogHeader({
           <p className="mb-2 dark:text-gray-200/80">{subtitle}</p>
           <div className="flex flex-row gap-2">
             {badges?.map(({ color, text }, index) => (
-              <Badge key={index} color={color} text={text} />
+              <Badge key={index} color={color} text={text} className="mb-4" />
             ))}
           </div>
         </div>
