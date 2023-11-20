@@ -41,7 +41,7 @@ body {
 
 @media (prefers-color-scheme: dark) {
   body {
-    background-color: #1F2029;
+    background-color: #111010;
   }
   .hero-background {
     background: url("/hero-dark.jpg");

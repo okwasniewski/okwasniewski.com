@@ -55,7 +55,7 @@ const Hero = () => {
               width={130}
               height={130}
               alt="Oskar Kwaśniewski"
-              className="hidden rounded-full shadow-md lg:flex lg:mr-5"
+              className="hidden rounded-full shadow-md dark:shadow-none lg:flex lg:mr-5"
             />
             <motion.h1 className="py-2 mr-1 overflow-hidden text-4xl font-semibold text-center text-gray-900 dark:text-gray-200 md:text-6xl">
               {activeIndex === 0 ? 'Hey!' : null} I'm <span />
@@ -102,7 +102,7 @@ const Hero = () => {
           </Button>
         </motion.div>
       </div>
-      <div className="hero-background absolute bg-fixed inset-0 opacity-80 shadow-inner -z-10 bg-center bg-no-repeat md:h-[56vh] h-[63vh]" />
+      <div className="hero-background absolute bg-fixed inset-0 opacity-80 dark:opacity-40 shadow-inner -z-10 bg-center bg-no-repeat md:h-[56vh] h-[63vh]" />
     </div>
   );
 };

@@ -18,7 +18,7 @@ export default function BlogHeader({
   primaryAction,
 }: BlogHeaderProps) {
   return (
-    <div className="p-4 md:p-0 bg-gray-50 dark:bg-gray-800 full-width mb-4">
+    <div className="p-4 mb-4 md:p-0 bg-gray-50 dark:bg-dark-surface full-width">
       <div className="container flex flex-row items-center justify-between pb-10 mx-auto mb-4 pt-14">
         <div>
           <p className="text-xs dark:text-gray-200/80">{date}</p>

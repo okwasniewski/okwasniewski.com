@@ -13,13 +13,13 @@ const Header = () => {
       <header
         className={`w-full px-4 py-5 fixed top-0 z-50  ${
           y > 100
-            ? 'bg-white/30 dark:bg-black/20 supports-backdrop-blur:bg-white/60 backdrop-blur shadow-sm'
+            ? 'bg-white/30 dark:bg-black/20 supports-backdrop-blur:bg-white/60 backdrop-blur shadow-sm dark:shadow-none'
             : ''
         }`}
       >
         <div className="container flex items-center justify-between mx-auto">
           <Link href="/">
-            <p className="z-50 text-xl font-bold cursor-pointer text-gray-800 dark:text-gray-200">
+            <p className="z-50 text-xl font-bold text-gray-800 cursor-pointer dark:text-gray-200">
               okwasniewski
             </p>
           </Link>
@@ -31,12 +31,12 @@ const Header = () => {
           </nav>
           <FaBars
             onClick={() => setIsOpen((prev) => !prev)}
-            className="text-blue-300 z-50 w-8 h-8 cursor-pointer md:hidden"
+            className="z-50 w-8 h-8 text-blue-300 cursor-pointer md:hidden"
           />
         </div>
       </header>
       <BurgerMenu isOpen={isOpen} />
-      <div className="mb-8 h-10" />
+      <div className="h-10 mb-8" />
     </>
   );
 };
