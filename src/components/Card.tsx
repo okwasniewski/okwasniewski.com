@@ -44,11 +44,11 @@ const Card = ({
         <div
           className={`px-4 ${
             compact
-              ? 'flex flex-row-reverse justify-between items-center p-3'
+              ? 'flex md:flex-row-reverse justify-between items-center p-3'
               : 'mb-4'
           }`}
         >
-          <div className="flex flex-row gap-2">
+          <div className="flex-row hidden gap-2 md:flex">
             {badges?.map(({ color, text }, index) => (
               <Badge
                 key={index}

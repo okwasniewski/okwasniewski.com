@@ -31,7 +31,7 @@ const Header = () => {
           </nav>
           <FaBars
             onClick={() => setIsOpen((prev) => !prev)}
-            className="z-50 w-8 h-8 text-blue-300 cursor-pointer md:hidden"
+            className="z-50 w-8 h-8 text-blue-300 cursor-pointer dark:text-blue-800 md:hidden"
           />
         </div>
       </header>
