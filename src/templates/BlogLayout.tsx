@@ -27,6 +27,10 @@ const BlogLayout = ({
           content={`https://oskarkwasniewski.dev/api/og?${metaImageParams}`}
           key="ogimage"
         />
+        <meta
+          name="twitter:image"
+          content={`https://oskarkwasniewski.dev/api/og?${metaImageParams}`}
+        />
       </Head>
       <BlogHeader
         title={title}

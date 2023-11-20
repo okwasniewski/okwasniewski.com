@@ -31,6 +31,9 @@ const MainTemplate = ({
           key="ogtitle"
         />
         <meta property="og:description" content={description} key="ogdesc" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={title} />
+        <meta name="twitter:description" content={description} />
       </Head>
       <Toaster />
       <Header />
