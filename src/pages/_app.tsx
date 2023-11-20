@@ -14,10 +14,10 @@ function MyApp({ Component, pageProps }: AppProps) {
           content="Oskar Kwaśniewski"
           key="ogsitename"
         />
-        <meta property="og:url" content="okwasniewski.com" key="ogurl" />
+        <meta property="og:url" content="oskarkwasniewski.dev" key="ogurl" />
         <meta
           property="og:image"
-          content="https://okwasniewski.com/preview_image.jpg"
+          content="https://oskarkwasniewski.dev/preview_image.jpg"
           key="ogimage"
         />
         <meta property="og:type" content="website" />
