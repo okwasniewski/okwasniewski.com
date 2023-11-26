@@ -95,7 +95,7 @@ const Hero = () => {
           }
           className="flex flex-col items-center mt-8 md:flex-row"
         >
-          <Button href="/portfolio">Portfolio</Button>
+          <Button href="/blog">Blog</Button>
           <div className="block m-2 md:hidden" />
           <Button href="/contact" secondary>
             Contact
