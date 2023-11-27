@@ -1,9 +1,9 @@
 import BlogLayout from 'src/templates/BlogLayout';
 
 export const meta = {
-  title: 'Creating a MenuBar app with React Native',
-  subtitle: 'Using NSMenu and NSPopover',
-  date: '26 November, 2023',
+  title: 'Creating a macOS MenuBar app with React Native',
+  subtitle: 'Using NSMenu, NSPopover and NSWindow',
+  date: '27 November, 2023',
   badges: [
     {
       text: 'React Native',
@@ -13,9 +13,9 @@ export const meta = {
 }
 
 ## Introduction
-MenuBar apps allows users to quickly access apps content wherever they are in the operating system. They can work as an extension of your app, providing useful shortcuts for most used features or work as _menubar only apps_. In this article we will discuss two different ways of creating menubar **only** app either with `NSMenu` or `NSPopover`.
+MenuBar apps allows users to quickly access apps content wherever they are in the operating system. They can work as an extension of your app, providing useful shortcuts for most used features or work as _menubar only apps_. In this article we will discuss three different ways of creating menubar **only** app either with `NSMenu`, `NSPopover` or plain `NSWindow`.
 
-### What's the difference between NSMenu and NSPopover? 
+### What's the difference between NSMenu, NSPopover and NSWindow? 
 
 `NSPopover` renders is a container for content displayed in a floating window with an anchor. It allows you to render your components as is. 
 
@@ -23,7 +23,11 @@ MenuBar apps allows users to quickly access apps content wherever they are in th
 
 On the other hand `NSMenu` is an API that allows you to build native menubar experiences that follow MacOS appearance. It has a subset of predefined properties that you can set. To create this type of menu you will need a third party library, because you can't directly map JSX to custom AppKit elements. I've created a library that creates this type of mapping called: [`react-native-menubar-extra`](https://github.com/okwasniewski/react-native-menubar-extra) .
 
-<img className='center' width={550} src="https://res.cloudinary.com/dangiiuvf/image/upload/f_auto,q_auto/gz3jdlgx4vnvpbpwpqlh"/>
+<img className='center' src="https://res.cloudinary.com/dangiiuvf/image/upload/f_auto,q_auto/gz3jdlgx4vnvpbpwpqlh"/>
+
+And lastly, you can create a menubar app with a plain `NSWindow`. This is the most flexible option, but it requires you to handle all the logic yourself. It can lead to less bugs than `NSPopover` when embedding custom views.
+
+<img className='center' width={550} src="https://res.cloudinary.com/dangiiuvf/image/upload/f_auto,q_auto/tyjjy6wcskbf3ttyaji9"/>
 
 ## Setup your project
 
@@ -111,7 +115,7 @@ Next inside of `AppDelegate.mm`, replace the implementation of `applicationDidFi
   if (@available(macOS 14.0, *)) {
     _popover.hasFullSizeContent = YES;
   }
-  _statusItem = [NSStatusBar.systemStatusBar statusItemWithLength:NSVariableStatusItemLength];
+  _statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
   
   [_statusItem.button setTitle:@"Menubar app"];
   [_statusItem.button setAction:@selector(toggleMenu:)];
@@ -193,27 +197,7 @@ In `AppDelegate.mm` remove the unused `toggleMenu` method and update the `applic
 ```objc
 - (void)applicationDidFinishLaunching:(NSNotification *)notification
 {
-  self.moduleName = @"MenuBarApp";
-  self.initialProps = @{};
-  
-  NSApplication *application = [notification object];
-  NSDictionary *launchOptions = [notification userInfo];
-  BOOL enableTM = NO;
-#if RCT_NEW_ARCH_ENABLED
-  enableTM = self.turboModuleEnabled;
-#endif
-  RCTAppSetupPrepareApp(application, enableTM);
-  
-  if (!self.bridge) {
-    self.bridge = [self createBridgeWithDelegate:self launchOptions:launchOptions];
-  }
-#if RCT_NEW_ARCH_ENABLED
-  self.bridgeAdapter = [[RCTSurfacePresenterBridgeAdapter alloc] initWithBridge:self.bridge
-                                                               contextContainer:_contextContainer];
-  self.bridge.surfacePresenter = self.bridgeAdapter.surfacePresenter;
-  
-  [self unstable_registerLegacyComponents];
-#endif
+  // Logic to init React Native is the same as in previous example.
   // Store reference to rootView to prevent it from being retained.
   self.rootView = [self createRootViewWithBridge:self.bridge moduleName:self.moduleName initProps:self.initialProps];
 }
@@ -225,9 +209,69 @@ Congratulations! Now you have a working Menubar app leveraging the `NSMenu` API.
 
 Checkout `react-native-menubar-extra` docs in repository readme: https://github.com/okwasniewski/react-native-menubar-extra
 
-You can find the code for this article [here](https://github.com/okwasniewski/rn-macos-menubar). 
+## Using `NSWindow`
 
-`NSMenu` example is on the `main` branch and `NSPopover` is on the `nspopover` branch.
+In order to use `NSWindow` we need to create a new `NSWindow` and set it's properties to behave like a Popover window. Remember to remove references to `react-native-menubar-extra` from your `App.tsx`.
+
+Firstly, let's update the `AppDelegate.h` to store `NSWindow`:
+
+```objc
+@interface AppDelegate : RCTAppDelegate
+
+@property(nonatomic, strong) NSWindow *popoverWindow;
+@property(nonatomic, strong) NSStatusItem *statusItem;
+
+@end
+```
+
+Next, let's update the `AppDelegate.mm`:
+
+```objc
+- (void)applicationDidFinishLaunching:(NSNotification *)notification
+{
+  // Logic to init React Native is the same as in previous example.
+  RCTPlatformView *rootView = [self createRootViewWithBridge:self.bridge moduleName:self.moduleName initProps:self.initialProps];
+  NSViewController *viewController = [[NSViewController alloc] init];
+  viewController.view = rootView;
+  rootView.frame = NSMakeRect(0, 0, 400, 600);
+  
+  // Init NSWindow and set it's properties to behave like a popover.
+  _popoverWindow = [[NSWindow alloc] initWithContentRect:NSZeroRect styleMask:NSWindowStyleMaskBorderless backing:NSBackingStoreBuffered defer:NO];
+  _popoverWindow.contentViewController = viewController;
+  _popoverWindow.autorecalculatesKeyViewLoop = YES;
+  _popoverWindow.level = NSPopUpMenuWindowLevel;
+  
+  _statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
+  
+  [_statusItem.button setTitle:@"Menubar app"];
+  [_statusItem.button setAction:@selector(toggleMenu:)];
+}
+```
+
+?> If you want to know more on styling `NSWindow` check out this Youtube video: https://www.youtube.com/watch?v=geJw6q6raXE
+
+and bring back the `toggleMenu` method:
+
+```objc
+- (void)toggleMenu:(NSMenuItem *)sender
+{
+  if ([_popoverWindow isVisible]) {
+    [_popoverWindow orderOut:self];
+  } else {
+    CGPoint origin = _statusItem.button.window.frame.origin;
+    [_popoverWindow setFrameTopLeftPoint:origin];
+    [_popoverWindow makeKeyAndOrderFront:self];
+    [_popoverWindow.contentViewController.view.window becomeKeyWindow];
+  }
+}
+```
+
+This is how your app should look like:
+
+<img className='center' width={550} src="https://res.cloudinary.com/dangiiuvf/image/upload/f_auto,q_auto/tyjjy6wcskbf3ttyaji9"/>
+
+
+You can find the code for this article [here](https://github.com/okwasniewski/rn-macos-menubar). 
 
 ## That's all
 Thanks for reading! I hope you found this article useful. If you have any questions or feedback feel free to reach out to me on [Twitter](https://twitter.com/o_kwasniewski).
