@@ -61,7 +61,7 @@ const Card = ({
             ))}
           </div>
           <div className={compact ? 'flex flex-col justify-center' : ''}>
-            <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-300">
+            <h3 className="text-lg lg:text-xl font-semibold text-gray-900 dark:text-gray-300">
               {title}
             </h3>
             <p className={`text-gray-500 ${compact ? '' : 'h-[2.5em]'}`}>
