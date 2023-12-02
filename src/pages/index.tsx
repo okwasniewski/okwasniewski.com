@@ -6,12 +6,16 @@ import About from 'src/components/About';
 import { getPosts } from 'src/lib/getAllPosts';
 import Contact from 'src/components/Contact';
 import { InferGetStaticPropsType } from 'next';
+import Head from 'next/head';
 
 export default function Home({
   posts,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
-    <MainTemplate title="Oskar Kwaśniewski - React Native Developer">
+    <MainTemplate title="Software Engineer">
+      <Head>
+        <title>Oskar Kwaśniewski - Software Engineer</title>
+      </Head>
       <Hero />
       <Work posts={posts} />
       <About />

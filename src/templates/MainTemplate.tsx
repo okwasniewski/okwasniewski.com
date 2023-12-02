@@ -14,7 +14,7 @@ interface MainTemplateProps {
 const MainTemplate = ({
   children,
   title = 'Home',
-  description = 'Oskar Kwaśniewski - React Native developer',
+  description = 'Hey! I am Oskar Kwaśniewski, a Software Engieneer from Poland with passion to Open Source. I enjoy building things for the web and mobile.',
 }: MainTemplateProps): JSX.Element => {
   const variants = {
     hidden: { opacity: 0 },

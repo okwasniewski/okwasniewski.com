@@ -39,7 +39,7 @@ const BlogLayout = ({
         date={date}
         primaryAction={primaryAction}
       />
-      <div className="mx-auto prose dark:prose-invert lg:prose-lg">
+      <div className="mx-auto prose dark:prose-invert lg:prose-lg font-sans">
         {children}
       </div>
     </MainTemplate>

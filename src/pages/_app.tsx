@@ -1,7 +1,11 @@
 import { AppProps } from 'next/app';
-import '../styles/style.css';
 import { Analytics } from '@vercel/analytics/react';
 import Head from 'next/head';
+import { Sora } from 'next/font/google';
+
+import '../styles/style.css';
+
+const sora = Sora({ subsets: ['latin'], display: 'swap' });
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -28,7 +32,9 @@ function MyApp({ Component, pageProps }: AppProps) {
         <meta name="twitter:creator" content="@o_kwasniewski" />
         <meta name="twitter:site" content="@o_kwasniewski" />
       </Head>
-      <Component {...pageProps} />
+      <main className={sora.className}>
+        <Component {...pageProps} />
+      </main>
       <Analytics />
     </>
   );
