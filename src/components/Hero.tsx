@@ -57,10 +57,10 @@ const Hero = () => {
               alt="Oskar Kwaśniewski"
               className="hidden rounded-full shadow-md dark:shadow-none lg:flex lg:mr-5"
             />
-            <motion.h1 className="py-2 mr-1 overflow-hidden text-4xl font-semibold text-center text-gray-900 dark:text-gray-200 md:text-6xl">
+            <motion.h1 className="py-2 mr-1 overflow-hidden text-4xl font-semibold text-center text-gray-900 dark:text-gray-200 md:text-5xl">
               {activeIndex === 0 ? 'Hey!' : null} I'm <span />
             </motion.h1>
-            <motion.h1 className="px-3 py-2 overflow-hidden text-3xl font-semibold text-center text-gray-900 dark:text-gray-200 md:text-6xl">
+            <motion.h1 className="px-3 py-2 overflow-hidden text-3xl font-semibold text-center text-gray-900 dark:text-gray-200 md:text-5xl">
               {texts.map((text, index) => {
                 if (activeIndex !== index) {
                   return null;
@@ -81,7 +81,7 @@ const Hero = () => {
           </motion.div>
           <motion.h3
             variants={itemVariants}
-            className="text-2xl text-center text-gray-800 md:text-3xl dark:text-gray-200/80"
+            className="text-xl font-light text-center text-gray-800 md:text-3xl dark:text-gray-200/80"
           >
             I enjoy building things for the web and mobile.
           </motion.h3>

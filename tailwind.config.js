@@ -1,6 +1,6 @@
 module.exports = {
   mode: "jit",
-  purge: {
+  content: {
     content: ["./src/**/*.{js,ts,jsx,tsx}"],
     safelist: [
       "bg-blue-200",
@@ -10,11 +10,6 @@ module.exports = {
     ],
   },
   theme: {
-    fontFamily: {
-      display: ["Satoshi"],
-      body: ["Satoshi"],
-      sans: ["Satoshi"],
-    },
     extend: {
       colors: { 
         "dark-surface": "#1E1D1D",
