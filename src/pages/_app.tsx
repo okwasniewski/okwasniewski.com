@@ -1,7 +1,7 @@
 import { AppProps } from 'next/app';
-import { Analytics } from '@vercel/analytics/react';
 import Head from 'next/head';
 import { Sora } from 'next/font/google';
+import Script from 'next/script';
 
 import '../styles/style.css';
 
@@ -35,7 +35,16 @@ function MyApp({ Component, pageProps }: AppProps) {
       <main className={sora.className}>
         <Component {...pageProps} />
       </main>
-      <Analytics />
+      <Script src="https://www.googletagmanager.com/gtag/js?id=G-P638V4VQJ2" />
+      <Script id="google-analytics">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+ 
+          gtag('config', 'G-P638V4VQJ2');
+        `}
+      </Script>
     </>
   );
 }
