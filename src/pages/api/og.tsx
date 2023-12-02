@@ -8,43 +8,30 @@ export const config = {
 export default async function handler(request: NextRequest) {
   try {
     const fontDataBold = await fetch(
-      new URL('../../../assets/Satoshi-Bold.ttf', import.meta.url),
+      new URL('../../../assets/Sora-Bold.ttf', import.meta.url),
     ).then((res) => res.arrayBuffer());
 
     const { searchParams } = new URL(request.url);
 
     const title = searchParams.has('title') ? searchParams.get('title') : '';
-    const subtitle = searchParams.has('subtitle')
-      ? searchParams.get('subtitle')
-      : '';
     const date = searchParams.has('date') ? searchParams.get('date') : '';
-    const author = searchParams.has('author') ? searchParams.get('author') : '';
-    const gradientFrom = searchParams.has('gradientFrom')
-      ? searchParams.get('gradientFrom')
-      : '#1a2980';
-    const gradientTo = searchParams.has('gradientTo')
-      ? searchParams.get('gradientTo')
-      : '#26d0ce';
 
     return new ImageResponse(
       (
         <div
           tw="flex flex-col justify-center items-center w-full h-full"
           style={{
-            backgroundColor: gradientFrom,
-            background: `linear-gradient(to right, ${gradientFrom}, ${gradientTo})`,
+            backgroundColor: '#4158D0',
+            background: `linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%)`,
           }}
         >
-          <div tw="flex flex-col text-white p-24 w-full">
-            <h1 style={{ fontSize: 80 }}>{title}</h1>
+          <div tw="flex flex-col text-white p-24 mb-12 w-full">
+            <div tw="flex h-full items-center">
+              <h1 style={{ fontSize: 75 }}>{title}</h1>
+            </div>
             <div tw="flex w-full justify-between items-center">
-              <div tw="flex flex-col max-w-xl">
-                <h3 style={{ fontSize: 35 }}>{subtitle}</h3>
-                <p>{date}</p>
-              </div>
-              <div style={{ fontSize: 20 }} tw="flex flex-row">
-                <p>{author}</p>
-              </div>
+              <p>{date}</p>
+              <p>oskarkwasniewski.dev</p>
             </div>
           </div>
         </div>
@@ -54,7 +41,7 @@ export default async function handler(request: NextRequest) {
         height: 630,
         fonts: [
           {
-            name: 'Satoshi',
+            name: 'Sora',
             data: fontDataBold,
             style: 'normal',
           },

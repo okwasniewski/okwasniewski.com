@@ -1,6 +1,7 @@
 import type { PostMeta } from 'src/lib/getAllPosts';
 import BlogHeader from 'src/components/BlogHeader';
 import Head from 'next/head';
+import { useMemo } from 'react';
 import MainTemplate from './MainTemplate';
 
 interface BlogLayoutProps {
@@ -12,25 +13,19 @@ const BlogLayout = ({
   meta: { title, subtitle, badges, date, primaryAction },
   children,
 }: BlogLayoutProps) => {
-  const metaImageParams = new URLSearchParams({
-    title,
-    subtitle,
-    date: date || '',
-    author: 'Oskar Kwaśniewski',
-  }).toString();
+  const ogImageURL = useMemo(() => {
+    const metaImageParams = new URLSearchParams({
+      title,
+      date: date || '',
+    }).toString();
+    return `https://oskarkwasniewski.dev/api/og?${metaImageParams}`;
+  }, [date, title]);
 
   return (
     <MainTemplate title={title} description={subtitle}>
       <Head>
-        <meta
-          property="og:image"
-          content={`https://oskarkwasniewski.dev/api/og?${metaImageParams}`}
-          key="ogimage"
-        />
-        <meta
-          name="twitter:image"
-          content={`https://oskarkwasniewski.dev/api/og?${metaImageParams}`}
-        />
+        <meta property="og:image" content={ogImageURL} key="ogimage" />
+        <meta name="twitter:image" content={ogImageURL} />
       </Head>
       <BlogHeader
         title={title}
