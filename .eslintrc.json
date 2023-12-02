@@ -14,7 +14,7 @@
     "plugins": [
         "react"
     ],
-    "ignorePatterns": ["postcss.config.js", "tailwind.config.js", "next.config.mjs"],
+    "ignorePatterns": ["postcss.config.js", "tailwind.config.js", "next.config.mjs", "next-sitemap.config.js"],
     "rules": {
         "react/no-unknown-property": ["error", { "ignore": ["tw"] }]
     }
