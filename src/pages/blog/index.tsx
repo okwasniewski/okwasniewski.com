@@ -20,7 +20,9 @@ export async function getStaticProps() {
 
   return {
     props: {
-      posts,
+      posts: posts.sort(
+        (a, b) => Number(new Date(b.meta.date)) - Number(new Date(a.meta.date)),
+      ),
     },
   };
 }
