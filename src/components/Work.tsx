@@ -29,6 +29,7 @@ const Work = ({ posts }: WorkProps) => {
             badges={meta.badges}
             description={meta.subtitle}
             title={meta.title}
+            loadImageWithPriority
             variants={itemVariants}
           />
         ))}
