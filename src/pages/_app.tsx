@@ -35,8 +35,11 @@ function MyApp({ Component, pageProps }: AppProps) {
       <main className={sora.className}>
         <Component {...pageProps} />
       </main>
-      <Script src="https://www.googletagmanager.com/gtag/js?id=G-P638V4VQJ2" />
-      <Script id="google-analytics">
+      <Script
+        strategy="lazyOnload"
+        src="https://www.googletagmanager.com/gtag/js?id=G-P638V4VQJ2"
+      />
+      <Script strategy="lazyOnload" id="google-analytics">
         {`
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}

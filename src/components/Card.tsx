@@ -12,6 +12,7 @@ interface CardProps {
   description: string;
   variants: Variants;
   compact?: boolean;
+  loadImageWithPriority?: boolean;
 }
 
 const Card = ({
@@ -22,6 +23,7 @@ const Card = ({
   badges,
   variants,
   compact,
+  loadImageWithPriority,
 }: CardProps) => (
   <Link href={href}>
     <motion.article variants={variants} className="transform">
@@ -33,6 +35,7 @@ const Card = ({
         {!compact && src && (
           <div className="relative flex justify-center mb-2 h-[60%]">
             <Image
+              priority={loadImageWithPriority}
               src={src}
               sizes="100vw"
               alt={title}
