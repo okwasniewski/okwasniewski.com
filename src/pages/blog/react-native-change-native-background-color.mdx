@@ -40,18 +40,11 @@ Now open `AppDelegate.mm` and override following method:
 
 ```objc
 - (UIView *)createRootViewWithBridge:(RCTBridge *)bridge moduleName:(NSString *)moduleName initProps:(NSDictionary *)initProps {
-  BOOL enableFabric = NO;
-#if RCT_NEW_ARCH_ENABLED
-  enableFabric = self.fabricEnabled;
-#endif
-  UIView *rootView = RCTAppSetupDefaultRootView(bridge, moduleName, initProps, enableFabric);
-  rootView.backgroundColor = [UIColor redColor]; // <- Change the color here 
-  
+  UIView *rootView = [super createRootViewWithBridge:bridge moduleName:moduleName initProps:initProps];
+  rootView.backgroundColor = [UIColor redColor];
   return rootView;
 }
 ```
-
-Remember to add `#import <React-RCTAppDelegate/RCTAppSetupUtils.h>` at the top of the file.
 
 ?> 💡 `backgroundColor` property expects `UIColor` object. You can use [uicolor.io](https://www.uicolor.io/) to convert hex to `UIColor` initializer.
 
@@ -59,7 +52,7 @@ This should give you following result:
 
 <video controls width="100%" src='https://res.cloudinary.com/dangiiuvf/video/upload/f_auto:video,q_auto/p3i9bbsdpvf2hs4agqub' />
 
-This looks works in one appearance, but what if you want to change the background color based on the current appearance? Let's say you want to have red background in light mode and blue background in dark mode.
+This looks great in one appearance, but what if you want to change the background color based on the current appearance? Let's say you want to have red background in light mode and blue background in dark mode.
 
 ## Changing background color based on the current appearance
 
