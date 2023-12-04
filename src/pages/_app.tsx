@@ -2,12 +2,21 @@ import { AppProps } from 'next/app';
 import Head from 'next/head';
 import { Sora } from 'next/font/google';
 import Script from 'next/script';
+import { useRouter } from 'next/router';
+import { useMemo } from 'react';
 
 import '../styles/style.css';
 
 const sora = Sora({ subsets: ['latin'], display: 'swap' });
 
 function MyApp({ Component, pageProps }: AppProps) {
+  const router = useRouter();
+
+  const canonical = useMemo(
+    () => `https://oskarkwasniewski.dev${router.asPath}`.split('?')?.[0],
+    [router.asPath],
+  );
+
   return (
     <>
       <Head>
@@ -20,7 +29,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           key="ogsitename"
         />
         <meta name="author" content="Oskar Kwaśniewski" />
-        <meta property="og:url" content="oskarkwasniewski.dev" key="ogurl" />
+        <meta property="og:url" content={canonical} key="ogurl" />
         <meta
           property="og:image"
           content="https://oskarkwasniewski.dev/preview_image.jpg"
