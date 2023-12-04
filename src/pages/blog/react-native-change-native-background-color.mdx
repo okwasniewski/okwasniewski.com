@@ -1,0 +1,167 @@
+import BlogLayout from 'src/templates/BlogLayout';
+
+export const meta = {
+  title: 'How to change root view background color in React Native for iOS?',
+  subtitle: 'Adjust background color of the root view in React Native for iOS that works with appearance changes.',
+  date: '2023-12-02',
+  badges: [
+    {
+      text: 'React Native',
+      color: 'blue',
+    },
+    {
+      text: 'iOS',
+      color: 'blue',
+    }
+  ]
+}
+
+## Introduction
+
+React Native sets the default background color of the root view to white or to `systemBackgroundColor` if you are running iOS 13+. This is fine for most of the apps, but sometimes you might want to change the color to something else. In this article I will show you how to do it.
+
+?> 💡 `systemBackgroundColor` is a new color introduced in iOS 13. It is white in light mode and black in dark mode.
+
+## How to change the background color?
+
+First of all, let's create a new React Native project:
+
+```bash
+npx react-native@latest init BackgroundColorExample
+```
+
+then `cd` into your project and open the project in Xcode:
+
+```bash
+xed ios
+```
+
+Now open `AppDelegate.mm` and override following method: 
+
+```objc
+- (UIView *)createRootViewWithBridge:(RCTBridge *)bridge moduleName:(NSString *)moduleName initProps:(NSDictionary *)initProps {
+  BOOL enableFabric = NO;
+#if RCT_NEW_ARCH_ENABLED
+  enableFabric = self.fabricEnabled;
+#endif
+  UIView *rootView = RCTAppSetupDefaultRootView(bridge, moduleName, initProps, enableFabric);
+  rootView.backgroundColor = [UIColor redColor]; // <- Change the color here 
+  
+  return rootView;
+}
+```
+
+Remember to add `#import <React-RCTAppDelegate/RCTAppSetupUtils.h>` at the top of the file.
+
+?> 💡 `backgroundColor` property expects `UIColor` object. You can use [uicolor.io](https://www.uicolor.io/) to convert hex to `UIColor` initializer.
+
+This should give you following result:
+
+<img width="100%" src='https://res.cloudinary.com/dangiiuvf/image/upload/f_auto,q_auto/ifrt9o6i9c3hzf6em88c' />
+
+This looks works in one appearance, but what if you want to change the background color based on the current appearance? Let's say you want to have red background in light mode and blue background in dark mode.
+
+## Changing background color based on the current appearance
+
+To achieve this we will create a new class called `AppearanceAwareRootView` that will be responsible for creating the root view and updating the background color based on the current appearance.
+
+Let's start by creating a header file: `AppearanceAwareRootView.h` with following content:
+
+```objc
+#import <React/RCTBridge.h>
+
+@interface AppearanceAwareRootView: UIView
+
+- (instancetype)initWithBridge:(RCTBridge *)bridge
+                    moduleName:(NSString *)moduleName
+             initialProperties:(NSDictionary *)initialProperties
+                  enableFabric:(BOOL)enableFabric;
+
+@end
+```
+
+It has a single initializer that will be responsible for creating the root view and setting up the constraints.
+
+Now let's create the implementation file: `AppearanceAwareRootView.mm` with following content:
+
+x> ❗️ Make sure to change the file extension to `.mm` instead of `.m` as `RCTAppSetupDefaultRootView` is an Objective-C++ function.
+
+```objc
+#import <RCTAppSetupUtils.h>
+#import "AppearanceAwareRootView.h"
+
+@implementation AppearanceAwareRootView
+
+- (instancetype)initWithBridge:(RCTBridge *)bridge moduleName:(NSString *)moduleName initialProperties:(NSDictionary *)initialProperties enableFabric:(BOOL)enableFabric {
+  
+  if (self = [super init]) {
+    UIView *rootView = RCTAppSetupDefaultRootView(bridge, moduleName, initialProperties, enableFabric);
+    [self addSubview:rootView];
+    [self setupConstraintsForSubview:rootView];
+    [self updateBackgroundColor:rootView];
+  }
+  
+  return self;
+}
+
+/**
+ Setup constraints for `subview` to fit the whole parent
+ */
+- (void)setupConstraintsForSubview:(UIView *)subview {
+  subview.translatesAutoresizingMaskIntoConstraints = NO;
+  
+  NSLayoutConstraint *leadingConstraint = [subview.leadingAnchor constraintEqualToAnchor:self.leadingAnchor];
+  NSLayoutConstraint *trailingConstraint = [subview.trailingAnchor constraintEqualToAnchor:self.trailingAnchor];
+  NSLayoutConstraint *topConstraint = [subview.topAnchor constraintEqualToAnchor:self.topAnchor];
+  NSLayoutConstraint *bottomConstraint = [subview.bottomAnchor constraintEqualToAnchor:self.bottomAnchor];
+  
+  [NSLayoutConstraint activateConstraints:@[leadingConstraint, trailingConstraint, topConstraint, bottomConstraint]];
+}
+
+/**
+Update subview background color based on current `userInterfaceStyle`
+ */
+- (void) updateBackgroundColor:(UIView *)subview {
+  if (self.traitCollection.userInterfaceStyle == UIUserInterfaceStyleDark) {
+    subview.backgroundColor = [UIColor blueColor]; // Dark Appearance
+  } else {
+    subview.backgroundColor = [UIColor redColor]; // White Appearance
+  }
+}
+
+/**
+ Listen to changes of `traitCollection` to update background color
+ */
+- (void)traitCollectionDidChange:(UITraitCollection *)previousTraitCollection {
+  [self updateBackgroundColor:self.subviews.firstObject];
+}
+
+@end
+```
+
+
+
+Now inside `AppDelegate.mm` change the method to following:
+
+```objc
+- (UIView *)createRootViewWithBridge:(RCTBridge *)bridge moduleName:(NSString *)moduleName initProps:(NSDictionary *)initProps {
+  BOOL enableFabric = NO;
+#if RCT_NEW_ARCH_ENABLED
+  enableFabric = self.fabricEnabled;
+#endif
+  return [[AppearanceAwareRootView alloc] initWithBridge:bridge moduleName:moduleName initialProperties:initProps enableFabric:enableFabric];
+}
+```
+
+The `AppearanceAwareRootView` will now listen to changes of `traitCollection` and update the background color accordingly.
+
+This is the result: 
+
+<img width="100%" src="https://res.cloudinary.com/dangiiuvf/image/upload/f_auto,q_auto/res93oubwq9l27jberd3"/>
+
+?> 💡 If you are using Expo, you can use the [SystemUI](https://docs.expo.dev/versions/latest/sdk/system-ui/) library to achieve this but it can only set the appearance to a static color.  
+
+## That's all
+Thanks for reading! I hope you found this article useful. If you have any questions or feedback feel free to reach out to me on [Twitter](https://twitter.com/o_kwasniewski).
+
+export default ({ children }) => <BlogLayout meta={meta}>{children}</BlogLayout>
