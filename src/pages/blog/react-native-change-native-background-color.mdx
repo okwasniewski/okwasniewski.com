@@ -56,7 +56,23 @@ This looks great in one appearance, but what if you want to change the backgroun
 
 ## Changing background color based on the current appearance
 
-To achieve this we will create a new class called `AppearanceAwareRootView` that will be responsible for creating the root view and updating the background color based on the current appearance.
+If you are targetting iOS 13+ you can use `colorWithDynamicProvider` to achieve this:
+
+```objc
+- (UIView *)createRootViewWithBridge:(RCTBridge *)bridge moduleName:(NSString *)moduleName initProps:(NSDictionary *)initProps {
+  UIView *rootView = [super createRootViewWithBridge:bridge moduleName:moduleName initProps:initProps];
+  rootView.backgroundColor = [UIColor colorWithDynamicProvider:^(UITraitCollection *traitCollection){
+    if (traitCollection.userInterfaceStyle == UIUserInterfaceStyleDark) {
+      return [UIColor blueColor];
+    } else {
+      return [UIColor redColor];
+    }
+  }];
+  return rootView;
+}
+```
+
+Otherwise, you we will create a new class called `AppearanceAwareRootView` that will be responsible for creating the root view and updating the background color based on the current appearance.
 
 Let's start by creating a header file: `AppearanceAwareRootView.h` with following content:
 
