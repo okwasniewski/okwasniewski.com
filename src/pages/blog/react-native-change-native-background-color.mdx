@@ -56,7 +56,7 @@ This looks great in one appearance, but what if you want to change the backgroun
 
 ## Changing background color based on the current appearance
 
-If you are targetting iOS 13+ you can use `colorWithDynamicProvider` to achieve this:
+You can use `colorWithDynamicProvider` to achieve this:
 
 ```objc
 - (UIView *)createRootViewWithBridge:(RCTBridge *)bridge moduleName:(NSString *)moduleName initProps:(NSDictionary *)initProps {
@@ -72,97 +72,7 @@ If you are targetting iOS 13+ you can use `colorWithDynamicProvider` to achieve 
 }
 ```
 
-Otherwise, you we will create a new class called `AppearanceAwareRootView` that will be responsible for creating the root view and updating the background color based on the current appearance.
-
-Let's start by creating a header file: `AppearanceAwareRootView.h` with following content:
-
-```objc
-#import <React/RCTBridge.h>
-
-@interface AppearanceAwareRootView: UIView
-
-- (instancetype)initWithBridge:(RCTBridge *)bridge
-                    moduleName:(NSString *)moduleName
-             initialProperties:(NSDictionary *)initialProperties
-                  enableFabric:(BOOL)enableFabric;
-
-@end
-```
-
-It has a single initializer that will be responsible for creating the root view and setting up the constraints.
-
-Now let's create the implementation file: `AppearanceAwareRootView.mm` with following content:
-
-x> ❗️ Make sure to change the file extension to `.mm` instead of `.m` as `RCTAppSetupDefaultRootView` is an Objective-C++ function.
-
-```objc
-#import <RCTAppSetupUtils.h>
-#import "AppearanceAwareRootView.h"
-
-@implementation AppearanceAwareRootView
-
-- (instancetype)initWithBridge:(RCTBridge *)bridge moduleName:(NSString *)moduleName initialProperties:(NSDictionary *)initialProperties enableFabric:(BOOL)enableFabric {
-  
-  if (self = [super init]) {
-    UIView *rootView = RCTAppSetupDefaultRootView(bridge, moduleName, initialProperties, enableFabric);
-    [self addSubview:rootView];
-    [self setupConstraintsForSubview:rootView];
-    [self updateBackgroundColor:rootView];
-  }
-  
-  return self;
-}
-
-/**
- Setup constraints for `subview` to fit the whole parent
- */
-- (void)setupConstraintsForSubview:(UIView *)subview {
-  subview.translatesAutoresizingMaskIntoConstraints = NO;
-  
-  NSLayoutConstraint *leadingConstraint = [subview.leadingAnchor constraintEqualToAnchor:self.leadingAnchor];
-  NSLayoutConstraint *trailingConstraint = [subview.trailingAnchor constraintEqualToAnchor:self.trailingAnchor];
-  NSLayoutConstraint *topConstraint = [subview.topAnchor constraintEqualToAnchor:self.topAnchor];
-  NSLayoutConstraint *bottomConstraint = [subview.bottomAnchor constraintEqualToAnchor:self.bottomAnchor];
-  
-  [NSLayoutConstraint activateConstraints:@[leadingConstraint, trailingConstraint, topConstraint, bottomConstraint]];
-}
-
-/**
-Update subview background color based on current `userInterfaceStyle`
- */
-- (void) updateBackgroundColor:(UIView *)subview {
-  if (self.traitCollection.userInterfaceStyle == UIUserInterfaceStyleDark) {
-    subview.backgroundColor = [UIColor blueColor]; // Dark Appearance
-  } else {
-    subview.backgroundColor = [UIColor redColor]; // White Appearance
-  }
-}
-
-/**
- Listen to changes of `traitCollection` to update background color
- */
-- (void)traitCollectionDidChange:(UITraitCollection *)previousTraitCollection {
-  [self updateBackgroundColor:self.subviews.firstObject];
-}
-
-@end
-```
-
-
-
-Now inside `AppDelegate.mm` change the method to following:
-
-```objc
-- (UIView *)createRootViewWithBridge:(RCTBridge *)bridge moduleName:(NSString *)moduleName initProps:(NSDictionary *)initProps {
-  BOOL enableFabric = NO;
-#if RCT_NEW_ARCH_ENABLED
-  enableFabric = self.fabricEnabled;
-#endif
-  return [[AppearanceAwareRootView alloc] initWithBridge:bridge moduleName:moduleName initialProperties:initProps enableFabric:enableFabric];
-}
-```
-
-The `AppearanceAwareRootView` will now listen to changes of `traitCollection` and update the background color accordingly.
+The `colorWithDynamicProvider` will now listen to changes of current trait colleciton and update the background color accordingly.
 
 This is the result: 
 
