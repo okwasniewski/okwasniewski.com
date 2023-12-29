@@ -2,6 +2,7 @@ import MainTemplate from 'src/templates/MainTemplate';
 import { getPosts } from 'src/lib/getAllPosts';
 import Blog from 'src/components/Blog';
 import { InferGetStaticPropsType } from 'next';
+import generateRssFeed from 'src/lib/rss';
 
 export default function IndexPage({
   posts,
@@ -17,6 +18,7 @@ export default function IndexPage({
 
 export async function getStaticProps() {
   const posts = await getPosts({ directory: 'blog', limit: -1 });
+  generateRssFeed(posts);
 
   return {
     props: {

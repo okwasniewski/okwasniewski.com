@@ -24,12 +24,14 @@
     "rehype-highlight": "^7.0.0",
     "remark-gfm": "^4.0.0",
     "remark-hint": "^1.0.10",
-    "remark-html": ">=16.0.1"
+    "remark-html": ">=16.0.1",
+    "rss": "^1.2.2"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.10",
     "@types/node": "20.9.0",
     "@types/react": "^18.2.37",
+    "@types/rss": "^0.0.32",
     "@types/webpack-env": "^1.18.4",
     "@typescript-eslint/eslint-plugin": "^6.11.0",
     "autoprefixer": "^10.4.16",

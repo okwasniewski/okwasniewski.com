@@ -21,6 +21,7 @@ const BurgerMenu = ({ isOpen }: BurgerMenuProps) => {
       <MenuItem href="/#about" text="About me" />
       <MenuItem href="/portfolio" text="Portfolio" />
       <MenuItem href="/blog" text="Blog" />
+      <MenuItem href="/rss.xml" text="RSS" />
       <MenuItem href="/contact" text="Contact" />
     </motion.div>
   );
