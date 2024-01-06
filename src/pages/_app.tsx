@@ -1,11 +1,23 @@
 import { AppProps } from 'next/app';
 import Head from 'next/head';
 import { Sora } from 'next/font/google';
-import Script from 'next/script';
 import { useRouter } from 'next/router';
-import { useMemo } from 'react';
+import { useEffect, useMemo } from 'react';
+
+import posthog from 'posthog-js';
+import { PostHogProvider } from 'posthog-js/react';
 
 import '../styles/style.css';
+
+// Check that PostHog is client-side (used to handle Next.js SSR)
+if (typeof window !== 'undefined') {
+  posthog.init(process.env.NEXT_PUBLIC_POSTHOG_KEY, {
+    api_host: process.env.NEXT_PUBLIC_POSTHOG_HOST || 'https://app.posthog.com',
+    loaded: (p) => {
+      if (process.env.NODE_ENV === 'development') p.debug();
+    },
+  });
+}
 
 const sora = Sora({ subsets: ['latin'], display: 'swap' });
 
@@ -16,6 +28,16 @@ function MyApp({ Component, pageProps }: AppProps) {
     () => `https://oskarkwasniewski.dev${router.asPath}`.split('?')?.[0],
     [router.asPath],
   );
+
+  useEffect(() => {
+    // Track page views
+    const handleRouteChange = () => posthog?.capture('$pageview');
+    router.events.on('routeChangeComplete', handleRouteChange);
+
+    return () => {
+      router.events.off('routeChangeComplete', handleRouteChange);
+    };
+  }, [router.events]);
 
   return (
     <>
@@ -41,22 +63,11 @@ function MyApp({ Component, pageProps }: AppProps) {
         <meta name="twitter:creator" content="@o_kwasniewski" />
         <meta name="twitter:site" content="@o_kwasniewski" />
       </Head>
-      <main className={sora.className}>
-        <Component {...pageProps} />
-      </main>
-      <Script
-        strategy="lazyOnload"
-        src="https://www.googletagmanager.com/gtag/js?id=G-P638V4VQJ2"
-      />
-      <Script strategy="lazyOnload" id="google-analytics">
-        {`
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
- 
-          gtag('config', 'G-P638V4VQJ2');
-        `}
-      </Script>
+      <PostHogProvider client={posthog}>
+        <main className={sora.className}>
+          <Component {...pageProps} />
+        </main>
+      </PostHogProvider>
     </>
   );
 }
