@@ -38,7 +38,7 @@ xed ios
 
 Now open `AppDelegate.mm` and override following method: 
 
-```objc
+```objc title="AppDelegate.mm"
 - (UIView *)createRootViewWithBridge:(RCTBridge *)bridge moduleName:(NSString *)moduleName initProps:(NSDictionary *)initProps {
   UIView *rootView = [super createRootViewWithBridge:bridge moduleName:moduleName initProps:initProps];
   rootView.backgroundColor = [UIColor redColor];
@@ -58,7 +58,7 @@ This looks great in one appearance, but what if you want to change the backgroun
 
 You can use `colorWithDynamicProvider` to achieve this:
 
-```objc
+```objc title="AppDelegate.mm"
 - (UIView *)createRootViewWithBridge:(RCTBridge *)bridge moduleName:(NSString *)moduleName initProps:(NSDictionary *)initProps {
   UIView *rootView = [super createRootViewWithBridge:bridge moduleName:moduleName initProps:initProps];
   rootView.backgroundColor = [UIColor colorWithDynamicProvider:^(UITraitCollection *traitCollection){

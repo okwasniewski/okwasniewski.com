@@ -2,13 +2,18 @@ import createMDX from "@next/mdx";
 import rehypeHighlight from "rehype-highlight";
 import remarkGfm from "remark-gfm";
 import remarkHint from "remark-hint";
+import rehypePrettyCode from "rehype-pretty-code";
+
+const options = {
+  theme: "material-theme-darker",
+};
 
 const mdxConfig = {
   extension: /\.mdx?$/,
   options: {
     jsx: true,
     remarkPlugins: [remarkGfm, remarkHint],
-    rehypePlugins: [rehypeHighlight],
+    rehypePlugins: [[rehypePrettyCode, options]],
   },
 };
 

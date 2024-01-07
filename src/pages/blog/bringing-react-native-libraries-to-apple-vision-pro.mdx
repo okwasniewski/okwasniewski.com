@@ -35,14 +35,14 @@ npx @callstack/react-native-visionos init MyApp
 ```
 
 3. Install library that you want to migrate
-```
+```sh
 yarn add your-library
 ```
 
 4. Navigate to the `node_modules` directory and locate your library's code
 
 6. Add visionOS support to library podspec: 
-```rb
+```rb title="YourLibrary.podspec" {10}
 #..
 Pod::Spec.new do |s|
   s.name         = "react-native-slider"
@@ -81,7 +81,7 @@ Here is the code that will fail when compiling for visionOS:
 In order to replace it, you need to retrieve currently focused `UIWindowScene` of your app and get it's `keyWindow`.
 
 Here is an example: 
-```objc
+```objc {14-16}
 UIWindow *__nullable RCTKeyWindow(void)
 {
   if (RCTRunningInAppExtension()) {
@@ -120,7 +120,7 @@ Some APIs are not available on visionOS because they don't map to this platform.
 
 To deal with unsupported APIs we can use compiler conditionals: 
 
-```objc
+```objc {2,4}
 - (void)shouldDismissKeyboard:(RNCViewPagerKeyboardDismissMode)dismissKeyboard {
 #if !TARGET_OS_VISION 
     UIScrollViewKeyboardDismissMode dismissKeyboardMode = UIScrollViewKeyboardDismissModeNone;

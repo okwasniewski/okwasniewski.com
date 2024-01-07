@@ -33,7 +33,7 @@ And lastly, you can create a menubar app with a plain `NSWindow`. This is the mo
 
 Firstly, lets follow the instructions of creating an app with React Native macOS, here: https://microsoft.github.io/react-native-windows/docs/rnm-getting-started
 
-```
+```sh
 npx react-native@latest init MenuBarApp --template "react-native@^0.72.0"
 ```
 
@@ -42,13 +42,13 @@ npx react-native@latest init MenuBarApp --template "react-native@^0.72.0"
 
 After this step is done `cd` into newly initialised project and run: 
 
-```
+```sh
 npx react-native-macos-init 
 ```
 
 This command adds macos support for your React Native app. Next let's open `macos` folder in Xcode.
 
-```
+```sh
 xed -b macos
 ```
 
@@ -62,7 +62,7 @@ If you want to use `NSMenu` skip to the next section.
 
 Let's get started by adding two new properties:
 
-```objc
+```objc title="AppDelegate.h"
 @interface AppDelegate : RCTAppDelegate
 
 @property(nonatomic, strong) NSPopover *popover;
@@ -75,7 +75,7 @@ One will be used to store `NSPopover` (floating container to render content) and
 
 Next inside of `AppDelegate.mm`, replace the implementation of `applicationDidFinishLaunching`: 
 
-```objc
+```objc title="AppDelegate.mm" {26-43}
 - (void)applicationDidFinishLaunching:(NSNotification *)notification
 {
   self.moduleName = @"MenuBarApp";
@@ -132,7 +132,7 @@ The `hasFullSizeContent` property is available only on macOS 14 and above. It al
 
 In order to handle menu opening and closing add this method in your AppDelegate:
 
-```objc
+```objc title="AppDelegate.mm"
 - (void)toggleMenu:(NSMenuItem *)sender
 {
   if (_popover.isShown) {
@@ -151,19 +151,19 @@ Next important step is to go to your `Info.plist` and add new property `Applicat
 ## Using `NSMenu`
 In order to use `NSMenu` you need to install additional dependency:
 
-```
+```sh
 yarn add react-native-menubar-extra
 ```
 
 and install pods: 
 
-```
+```sh
 cd macos && pod install
 ```
 
 Next go to your `App.tsx` and change it to looks like so: 
 
-```tsx
+```tsx title="App.tsx"
 import React from 'react';
 import {MenuBarExtraItem, MenubarExtraView} from 'react-native-menubar-extra';
 
@@ -181,7 +181,7 @@ export default App;
 
 Change `AppDelegate.h` to store `RCTPlatformView`: 
 
-```objc
+```objc title="AppDelegate.h"
 @interface AppDelegate : RCTAppDelegate
 
 @property(nonatomic, strong) RCTPlatformView *rootView;
@@ -194,7 +194,7 @@ Change `AppDelegate.h` to store `RCTPlatformView`:
 In `AppDelegate.mm` remove the unused `toggleMenu` method and update the `applicationDidFinishLaunching` method: 
 
 
-```objc
+```objc title="AppDelegate.mm"
 - (void)applicationDidFinishLaunching:(NSNotification *)notification
 {
   // Logic to init React Native is the same as in previous example.
@@ -215,7 +215,7 @@ In order to use `NSWindow` we need to create a new `NSWindow` and set it's prope
 
 Firstly, let's update the `AppDelegate.h` to store `NSWindow`:
 
-```objc
+```objc title="AppDelegate.h"
 @interface AppDelegate : RCTAppDelegate
 
 @property(nonatomic, strong) NSWindow *popoverWindow;
@@ -226,7 +226,7 @@ Firstly, let's update the `AppDelegate.h` to store `NSWindow`:
 
 Next, let's update the `AppDelegate.mm`:
 
-```objc
+```objc title="AppDelegate.mm"
 - (void)applicationDidFinishLaunching:(NSNotification *)notification
 {
   // Logic to init React Native is the same as in previous example.
@@ -252,7 +252,7 @@ Next, let's update the `AppDelegate.mm`:
 
 and bring back the `toggleMenu` method:
 
-```objc
+```objc title="AppDelegate.mm"
 - (void)toggleMenu:(NSMenuItem *)sender
 {
   if ([_popoverWindow isVisible]) {
