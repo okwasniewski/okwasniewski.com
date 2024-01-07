@@ -19,6 +19,10 @@ body {
   }
 }
 
+.prose :where(iframe):not(:where([class~="not-prose"] *)) {
+  @apply aspect-video w-full h-auto;
+}
+
 html,
 body {
   overflow-x: hidden;
