@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { FaBars } from 'react-icons/fa';
 import { useState } from 'react';
 import { useWindowScroll } from 'react-use';
+import { MENU_ITEMS } from 'src/constants/MenuItems';
 import MenuItem from './MenuItem';
 import BurgerMenu from './BurgerMenu';
 
@@ -24,11 +25,9 @@ const Header = () => {
             </p>
           </Link>
           <nav className="hidden md:block">
-            <MenuItem href="/#about" text="About me" />
-            <MenuItem href="/portfolio" text="Portfolio" />
-            <MenuItem href="/blog" text="Blog" />
-            <MenuItem href="/rss.xml" text="RSS" />
-            <MenuItem href="/contact" text="Contact" />
+            {MENU_ITEMS.map((item) => (
+              <MenuItem key={item.href} {...item} />
+            ))}
           </nav>
           <FaBars
             onClick={() => setIsOpen((prev) => !prev)}
