@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import MenuItem from 'src/components/MenuItem';
+import { MENU_ITEMS } from 'src/constants/MenuItems';
 
 interface BurgerMenuProps {
   isOpen: boolean;
@@ -18,11 +19,9 @@ const BurgerMenu = ({ isOpen }: BurgerMenuProps) => {
       id="burger_menu"
       className="fixed top-0 left-0 z-10 flex flex-col items-center justify-center w-screen h-screen bg-white dark:bg-black md:hidden"
     >
-      <MenuItem href="/#about" text="About me" />
-      <MenuItem href="/portfolio" text="Portfolio" />
-      <MenuItem href="/blog" text="Blog" />
-      <MenuItem href="/rss.xml" text="RSS" />
-      <MenuItem href="/contact" text="Contact" />
+      {MENU_ITEMS.map((item) => (
+        <MenuItem key={item.href} {...item} />
+      ))}
     </motion.div>
   );
 };
