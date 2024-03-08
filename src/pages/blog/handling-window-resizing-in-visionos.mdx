@@ -60,11 +60,9 @@ We will implement necessary methods in the next section.
 Set `UISceneConfiguration` delegate to be our newly created `SceneDelegate` class: 
 ```swift {6}
 class AppDelegate: NSObject, UIApplicationDelegate {
-    var window: UIWindow?
-    
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
         let sceneConfig = UISceneConfiguration(name: nil, sessionRole: connectingSceneSession.role)
-        sceneConfig.delegate = SceneDelegate.self
+        sceneConfig.delegateClass = SceneDelegate.self
         return sceneConfig
     }
 }
