@@ -83,7 +83,7 @@ import {View, Text, Button} from 'react-native';
 export const Counter = () => {
   return (
     <View>
-      <Text>{count}</Text>
+      <Text>Count: 0</Text>
       <Button title="Increment" />
       <Button title="Decrement" />
     </View>
@@ -130,7 +130,7 @@ function App(): React.JSX.Element {
 Pressing on buttons should open new window. We are all set! Now, let's discuss state managers. 
 
 ## Choosing state manager
-In most cases choosing state manager lies in personal preferences, performance, API design and more. However when it comes to sharing data across multiple windows the options are limited. As you saw from the setup above we have separate **React roots**, one for each window. Which makes using state managers relying on React Context not a viable option. 
+In most cases choosing state manager lies in personal preferences, performance, API design and more. However when it comes to sharing data across multiple windows the options are limited. As you saw from the setup above we have separate **React roots**, one for each window. Which makes using state managers that require wrapping our app in a provider not a viable option. 
 
 React Native is sharing the same Javascript Context across windows. Which makes it possible to use state managers like Zustand as they don't require to wrap your application with a provider! 
 
