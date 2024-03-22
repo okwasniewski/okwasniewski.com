@@ -132,7 +132,7 @@ Pressing on buttons should open new window. We are all set! Now, let's discuss s
 ## Choosing state manager
 In most cases choosing state manager lies in personal preferences, performance, API design and more. However when it comes to sharing data across multiple windows the options are limited. As you saw from the setup above we have separate **React roots**, one for each window. Which makes using state managers that require wrapping our app in a provider not a viable option. 
 
-React Native is sharing the same Javascript Context across windows. Which makes it possible to use state managers like Zustand as they don't require to wrap your application with a provider! 
+React Native is sharing the same javascript context across windows. Which makes it possible to either pass some custom store to the `App` and `Counter` or use a state manager like Zustand that does it for you without need to wrap the apps with a Provider.
 
 Let's install Zustand and create a simple store to share data.
 
