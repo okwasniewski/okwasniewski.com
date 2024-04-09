@@ -1,12 +1,17 @@
 {
-  "applinks": {
-    "apps": [],
-    "details": [
-      {
-        "appID": "89L8B9VRA2.com.okwasniewski.rntester",
-        "paths": ["*"]
-      }
-    ]
-  }
+    "applinks": {
+        "details": [
+            {
+                "appIDs": [
+                    "89L8B9VRA2.com.okwasniewski.rntester"
+                ],
+                "components": [
+                    {
+                        "/": "/blog/*",
+                        "comment": "Matches any URL whose path starts with /blog/"
+                    }
+                ]
+            }
+        ]
+    }
 }
-
