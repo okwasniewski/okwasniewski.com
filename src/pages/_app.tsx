@@ -25,7 +25,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
 
   const canonical = useMemo(
-    () => `https://oskarkwasniewski.dev${router.asPath}`.split('?')?.[0],
+    () => `${process.env.NEXT_PUBLIC_SITE_URL}${router.asPath}`.split('?')?.[0],
     [router.asPath],
   );
 
@@ -54,7 +54,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <meta property="og:url" content={canonical} key="ogurl" />
         <meta
           property="og:image"
-          content="https://oskarkwasniewski.dev/preview_image.jpg"
+          content={`${process.env.NEXT_PUBLIC_SITE_URL}/preview_image.jpg`}
           key="ogimage"
         />
         <meta property="og:type" content="website" />

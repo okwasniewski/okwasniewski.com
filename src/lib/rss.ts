@@ -3,14 +3,12 @@ import RSS from 'rss';
 import { Post } from 'src/lib/getAllPosts';
 
 export default function generateRssFeed(allPosts: Post[]) {
-  const siteURL = 'https://oskarkwasniewski.dev';
-
   const feedOptions: RSS.FeedOptions = {
     title: 'Blog oskarkwasniewski.dev',
     description: 'Welcome to this blog about Mobile development and more',
-    site_url: siteURL,
-    feed_url: `${siteURL}/rss.xml`,
-    image_url: `${siteURL}/preview_image.jpg`,
+    site_url: process.env.NEXT_PUBLIC_SITE_URL,
+    feed_url: `${process.env.NEXT_PUBLIC_SITE_URL}/rss.xml`,
+    image_url: `${process.env.NEXT_PUBLIC_SITE_URL}/preview_image.jpg`,
     pubDate: new Date(),
     copyright: `All rights reserved ${new Date().getFullYear()}`,
   };
@@ -22,7 +20,7 @@ export default function generateRssFeed(allPosts: Post[]) {
     feed.item({
       title: post.meta.title,
       description: post.meta.subtitle,
-      url: `${siteURL}/blog/${post.slug}`,
+      url: `${process.env.NEXT_PUBLIC_SITE_URL}/blog/${post.slug}`,
       date: post.meta.date,
     });
   });
