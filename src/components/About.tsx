@@ -32,7 +32,7 @@ const About = () => {
               {`{Callstack}`}
             </a>
             . I&#39;m an open source enthusiast contributing to libraries from
-            the React Native ecosystem. I have over 10+ merged PRs to React
+            the React Native ecosystem. I have over 100+ merged PRs to React
             Native Core. <br />
             I&#39;m focused on strengthening my knowledge around native
             development in Swift, Objective-C, Java and Kotlin. In my free time
