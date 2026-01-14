@@ -1,9 +1,11 @@
-import Heading from 'src/components/Heading';
-import Card from 'src/components/Card';
-import { itemVariants, containerVariants } from 'src/lib/animations';
-import { motion } from 'framer-motion';
-import { useIntersectionRef } from 'src/lib/useIntersectionRef';
-import { Post } from 'src/lib/getAllPosts';
+"use client";
+
+import Heading from "@/components/Heading";
+import Card from "@/components/Card";
+import { itemVariants, containerVariants } from "@/lib/animations";
+import { motion } from "framer-motion";
+import { useIntersectionRef } from "@/lib/useIntersectionRef";
+import { Post } from "@/lib/getAllPosts";
 
 interface BlogProps {
   posts: Post[];
@@ -18,7 +20,7 @@ const Blog = ({ posts }: BlogProps) => {
         ref={sectionRef}
         variants={containerVariants}
         initial="hidden"
-        animate={intersection?.isIntersecting ? 'show' : 'hidden'}
+        animate={intersection?.isIntersecting ? "show" : "hidden"}
         className="flex flex-col gap-5"
       >
         {posts.map(({ slug, meta }) => (

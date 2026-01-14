@@ -1,0 +1,88 @@
+
+export const meta = {
+  title: 'How to change root view background color in React Native for iOS?',
+  subtitle: 'Adjust background color of the root view in React Native for iOS that works with appearance changes.',
+  date: '2023-12-02',
+  badges: [
+    {
+      text: 'React Native',
+      color: 'blue',
+    },
+    {
+      text: 'iOS',
+      color: 'blue',
+    }
+  ]
+}
+
+## Contents
+
+## Introduction
+
+React Native sets the default background color of the root view to white or to `systemBackgroundColor` if you are running iOS 13+. This is fine for most of the apps, but sometimes you might want to change the color to something else. In this article I will show you how to do it.
+
+?> 💡 `systemBackgroundColor` is a new color introduced in iOS 13. It is white in light mode and black in dark mode.
+
+## How to change the background color?
+
+First of all, let's create a new React Native project:
+
+```bash
+npx react-native@latest init BackgroundColorExample
+```
+
+then `cd` into your project and open the project in Xcode:
+
+```bash
+xed ios
+```
+
+Now open `AppDelegate.mm` and override following method: 
+
+```objc title="AppDelegate.mm"
+- (UIView *)createRootViewWithBridge:(RCTBridge *)bridge moduleName:(NSString *)moduleName initProps:(NSDictionary *)initProps {
+  UIView *rootView = [super createRootViewWithBridge:bridge moduleName:moduleName initProps:initProps];
+  rootView.backgroundColor = [UIColor redColor];
+  return rootView;
+}
+```
+
+?> 💡 `backgroundColor` property expects `UIColor` object. You can use [uicolor.io](https://www.uicolor.io/) to convert hex to `UIColor` initializer.
+
+This should give you following result:
+
+<video controls width="100%" src='https://res.cloudinary.com/dangiiuvf/video/upload/f_auto:video,q_auto/p3i9bbsdpvf2hs4agqub' />
+
+This looks great in one appearance, but what if you want to change the background color based on the current appearance? Let's say you want to have red background in light mode and blue background in dark mode.
+
+## Changing background color based on the current appearance
+
+You can use `colorWithDynamicProvider` to achieve this:
+
+```objc title="AppDelegate.mm"
+- (UIView *)createRootViewWithBridge:(RCTBridge *)bridge moduleName:(NSString *)moduleName initProps:(NSDictionary *)initProps {
+  UIView *rootView = [super createRootViewWithBridge:bridge moduleName:moduleName initProps:initProps];
+  rootView.backgroundColor = [UIColor colorWithDynamicProvider:^(UITraitCollection *traitCollection){
+    if (traitCollection.userInterfaceStyle == UIUserInterfaceStyleDark) {
+      return [UIColor blueColor];
+    } else {
+      return [UIColor redColor];
+    }
+  }];
+  return rootView;
+}
+```
+
+The `colorWithDynamicProvider` will now listen to changes of current trait colleciton and update the background color accordingly.
+
+This is the result: 
+
+<video controls width="100%" src='https://res.cloudinary.com/dangiiuvf/video/upload/f_auto:video,q_auto/yl1wj11gw3p3aufgwu1i' />
+
+?> 💡 If you are using Expo, you can use the [SystemUI](https://docs.expo.dev/versions/latest/sdk/system-ui/) library to achieve this but it can only set the appearance to a static color.  
+
+## That's all
+Thanks for reading! I hope you found this article useful. If you have any questions or feedback feel free to reach out to me on [Twitter](https://twitter.com/o_kwasniewski).
+
+!> Huge thanks to [Riccardo Cipolleschi](https://twitter.com/CipolleschiR) for reviewing this article and providing valuable feedback.
+

@@ -1,10 +1,12 @@
-import React from 'react';
-import Heading from 'src/components/Heading';
-import Image from 'next/image';
-import AboutImage from 'public/about.svg';
-import { FaGithub, FaLinkedin } from 'react-icons/fa';
-import { useIntersectionRef } from 'src/lib/useIntersectionRef';
-import { motion } from 'framer-motion';
+"use client";
+
+import React from "react";
+import Heading from "@/components/Heading";
+import Image from "next/image";
+import AboutImage from "public/about.svg";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { useIntersectionRef } from "@/lib/useIntersectionRef";
+import { motion } from "framer-motion";
 
 const About = () => {
   const [sectionRef, intersection] = useIntersectionRef();
@@ -17,13 +19,13 @@ const About = () => {
           initial={{ x: -200, opacity: 0 }}
           animate={
             intersection?.isIntersecting
-              ? { x: 0, opacity: 1, transition: { delay: 0.4, type: 'spring' } }
+              ? { x: 0, opacity: 1, transition: { delay: 0.4, type: "spring" } }
               : { x: -200, opacity: 0 }
           }
         >
           <p className="text-gray-500 dark:text-gray-200">
             My name is Oskar Kwaśniewski. I&#39;m a Senior React Native
-            Developer at{' '}
+            Developer at{" "}
             <a
               href="https://www.callstack.com/"
               target="__blank"
@@ -71,7 +73,7 @@ const About = () => {
               ? {
                   scale: 1,
                   opacity: 1,
-                  transition: { delay: 0.4, type: 'spring', stiffness: 100 },
+                  transition: { delay: 0.4, type: "spring", stiffness: 100 },
                 }
               : { scale: 0.8, opacity: 0 }
           }

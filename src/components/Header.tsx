@@ -1,10 +1,12 @@
-import Link from 'next/link';
-import { FaBars } from 'react-icons/fa';
-import { useState } from 'react';
-import { useWindowScroll } from 'react-use';
-import { MENU_ITEMS } from 'src/constants/MenuItems';
-import MenuItem from './MenuItem';
-import BurgerMenu from './BurgerMenu';
+"use client";
+
+import Link from "next/link";
+import { FaBars } from "react-icons/fa";
+import { useState } from "react";
+import { useWindowScroll } from "react-use";
+import { MENU_ITEMS } from "@/constants/MenuItems";
+import MenuItem from "./MenuItem";
+import BurgerMenu from "./BurgerMenu";
 
 const Header = () => {
   const { y } = useWindowScroll();
@@ -14,8 +16,8 @@ const Header = () => {
       <header
         className={`w-full px-4 py-5 fixed top-0 z-50  ${
           y > 100
-            ? 'bg-white/30 dark:bg-black/20 supports-backdrop-blur:bg-white/60 backdrop-blur shadow-sm dark:shadow-none'
-            : ''
+            ? "bg-white/30 dark:bg-black/20 supports-backdrop-blur:bg-white/60 backdrop-blur shadow-sm dark:shadow-none"
+            : ""
         }`}
       >
         <div className="container flex items-center justify-between mx-auto">

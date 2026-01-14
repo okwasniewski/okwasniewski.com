@@ -1,4 +1,6 @@
-import { motion } from 'framer-motion';
+"use client";
+
+import { motion } from "framer-motion";
 
 interface HeadingProps {
   heading: string;

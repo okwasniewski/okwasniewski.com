@@ -1,7 +1,9 @@
-import { motion, Variants } from 'framer-motion';
-import { useMemo, useState } from 'react';
-import toast from 'react-hot-toast';
-import { IconType } from 'react-icons';
+"use client";
+
+import { motion, Variants } from "framer-motion";
+import { useMemo, useState } from "react";
+import toast from "react-hot-toast";
+import { IconType } from "react-icons";
 
 interface IconProps {
   Element: IconType;
@@ -36,7 +38,7 @@ const Icon = ({ Element, text, variants }: IconProps) => {
         bottom: 20,
       }}
       variants={variants}
-      style={{ width: 'fit-content' }}
+      style={{ width: "fit-content" }}
       className="flex flex-col items-center justify-center mt-6 text-gray-800 dark:text-gray-200 cursor-move"
     >
       <Element className="w-16 h-16 mb-4" />

@@ -1,7 +1,7 @@
 import React from 'react';
-import Badge from 'src/components/Badge';
-import Button from 'src/components/Button';
-import { Badge as BadgeType, PostMeta } from 'src/lib/getAllPosts';
+import Badge from '@/components/Badge';
+import Button from '@/components/Button';
+import { Badge as BadgeType, PostMeta } from '@/lib/getAllPosts';
 
 type BlogHeaderProps = {
   title: string;

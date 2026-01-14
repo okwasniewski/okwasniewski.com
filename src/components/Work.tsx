@@ -1,9 +1,11 @@
-import Heading from 'src/components/Heading';
-import Card from 'src/components/Card';
-import { itemVariants, containerVariants } from 'src/lib/animations';
-import { motion } from 'framer-motion';
-import { useIntersectionRef } from 'src/lib/useIntersectionRef';
-import { Post } from 'src/lib/getAllPosts';
+"use client";
+
+import Heading from "@/components/Heading";
+import Card from "@/components/Card";
+import { itemVariants, containerVariants } from "@/lib/animations";
+import { motion } from "framer-motion";
+import { useIntersectionRef } from "@/lib/useIntersectionRef";
+import { Post } from "@/lib/getAllPosts";
 
 interface WorkProps {
   posts: Post[];
@@ -18,7 +20,7 @@ const Work = ({ posts }: WorkProps) => {
         ref={sectionRef}
         variants={containerVariants}
         initial="hidden"
-        animate={intersection?.isIntersecting ? 'show' : 'hidden'}
+        animate={intersection?.isIntersecting ? "show" : "hidden"}
         className="grid gap-10 mb-20 gtc-auto"
       >
         {posts.map(({ slug, meta }) => (
