@@ -1,22 +1,13 @@
 import createMDX from "@next/mdx";
-import remarkGfm from "remark-gfm";
-import rehypePrettyCode from "rehype-pretty-code";
-import rehypeSlug from "rehype-slug";
-import rehypeAutolinkHeadings from "rehype-autolink-headings";
-
-/** @type {import('rehype-pretty-code').Options} */
-const prettyCodeOptions = {
-  theme: "material-theme-darker",
-};
 
 const withMDX = createMDX({
   extension: /\.mdx?$/,
   options: {
-    remarkPlugins: [remarkGfm],
+    remarkPlugins: ["remark-gfm"],
     rehypePlugins: [
-      rehypeSlug,
-      rehypeAutolinkHeadings,
-      [rehypePrettyCode, prettyCodeOptions],
+      "rehype-slug",
+      "rehype-autolink-headings",
+      ["rehype-pretty-code", { theme: "material-theme-darker" }],
     ],
   },
 });

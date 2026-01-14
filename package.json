@@ -1,7 +1,7 @@
 {
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --turbopack",
     "build": "tsx scripts/generate-rss.ts && next build",
     "postbuild": "next-sitemap",
     "start": "next start",
