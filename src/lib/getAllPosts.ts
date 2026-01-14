@@ -43,34 +43,16 @@ export function getPostSlugs(options: Options): string[] {
 }
 
 function extractMeta(content: string): PostMeta {
-  // Match the meta object - look for closing };
-  const metaMatch = content.match(/export const meta = (\{[\s\S]*?\n\});/);
+  const metaMatch = content.match(
+    /export const meta = (\{[\s\S]*?\n\})[\s;]*\n/,
+  );
   if (!metaMatch) return {};
 
   try {
-    const metaString = metaMatch[1]
-      .replace(/'/g, '"')
-      .replace(/,\s*}/g, "}")
-      .replace(/,\s*]/g, "]")
-      .replace(/(\w+):/g, '"$1":');
-
-    return JSON.parse(metaString);
+    const fn = new Function("return " + metaMatch[1]);
+    return fn() as PostMeta;
   } catch {
-    const meta: PostMeta = {};
-
-    const titleMatch = content.match(/title:\s*['"]([^'"]+)['"]/);
-    if (titleMatch) meta.title = titleMatch[1];
-
-    const subtitleMatch = content.match(/subtitle:\s*['"]([^'"]+)['"]/);
-    if (subtitleMatch) meta.subtitle = subtitleMatch[1];
-
-    const dateMatch = content.match(/date:\s*['"]([^'"]+)['"]/);
-    if (dateMatch) meta.date = dateMatch[1];
-
-    const imageMatch = content.match(/featuredImage:\s*['"]([^'"]+)['"]/);
-    if (imageMatch) meta.featuredImage = imageMatch[1];
-
-    return meta;
+    return {};
   }
 }
 
