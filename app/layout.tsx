@@ -1,11 +1,9 @@
 import type { Metadata } from "next";
-import { Sora } from "next/font/google";
+import { GeistSans } from "geist/font/sans";
 import { Toaster } from "react-hot-toast";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import "@/styles/globals.css";
-
-const sora = Sora({ subsets: ["latin"], display: "swap" });
 
 export const metadata: Metadata = {
   metadataBase: new URL(
@@ -40,7 +38,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en-US" className={sora.className}>
+    <html lang="en-US" className={GeistSans.className}>
       <body>
         <Toaster />
         <Header />

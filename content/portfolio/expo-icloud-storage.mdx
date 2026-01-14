@@ -1,0 +1,53 @@
+export const meta = {
+  title: "Expo iCloud Storage",
+  subtitle: "React Native wrapper for iCloud's NSUbiquitousKeyValueStore.",
+  primaryAction: {
+    text: "View on GitHub",
+    href: "https://github.com/okwasniewski/expo-icloud-storage",
+  },
+};
+
+### About
+
+Expo iCloud Storage is a React Native wrapper for iCloud's `NSUbiquitousKeyValueStore` — simple key-value storage that syncs across a user's Apple devices via iCloud.
+
+> **Note:** This is an iOS/macOS/tvOS only module.
+
+## Installation
+
+```sh
+npm install expo-icloud-storage
+```
+
+## Usage
+
+```typescript
+import iCloudStorage from "expo-icloud-storage";
+
+// Store values
+iCloudStorage.set("username", "john_doe");
+
+// Retrieve values
+const username = iCloudStorage.getString("username");
+
+// Remove values
+iCloudStorage.remove("username");
+
+// Get all keys
+const keys = iCloudStorage.getAllKeys();
+```
+
+## Features
+
+- Automatic sync across all Apple devices
+- Works offline — changes sync when connection is restored
+- Simple key-value API
+- Support for iOS, macOS, and tvOS
+
+## Storage Limits
+
+| Limit         | Value |
+| ------------- | ----- |
+| Total storage | 1 MB  |
+| Maximum keys  | 1024  |
+| Per-key size  | 1 MB  |

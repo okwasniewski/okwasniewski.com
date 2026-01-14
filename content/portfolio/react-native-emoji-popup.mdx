@@ -1,0 +1,46 @@
+export const meta = {
+  title: "React Native Emoji Popup",
+  subtitle: "Native emoji picker popup for React Native.",
+  primaryAction: {
+    text: "View on GitHub",
+    href: "https://github.com/okwasniewski/react-native-emoji-popup",
+  },
+};
+
+### About
+
+React Native Emoji Popup provides a native emoji picker for React Native apps. It uses platform-native primitives on both iOS and Android for the best user experience.
+
+## Installation
+
+```sh
+npm install react-native-emoji-popup
+```
+
+## Usage
+
+Wrap your component with the `EmojiPopup` component and pass a callback to handle the selected emoji:
+
+```tsx
+import { EmojiPopup } from "react-native-emoji-popup";
+
+export default function EmojiExample() {
+  const [emoji, setEmoji] = useState("🫡");
+
+  return (
+    <View>
+      <TextInput value={emoji} />
+      <EmojiPopup onEmojiSelected={setEmoji}>
+        <Text>Open Emoji Picker</Text>
+      </EmojiPopup>
+    </View>
+  );
+}
+```
+
+## Features
+
+- Native emoji picker on both iOS and Android
+- Dark mode support
+- Customizable close button on Android
+- Simple, intuitive API

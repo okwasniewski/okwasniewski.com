@@ -118,20 +118,6 @@ code[data-line-numbers] > [data-line]::before {
 
 .prose {
   max-width: 55rem;
-  line-height: 1.75rem;
-}
-
-@media (min-width: 640px) {
-  .prose {
-    font-size: 1.125rem;
-    line-height: 2.25rem;
-  }
-}
-
-@media (min-width: 768px) {
-  .prose {
-    font-size: 1.25rem;
-  }
 }
 
 pre [data-line] {

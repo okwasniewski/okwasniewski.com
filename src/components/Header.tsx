@@ -5,7 +5,7 @@ const Header = () => (
     <nav className="flex items-center justify-between">
       <Link
         href="/"
-        className="text-gray-900 dark:text-gray-100 font-medium hover:opacity-70 transition-opacity"
+        className="text-gray-900 dark:text-gray-100 hover:opacity-70 transition-opacity font-bold"
       >
         okwasniewski
       </Link>

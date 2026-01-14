@@ -14,14 +14,14 @@ const Hero = () => (
         <h1 className="text-2xl font-semibold text-gray-900 dark:text-gray-100">
           Oskar Kwaśniewski
         </h1>
-        <p className="text-gray-600 dark:text-gray-400">
-          <em>Senior React Native Developer</em>
+        <p className="text-gray-600 dark:text-gray-400 font-mono">
+          Senior Software Engineer
         </p>
       </div>
     </div>
     <div className="text-gray-700 dark:text-gray-300 leading-relaxed space-y-4">
       <p>
-        Building React Native at{" "}
+        Building React Native apps at{" "}
         <a
           href="https://www.callstack.com/"
           target="_blank"

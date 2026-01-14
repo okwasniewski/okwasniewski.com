@@ -11,14 +11,9 @@ export const metadata: Metadata = {
 export default async function BlogPage() {
   const posts = await getPosts({ directory: "blog", limit: -1 });
 
-  const sortedPosts = posts.sort(
-    (a, b) =>
-      Number(new Date(b.meta.date || 0)) - Number(new Date(a.meta.date || 0)),
-  );
-
   return (
     <div className="mt-10">
-      <Blog posts={sortedPosts} />
+      <Blog posts={posts} />
     </div>
   );
 }

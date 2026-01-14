@@ -1,32 +1,37 @@
 import Link from "next/link";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
 
 const Footer = () => (
   <footer className="w-full max-w-[750px] mx-auto px-6 py-8 border-t border-gray-200 dark:border-gray-800">
     <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 text-sm text-gray-500 dark:text-gray-500">
-      <div className="flex gap-4">
+      <div className="flex gap-5">
         <Link
           href="https://github.com/okwasniewski"
           target="_blank"
           rel="noopener noreferrer"
           className="hover:text-gray-900 dark:hover:text-gray-100 transition-colors"
+          aria-label="GitHub"
         >
-          GitHub
+          <FaGithub className="w-5 h-5" />
         </Link>
         <Link
-          href="https://www.linkedin.com/in/oskar-kwa%C5%9Bniewski-452977207/"
+          href="https://www.linkedin.com/in/okwasniewski/"
           target="_blank"
           rel="noopener noreferrer"
           className="hover:text-gray-900 dark:hover:text-gray-100 transition-colors"
+          aria-label="LinkedIn"
         >
-          LinkedIn
+          <FaLinkedin className="w-5 h-5" />
         </Link>
         <Link
           href="https://x.com/o_kwasniewski"
           target="_blank"
           rel="noopener noreferrer"
           className="hover:text-gray-900 dark:hover:text-gray-100 transition-colors"
+          aria-label="X"
         >
-          X
+          <FaXTwitter className="w-5 h-5" />
         </Link>
       </div>
       <span>© {new Date().getFullYear()}</span>
