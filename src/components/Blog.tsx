@@ -1,43 +1,33 @@
-"use client";
-
-import Heading from "@/components/Heading";
-import Card from "@/components/Card";
-import { itemVariants, containerVariants } from "@/lib/animations";
-import { motion } from "framer-motion";
-import { useIntersectionRef } from "@/lib/useIntersectionRef";
+import Link from "next/link";
 import { Post } from "@/lib/getAllPosts";
 
 interface BlogProps {
   posts: Post[];
 }
 
-const Blog = ({ posts }: BlogProps) => {
-  const [sectionRef, intersection] = useIntersectionRef();
-  return (
-    <>
-      <Heading heading="Blog" subHeading="My latest posts" />
-      <motion.div
-        ref={sectionRef}
-        variants={containerVariants}
-        initial="hidden"
-        animate={intersection?.isIntersecting ? "show" : "hidden"}
-        className="flex flex-col gap-5"
-      >
-        {posts.map(({ slug, meta }) => (
-          <Card
-            key={slug}
-            src={meta.featuredImage}
+const Blog = ({ posts }: BlogProps) => (
+  <>
+    <h1 className="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-6">
+      Blog
+    </h1>
+    <ul className="space-y-3">
+      {posts.map(({ slug, meta }) => (
+        <li key={slug}>
+          <Link
             href={`/blog/${slug}`}
-            badges={meta.badges}
-            description={meta.subtitle}
-            title={meta.title}
-            variants={itemVariants}
-            compact
-          />
-        ))}
-      </motion.div>
-    </>
-  );
-};
+            className="group flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-2"
+          >
+            <span className="text-gray-900 dark:text-gray-100 underline underline-offset-2 group-hover:text-gray-600 dark:group-hover:text-gray-400 transition-colors">
+              {meta.title}
+            </span>
+            <span className="text-gray-500 dark:text-gray-500 text-sm">
+              {meta.subtitle}
+            </span>
+          </Link>
+        </li>
+      ))}
+    </ul>
+  </>
+);
 
 export default Blog;

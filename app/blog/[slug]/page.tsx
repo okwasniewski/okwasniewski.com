@@ -45,7 +45,6 @@ export default async function BlogPostPage({ params }: Props) {
       <BlogHeader
         title={meta.title || ""}
         subtitle={meta.subtitle || ""}
-        badges={meta.badges || []}
         date={meta.date}
         primaryAction={meta.primaryAction}
       />

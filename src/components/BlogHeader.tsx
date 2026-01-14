@@ -1,48 +1,37 @@
-import React from 'react';
-import Badge from '@/components/Badge';
-import Button from '@/components/Button';
-import { Badge as BadgeType, PostMeta } from '@/lib/getAllPosts';
+import Link from "next/link";
+import { PostMeta } from "@/lib/getAllPosts";
 
 type BlogHeaderProps = {
   title: string;
   subtitle: string;
-  badges: BadgeType[];
   date?: string;
-} & Pick<PostMeta, 'primaryAction'>;
+} & Pick<PostMeta, "primaryAction">;
 
 export default function BlogHeader({
   title,
   subtitle,
-  badges,
   date,
   primaryAction,
 }: BlogHeaderProps) {
   return (
-    <div className="p-4 mb-4 md:p-0 bg-gray-50 dark:bg-dark-surface full-width">
-      <div className="container flex flex-col items-start justify-between pt-6 mx-auto mb-4 md:pb-10 gap-y-5 lg:gap-y-0 lg:items-center lg:flex-row md:pt-14">
-        <div>
-          <p className="text-xs dark:text-gray-200/80 mb-1">{date}</p>
-          <h1 className="mb-4 text-3xl font-semibold dark:text-gray-200">
-            {title}
-          </h1>
-          <p className="mb-2 dark:text-gray-200/80">{subtitle}</p>
-          <div className="flex flex-row gap-2">
-            {badges?.map(({ color, text }, index) => (
-              <Badge key={index} color={color} text={text} className="mb-4" />
-            ))}
-          </div>
-        </div>
-        {primaryAction && (
-          <Button
-            // @ts-expect-error Types are not correct here, but Next passes those props to `a` tag.
-            rel="noopener noreferrer"
-            target="_blank"
-            href={primaryAction.href}
-          >
-            {primaryAction.text}
-          </Button>
-        )}
-      </div>
-    </div>
+    <header className="mb-10 pb-6 border-b border-gray-200 dark:border-gray-800">
+      {date && (
+        <p className="text-sm text-gray-500 dark:text-gray-500 mb-2">{date}</p>
+      )}
+      <h1 className="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-2">
+        {title}
+      </h1>
+      <p className="text-gray-600 dark:text-gray-400 mb-4">{subtitle}</p>
+      {primaryAction && (
+        <Link
+          href={primaryAction.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-gray-900 dark:text-gray-100 underline underline-offset-2 hover:text-gray-600 dark:hover:text-gray-400 transition-colors"
+        >
+          {primaryAction.text} →
+        </Link>
+      )}
+    </header>
   );
 }

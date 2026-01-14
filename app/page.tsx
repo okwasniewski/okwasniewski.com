@@ -1,20 +1,17 @@
 import Hero from "@/components/Hero";
 import Work from "@/components/Work";
-import About from "@/components/About";
-import Skills from "@/components/Skills";
-import Contact from "@/components/Contact";
+import Writing from "@/components/Writing";
 import { getPosts } from "@/lib/getAllPosts";
 
 export default async function HomePage() {
-  const posts = await getPosts({ directory: "portfolio", limit: 4 });
+  const projects = await getPosts({ directory: "portfolio", limit: 5 });
+  const posts = await getPosts({ directory: "blog", limit: 5 });
 
   return (
     <>
       <Hero />
-      <Work posts={posts} />
-      <About />
-      <Skills />
-      <Contact />
+      <Work posts={projects} showAllLink />
+      <Writing posts={posts} />
     </>
   );
 }

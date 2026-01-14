@@ -10,27 +10,13 @@
   --color-dark-surface-accent: #2d2c2c;
 }
 
-@utility gtc-auto {
-  grid-template-columns: repeat(
-    auto-fill,
-    minmax(min(calc(180px + 12vmin), 100%), 1fr)
-  );
-}
-
 body {
   overflow-x: hidden;
-}
-
-.hero-background {
-  background: url("/hero.jpg");
 }
 
 @media (prefers-color-scheme: dark) {
   body {
     background-color: #111010;
-  }
-  .hero-background {
-    background: url("/hero-dark.jpg");
   }
 
   :root {
@@ -46,6 +32,7 @@ html,
 body {
   overflow-x: hidden;
 }
+
 body {
   position: relative;
 }
@@ -77,15 +64,6 @@ body {
   margin-left: auto;
   margin-right: auto;
   width: 50%;
-}
-
-.full-width {
-  width: 100vw;
-  position: relative;
-  left: 50%;
-  right: 50%;
-  margin-left: -50vw;
-  margin-right: -50vw;
 }
 
 pre {

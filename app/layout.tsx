@@ -44,7 +44,7 @@ export default function RootLayout({
       <body>
         <Toaster />
         <Header />
-        <main className="container w-full h-full md:px-16 px-4 mx-auto scroll-smooth min-h-[88vh]">
+        <main className="w-full max-w-[750px] px-6 mx-auto min-h-[88vh] py-8">
           {children}
         </main>
         <Footer />
