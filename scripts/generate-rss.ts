@@ -72,7 +72,6 @@ function generateRssFeed() {
   });
 
   fs.writeFileSync("./public/rss.xml", feed.xml({ indent: true }));
-  console.log("✓ RSS feed generated at public/rss.xml");
 }
 
 generateRssFeed();

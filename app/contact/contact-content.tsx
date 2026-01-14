@@ -41,8 +41,9 @@ export default function ContactContent() {
           </motion.li>
           <motion.li className="flex m-2" variants={itemVariants}>
             <FaEnvelope className="w-6 h-6 mr-2" />
-            <span
-              className="cursor-pointer"
+            <button
+              type="button"
+              className="cursor-pointer text-left"
               onClick={() => {
                 toast(
                   <div>
@@ -62,7 +63,7 @@ export default function ContactContent() {
               }}
             >
               hello@oskarkwasniewski.dev
-            </span>
+            </button>
           </motion.li>
         </motion.ul>
         <motion.div
