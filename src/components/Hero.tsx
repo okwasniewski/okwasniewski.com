@@ -1,11 +1,13 @@
-import { motion } from 'framer-motion';
-import { itemVariants } from 'src/lib/animations';
-import Button from 'src/components/Button';
-import { useIntersectionRef } from 'src/lib/useIntersectionRef';
-import { useEffect, useState } from 'react';
-import Image from 'next/image';
+"use client";
 
-const texts = ['Oskar', 'a Software Engineer', 'a React Native Developer'];
+import { motion } from "framer-motion";
+import { itemVariants } from "@/lib/animations";
+import Button from "@/components/Button";
+import { useIntersectionRef } from "@/lib/useIntersectionRef";
+import { useEffect, useState } from "react";
+import Image from "next/image";
+
+const texts = ["Oskar", "a Software Engineer", "a React Native Developer"];
 
 const container = {
   hidden: { opacity: 0 },
@@ -44,7 +46,7 @@ const Hero = () => {
           variants={container}
           initial="hidden"
           className="flex flex-col items-center justify-center"
-          animate={intersection?.isIntersecting ? 'show' : 'hidden'}
+          animate={intersection?.isIntersecting ? "show" : "hidden"}
         >
           <motion.div
             variants={itemVariants}
@@ -58,7 +60,7 @@ const Hero = () => {
               className="hidden rounded-full shadow-md dark:shadow-none lg:flex lg:mr-5"
             />
             <motion.h1 className="py-2 mr-1 overflow-hidden text-4xl font-semibold text-center text-gray-900 dark:text-gray-200 md:text-5xl">
-              {activeIndex === 0 ? 'Hey!' : null} I'm <span />
+              {activeIndex === 0 ? "Hey!" : null} I&apos;m <span />
             </motion.h1>
             <motion.h1 className="px-3 py-2 overflow-hidden text-3xl font-semibold text-center text-gray-900 dark:text-gray-200 md:text-5xl">
               {texts.map((text, index) => {

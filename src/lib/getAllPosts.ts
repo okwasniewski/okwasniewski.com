@@ -1,10 +1,11 @@
-import fs from 'fs';
-import { join } from 'path';
+import fs from "fs";
+import { join } from "path";
 
 export interface Badge {
   text: string;
-  color: 'blue' | 'green';
+  color: "blue" | "green" | "orange";
 }
+
 export interface PostMeta {
   title?: string;
   subtitle?: string;
@@ -22,33 +23,67 @@ export interface Post {
   meta: PostMeta;
 }
 
-type Directories = 'blog' | 'portfolio';
+type Directories = "blog" | "portfolio" | "apps";
 
 interface Options {
   directory: Directories;
   limit?: number;
 }
 
-const getDirectory = (dir: string) => join(process.cwd(), `src/pages/${dir}`);
+const getDirectory = (dir: string) => join(process.cwd(), `content/${dir}`);
 
 export function getPostSlugs(options: Options): string[] {
+  const dir = getDirectory(options.directory);
+  if (!fs.existsSync(dir)) return [];
+
   return fs
-    .readdirSync(getDirectory(options.directory))
-    .filter((item) => item.endsWith('.mdx'))
+    .readdirSync(dir)
+    .filter((item) => item.endsWith(".mdx"))
     .slice(0, options.limit === -1 ? undefined : options.limit);
+}
+
+function extractMeta(content: string): PostMeta {
+  const metaMatch = content.match(
+    /export const meta = (\{[\s\S]*?\n\})[\s;]*\n/,
+  );
+  if (!metaMatch) return {};
+
+  try {
+    const fn = new Function("return " + metaMatch[1]);
+    return fn() as PostMeta;
+  } catch {
+    return {};
+  }
 }
 
 export async function getPosts(options: Options): Promise<Post[]> {
   const slugs = getPostSlugs(options);
-  const posts = await Promise.all(
-    slugs.map(async (slug: string) => {
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, import/no-dynamic-require, global-require
-      const { meta } = (await require(
-        `../pages/${options.directory}/${slug}`,
-      )) as { meta: PostMeta };
-      return { slug: slug.replace('.mdx', ''), meta };
-    }),
-  );
+  const posts = slugs.map((slug) => {
+    const filePath = join(getDirectory(options.directory), slug);
+    const content = fs.readFileSync(filePath, "utf-8");
+    const meta = extractMeta(content);
+    return { slug: slug.replace(".mdx", ""), meta };
+  });
 
   return posts;
+}
+
+export async function getPostBySlug(
+  directory: Directories,
+  slug: string,
+): Promise<{ meta: PostMeta; default: React.ComponentType }> {
+  const filePath = join(getDirectory(directory), `${slug}.mdx`);
+
+  if (!fs.existsSync(filePath)) {
+    throw new Error(`Post not found: ${slug}`);
+  }
+
+  const content = fs.readFileSync(filePath, "utf-8");
+  const meta = extractMeta(content);
+
+  const { default: Content } = await import(
+    `../../content/${directory}/${slug}.mdx`
+  );
+
+  return { meta, default: Content };
 }

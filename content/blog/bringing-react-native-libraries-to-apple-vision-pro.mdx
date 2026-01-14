@@ -1,0 +1,152 @@
+
+export const meta = {
+  title: 'Bringing React Native libraries to Apple Vision Pro',
+  subtitle: 'Your library in the new dimension',
+  date: '2024-01-03',
+  badges: [
+    {
+      text: 'React Native 🥽',
+      color: 'blue',
+    }
+  ]
+}
+
+## Contents
+
+
+## Introduction
+Apple Vision Pro is just around the corner, and it's a great time to contribute visionOS support to your favorite React Native libraries.
+
+For the past few months, we've been working hard at [Callstack](https://www.callstack.com/) to bring React Native into a new dimension by creating a new out-of-tree platform.
+
+?> Out-of-tree platform: A fork of the React Native core, extending its possibilities to new platforms. Examples of such projects include [React Native Windows](https://github.com/microsoft/react-native-windows), [React Native macOS](https://github.com/microsoft/react-native-macos), and [React Native tvOS](https://github.com/react-native-tvos/react-native-tvos).
+
+To learn more about this project, check out our recent podcast here:
+
+<iframe src="https://www.youtube.com/embed/RCNi8fToMBA?si=FoCWtNOuJakQ445t" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+You can also check React Native visionOS repository, here: https://github.com/callstack/react-native-visionos
+
+## Migrating libraries
+Remember that only libraries using **native code** need migration; JS-only libraries will work out of the box. Here is a step-by-step explanation on how to bring a library to visionOS: 
+
+1. Make sure you have proper Xcode setup, described in [React Native visionOS README](https://github.com/callstack/react-native-visionos/blob/main/README.md)
+2. Initialize a new visionOS project
+```sh
+npx @callstack/react-native-visionos init MyApp
+```
+
+3. Install library that you want to migrate
+```sh
+yarn add your-library
+```
+
+4. Navigate to the `node_modules` directory and locate your library's code
+
+6. Add visionOS support to library podspec: 
+```rb title="YourLibrary.podspec" {10}
+#..
+Pod::Spec.new do |s|
+  s.name         = "react-native-slider"
+  s.version      = package['version']
+  s.summary      = package['description']
+  s.license      = package['license']
+
+  s.authors      = package['author']
+  s.homepage     = package['homepage']
+  s.platforms    = { :ios => "9.0", :visionos => "1.0" } # <- Add visionOS here 
+
+  s.source       = { :git => "https://github.com/callstack/react-native-slider.git", :tag => "v#{s.version}" }
+  # ...
+```
+
+This snippet comes from [react-native-slider.podspec](https://github.com/callstack/react-native-slider/blob/main/package/react-native-slider.podspec). For this library all it took was to add this one line. https://github.com/callstack/react-native-slider/pull/560
+
+7. Next, open the project located in the `MyApp/visionos` directory in Xcode and run the app (remember to install CocoaPods).
+8. Xcode will likely show additional error messages that need to be addressed. In the next section, I will discuss the most common errors and issues.
+9. Once your library is compiling you can use `npx patch-package` to save the changes 
+10. Use generated `.patch` file to contribute to the library. 
+
+?> At this point we don't recommend libraries to add visionOS example, as the template is changing pretty frequently with breaking changes.
+
+## Common issues
+### Usage of `UIScreen`
+This API is not available on visionOS as there is no concept of "screen". Apple Vision Pro displays apps in shared space where each app has its own window.
+
+There are two main reasons your library might be using `UIScreen`: 
+
+**Getting screen dimensions**
+
+Here is the code that will fail when compiling for visionOS: 
+`[UIScreen mainScreen].bounds.size;` 
+
+In order to replace it, you need to retrieve currently focused `UIWindowScene` of your app and get it's `keyWindow`.
+
+Here is an example: 
+```objc {14-16}
+UIWindow *__nullable RCTKeyWindow(void)
+{
+  if (RCTRunningInAppExtension()) {
+    return nil;
+  }
+
+  for (UIScene* scene in RCTSharedApplication().connectedScenes) {
+    if (scene.activationState != UISceneActivationStateForegroundActive || ![scene isKindOfClass:[UIWindowScene class]]) {
+      continue;
+    }
+    UIWindowScene *windowScene = (UIWindowScene *)scene;
+
+    for (UIWindow *window in windowScene.windows) {
+      if (window.isKeyWindow) {
+        return window;
+      }
+    }
+  }
+
+  return nil;
+}
+```
+
+**Retrieve current screen info, like: scale**
+
+Instead of using `UIScreen`, we can utilize `currentTraitCollection`, a property defined in the environment.
+
+Trait collection originates in the screen (`UIScreen`) and contains considerable number of properties describing the environment. For example: `displayScale` can tell us the current screen scale of the device. 
+
+```objc
+CGFloat currentScale = [UITraitCollection currentTraitCollection].displayScale;
+```
+
+### Unsupported APIs
+Some APIs are not available on visionOS because they don't map to this platform. For example: `inputAccessoryView` is not available because the keyboard is floating next to our screen and we can't display anything there. 
+
+To deal with unsupported APIs we can use compiler conditionals: 
+
+```objc {2,4}
+- (void)shouldDismissKeyboard:(RNCViewPagerKeyboardDismissMode)dismissKeyboard {
+#if !TARGET_OS_VISION 
+    UIScrollViewKeyboardDismissMode dismissKeyboardMode = UIScrollViewKeyboardDismissModeNone;
+#endif
+}
+```
+
+Code between `#if !TARGET_OS_VISION` and `#endif` won't be compiled for visionOS. 
+
+Here is a Swift equivalent for this: 
+```swift
+#if !os(visionOS)
+// Swift code
+#endif
+```
+
+### Deprecated APIs
+Unfortunately, visionOS doesn't support APIs deprecated before iOS 15. So if your library uses older APIs it's great time to update to a newer alternative. 
+
+Here is an example of migrating `UIMenuController` to `UIEditMenuInteraction` within the React Native core: https://github.com/facebook/react-native/pull/41125.
+
+This is where `@available` comes in handy, allowing you to keep the old implementation and preserve backward compatibility. 
+
+## That's all
+Thanks for reading! I hope you found this article useful. If you have any questions or feedback feel free to reach out to me on [Twitter](https://twitter.com/o_kwasniewski).
+
+

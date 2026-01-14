@@ -1,14 +1,12 @@
-import { motion } from 'framer-motion';
-import Heading from 'src/components/Heading';
-import Icon from 'src/components/Icon';
-import { FaReact, FaGit, FaGithub } from 'react-icons/fa';
-import {
-  SiTailwindcss,
-  SiTypescript,
-  SiVisualstudiocode,
-} from 'react-icons/si';
-import { useIntersectionRef } from 'src/lib/useIntersectionRef';
-import { itemVariants, containerVariants } from 'src/lib/animations';
+"use client";
+
+import { motion } from "framer-motion";
+import Heading from "@/components/Heading";
+import Icon from "@/components/Icon";
+import { FaReact, FaGit, FaGithub } from "react-icons/fa";
+import { SiTailwindcss, SiTypescript, SiApple } from "react-icons/si";
+import { useIntersectionRef } from "@/lib/useIntersectionRef";
+import { itemVariants, containerVariants } from "@/lib/animations";
 
 const Skills = () => {
   const [sectionRef, intersection] = useIntersectionRef();
@@ -26,7 +24,7 @@ const Skills = () => {
         <motion.div
           variants={containerVariants}
           initial="hidden"
-          animate={intersection?.isIntersecting ? 'show' : 'hidden'}
+          animate={intersection?.isIntersecting ? "show" : "hidden"}
           className="flex flex-col items-center justify-center mb-10 text-gray-800 dark:text-gray-200 md:justify-around md:flex-row"
         >
           <Icon
@@ -40,8 +38,8 @@ const Skills = () => {
             variants={itemVariants}
           />
           <Icon
-            Element={SiVisualstudiocode}
-            text="Visual Studio Code"
+            Element={SiApple}
+            text="Apple Platforms"
             variants={itemVariants}
           />
           <Icon
