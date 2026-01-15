@@ -42,7 +42,7 @@ export default function RootLayout({
     <html lang="en-US" className={`${geist.variable} ${geist.className}`}>
       <body>
         <Header />
-        <main className="w-full max-w-[750px] px-6 mx-auto min-h-[88vh] py-8">
+        <main className="w-full max-w-[750px] px-6 mx-auto min-h-[88vh] py-8 mt-10">
           {children}
         </main>
         <Footer />

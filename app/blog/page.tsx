@@ -11,9 +11,5 @@ export const metadata: Metadata = {
 export default async function BlogPage() {
   const posts = await getPosts({ directory: "blog", limit: -1 });
 
-  return (
-    <div className="mt-10">
-      <Blog posts={posts} />
-    </div>
-  );
+  return <Blog posts={posts} />;
 }

@@ -8,9 +8,5 @@ export const metadata: Metadata = {
 };
 
 export default function VideosPage() {
-  return (
-    <div className="mt-10">
-      <VideosContent />
-    </div>
-  );
+  return <VideosContent />;
 }
