@@ -1,7 +1,7 @@
 
 export const meta = {
   title: 'How to change root view background color in React Native for iOS?',
-  subtitle: 'Adjust background color of the root view in React Native for iOS that works with appearance changes.',
+  subtitle: 'Root-view background that adapts to light/dark mode on iOS',
   date: '2023-12-02',
   badges: [
     {
@@ -37,7 +37,7 @@ then `cd` into your project and open the project in Xcode:
 xed ios
 ```
 
-Now open `AppDelegate.mm` and override following method: 
+Now open `AppDelegate.mm` and override following method:
 
 ```objc title="AppDelegate.mm"
 - (UIView *)createRootViewWithBridge:(RCTBridge *)bridge moduleName:(NSString *)moduleName initProps:(NSDictionary *)initProps {
@@ -75,11 +75,11 @@ You can use `colorWithDynamicProvider` to achieve this:
 
 The `colorWithDynamicProvider` will now listen to changes of current trait colleciton and update the background color accordingly.
 
-This is the result: 
+This is the result:
 
 <video controls width="100%" src='https://res.cloudinary.com/dangiiuvf/video/upload/f_auto:video,q_auto/yl1wj11gw3p3aufgwu1i' />
 
-?> 💡 If you are using Expo, you can use the [SystemUI](https://docs.expo.dev/versions/latest/sdk/system-ui/) library to achieve this but it can only set the appearance to a static color.  
+?> 💡 If you are using Expo, you can use the [SystemUI](https://docs.expo.dev/versions/latest/sdk/system-ui/) library to achieve this but it can only set the appearance to a static color.
 
 ## That's all
 Thanks for reading! I hope you found this article useful. If you have any questions or feedback feel free to reach out to me on [Twitter](https://twitter.com/o_kwasniewski).
