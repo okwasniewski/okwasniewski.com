@@ -181,6 +181,10 @@ figcaption + pre {
   font-weight: normal;
 }
 
+.prose :not(pre) > code {
+  @apply bg-zinc-200 dark:bg-zinc-800 px-1.5 py-0.5 rounded-md;
+}
+
 /* Copy button for code blocks */
 .pre-wrapper {
   position: relative;
