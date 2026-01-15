@@ -180,3 +180,38 @@ figcaption + pre {
 .prose code {
   font-weight: normal;
 }
+
+/* Copy button for code blocks */
+.pre-wrapper {
+  position: relative;
+}
+
+.pre-wrapper .copy-button {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  z-index: 1;
+  padding: 0.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #adadad;
+  cursor: pointer;
+  opacity: 0;
+  transition:
+    opacity 0.15s ease,
+    color 0.15s ease,
+    background 0.15s ease;
+}
+
+.pre-wrapper:hover .copy-button {
+  opacity: 1;
+}
+
+.pre-wrapper .copy-button:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.2);
+}

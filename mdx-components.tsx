@@ -1,6 +1,9 @@
-import type { MDXComponents } from 'mdx/types';
+import type { MDXComponents } from "mdx/types";
+import { Pre } from "@/components/pre";
 
-// This file is required to use MDX in `app` directory.
 export function useMDXComponents(components: MDXComponents): MDXComponents {
-  return components;
+  return {
+    pre: Pre,
+    ...components,
+  };
 }
