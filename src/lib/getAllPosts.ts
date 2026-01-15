@@ -1,17 +1,11 @@
 import fs from "fs";
 import { join } from "path";
 
-export interface Badge {
-  text: string;
-  color: "blue" | "green" | "orange";
-}
-
 export interface PostMeta {
   title?: string;
   subtitle?: string;
   featuredImage?: string;
   date?: string;
-  badges?: Badge[];
   primaryAction?: {
     text: string;
     href: string;

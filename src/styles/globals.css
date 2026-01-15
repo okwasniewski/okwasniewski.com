@@ -8,6 +8,7 @@
 @theme {
   --color-dark-surface: #1e1d1d;
   --color-dark-surface-accent: #2d2c2c;
+  --font-sans: var(--font-geist);
 }
 
 body {

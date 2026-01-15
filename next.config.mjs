@@ -7,7 +7,7 @@ const withMDX = createMDX({
     rehypePlugins: [
       "rehype-slug",
       "rehype-autolink-headings",
-      ["rehype-pretty-code", { theme: "material-theme-darker" }],
+      ["rehype-pretty-code", { theme: "catppuccin-mocha" }],
     ],
   },
 });

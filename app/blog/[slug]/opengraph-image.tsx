@@ -25,31 +25,35 @@ export default async function Image({
     title = "Blog Post";
   }
 
-  const fontData = await readFile(join(process.cwd(), "assets/Sora-Bold.ttf"));
+  const fontData = await readFile(join(process.cwd(), "assets/Geist-Bold.ttf"));
 
   return new ImageResponse(
     <div
-      tw="flex flex-col justify-center items-center w-full h-full"
-      style={{
-        backgroundColor: "#4158D0",
-        background: `linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%)`,
-      }}
+      tw="flex flex-col justify-between w-full h-full p-16"
+      style={{ backgroundColor: "#0a0a0a" }}
     >
-      <div tw="flex flex-col text-white p-24 mb-12 w-full">
-        <div tw="flex h-full items-center">
-          <h1 style={{ fontSize: 75 }}>{title}</h1>
-        </div>
-        <div tw="flex w-full justify-between items-center">
-          <p>{date}</p>
-          <p>oskarkwasniewski.dev</p>
-        </div>
+      <div tw="flex flex-col">
+        <h1
+          tw="text-white leading-tight"
+          style={{ fontSize: 64, maxWidth: "90%" }}
+        >
+          {title}
+        </h1>
+      </div>
+      <div tw="flex w-full justify-between items-end">
+        <p tw="text-neutral-400" style={{ fontSize: 24 }}>
+          {date}
+        </p>
+        <p tw="text-neutral-400" style={{ fontSize: 24 }}>
+          oskarkwasniewski.dev
+        </p>
       </div>
     </div>,
     {
       ...size,
       fonts: [
         {
-          name: "Sora",
+          name: "Geist",
           data: fontData,
           style: "normal",
         },
