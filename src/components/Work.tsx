@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Post } from "@/lib/getAllPosts";
-import { FiArrowRight } from "react-icons/fi";
+import { PostCard } from "./post-card";
 
 interface WorkProps {
   posts: Post[];
@@ -14,20 +14,7 @@ const Work = ({ posts, showAllLink = false }: WorkProps) => (
     </h2>
     <div>
       {posts.map(({ slug, meta }) => (
-        <Link key={slug} href={`/portfolio/${slug}`} className="block group">
-          <article className="py-3 border-b border-gray-200 dark:border-gray-800 last:border-b-0">
-            <div className="flex items-start justify-between gap-4">
-              <div className="flex-1 min-w-0">
-                <h3 className="text-gray-900 dark:text-gray-100 font-medium group-hover:text-gray-600 dark:group-hover:text-gray-300 transition-colors">
-                  {meta.title}
-                </h3>
-                <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">
-                  {meta.subtitle}
-                </p>
-              </div>
-            </div>
-          </article>
-        </Link>
+        <PostCard key={slug} meta={meta} href={`/portfolio/${slug}`} compact />
       ))}
     </div>
     {showAllLink && (
