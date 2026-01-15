@@ -1,0 +1,73 @@
+export const meta = {
+  title: "Paper First, Digital Archive: Why I Built NoteScan",
+  subtitle: "Bridging analog notes and digital systems",
+  date: "2026-01-15",
+  badges: [
+    {
+      text: "Productivity",
+      color: "blue",
+    },
+  ],
+};
+
+## Contents
+
+## Introduction
+
+This year I went back to a paper notebook. Last year I tried it for 7 months but then suddenly stopped. Looking back I regret not continuing. Writing down what you do and think allows you to **slow down, and stop living your life on autopilot**.
+
+It also creates a physical archive of your thoughts, ideas, and progress. Something you can flip through years later and remember who you were. I had so much fun reading my notes the first half of 2025.
+
+## The Problem
+
+The approach I'm using is a customized bullet journal rapid logging system. Every day I write tasks, notes, ideas, and reflections in my notebook. At the end of the week, I review what I've written.
+
+I often write notes about a book I'm reading, or a technical insight I had while working. These are things I want to keep digitally, make them searchable and instantly accessible.
+
+Not everything from paper needs to go digital. Most of it stays in the notebook. But sometimes I want to transfer a few key points to my digital system in [Obsidian](https://obsidian.md).
+
+## So I Built NoteScan
+
+NoteScan does one thing: **It scans your handwriting and allows you to copy it**.
+
+No document management and no bloat. Just quick capture of handwritten notes.
+
+It's not meant to be a backup for your notebook. It's a **bridge between analog and digital**.
+
+In the last update I've added support for Markdown, Latex and Mermaid. So you can scan complex math equations, diagrams and flowcharts directly into your notes.
+
+NoteScan also helps you get your paper notes into a digital format that AI can understand and work with.
+
+Here is a quick demo:
+
+<video controls>
+  <source
+    src="https://res.cloudinary.com/dangiiuvf/video/upload/v1768381076/Note_Scan_Demo_13_Jan_kuznw4.mp4"
+    type="video/mp4"
+  />
+  Your browser does not support the video tag.
+</video>
+
+## My Workflow
+
+Here's how it fits into my hybrid system:
+
+1. **Daily:** Write in paper notebook. Plans, logs, quick thoughts.
+2. **Weekly:** Review notebook. Most stays on paper.
+3. **When something's worth keeping:** Open NoteScan → point at the page → tap copy → paste into Obsidian.
+
+NoteScan **removed the friction of retyping**, so I actually do it now.
+
+If you are curious about the details of my analog workflow, it's simillar to a workflow described in this video: [A notebook to save you from infinite scrolling](https://www.youtube.com/watch?v=OmyfB513E1s).
+
+As far as paper notebooks go, I'm currently using a hardcover Moleskine dotted notebook. I used Leuchtturm1917 before, but I didn't like it that much. It's up to personal preference though.
+
+## The Stack
+
+Going back to the app itself, NoteScan is built with [Expo](https://expo.dev) and a mix of Gemini 3 Flash and GPT 4o mini. I found Gemini to be exceptionally good at handwriting recognition, especially for messy notes. GPT 4o mini handles formatting the output.
+
+## Try It
+
+As I mentioned the app uses AI to achieve excellent results so it's an app with monthly subscription. However, first 5 scans are free, you can [check it out here.](https://apps.apple.com/us/app/notescan-handwriting-to-text/id6757394290)
+
+_What's your analog workflow? Find me on [X](https://x.com/okwasniewski)_.
