@@ -199,9 +199,15 @@ pre .copy-button {
   background: rgba(255, 255, 255, 0.1);
   color: #adadad;
   cursor: pointer;
+  opacity: 0;
   transition:
+    opacity 0.15s ease,
     color 0.15s ease,
     background 0.15s ease;
+}
+
+pre:hover .copy-button {
+  opacity: 1;
 }
 
 pre .copy-button:hover {
