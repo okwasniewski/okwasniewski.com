@@ -9,12 +9,18 @@ const Header = () => (
       >
         okwasniewski
       </Link>
-      <div className="flex gap-6 text-gray-600 dark:text-gray-400">
+      <div className="flex gap-6 text-gray-600 dark:text-gray-400 text-sm">
         <Link
           href="/blog"
           className="hover:text-gray-900 dark:hover:text-gray-100 transition-colors"
         >
           blog
+        </Link>
+        <Link
+          href="/videos"
+          className="hover:text-gray-900 dark:hover:text-gray-100 transition-colors"
+        >
+          videos
         </Link>
         <Link
           href="/contact"
