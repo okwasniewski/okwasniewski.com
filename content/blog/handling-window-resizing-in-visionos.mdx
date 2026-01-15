@@ -1,50 +1,51 @@
-
 export const meta = {
-  title: 'Handling window resizing behavior in visionOS',
-  subtitle: 'How to adapt window resizing behavior in your spatial app',
-  date: '2024-01-11',
+  title: "Handling window resizing behavior in visionOS",
+  subtitle: "How to adapt window resizing behavior in your spatial app",
+  date: "2024-01-11",
   badges: [
     {
-      text: 'Swift',
-      color: 'orange',
-    }
-  ]
-}
+      text: "Swift",
+      color: "orange",
+    },
+  ],
+};
 
 ## Contents
 
-
 ## Introduction
+
 Apple's new platform, visionOS, is second to macOS in allowing you to resize windows without any restrictions. This introduces new challenges in developing responsive UI interfaces. In this blog post, we will go over how you can adapt the behavior of your app's windows.
 
 _Disclaimer: This blog post assumes you have basic iOS development knowledge._
 
-## Getting started 
-First, let's create a new Xcode project. From the visionOS tab, choose 'App.' 
+## Getting started
+
+First, let's create a new Xcode project. From the visionOS tab, choose 'App.'
 
 Then, give your app a name and configure the project as shown below:
 
-<img src='https://res.cloudinary.com/dangiiuvf/image/upload/f_auto,q_auto/ub9gv9slgkclobl7muoa' />
+<img src="https://res.cloudinary.com/dangiiuvf/image/upload/f_auto,q_auto/ub9gv9slgkclobl7muoa" />
 
 ?> If you are using [React Native visionOS](https://github.com/callstack/react-native-visionos) with SwiftUI integration (or already have an app), you can skip this step.
 
 ## Add `AppDelegate` and `SceneDelegate`
-If you are porting an existing UIKit app to visionOS, you should already have `AppDelegate` and `SceneDelegate`; however, for SwiftUI projects, these are not created automatically. 
+
+If you are porting an existing UIKit app to visionOS, you should already have `AppDelegate` and `SceneDelegate`; however, for SwiftUI projects, these are not created automatically.
 
 To create them, click 'File' > 'New' and then create `AppDelegate.swift`.
 
 ```swift
 class AppDelegate: NSObject, UIApplicationDelegate {
     var window: UIWindow?
-    
+
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
         let sceneConfig = UISceneConfiguration(name: nil, sessionRole: connectingSceneSession.role)
         return sceneConfig
     }
 }
 ```
-In this class you need to implement one method `application(_:configurationForConnecting:options:)` create a new `UISceneConfiguration` and return it, we will get back to this.
 
+In this class you need to implement one method `application(_:configurationForConnecting:options:)` create a new `UISceneConfiguration` and return it, we will get back to this.
 
 Next, let's create `SceneDelegate`:
 
@@ -53,10 +54,11 @@ class SceneDelegate: NSObject, UIWindowSceneDelegate {
   var window: UIWindow?
 }
 ```
+
 We will implement necessary methods in the next section.
 
+Set `UISceneConfiguration` delegate to be our newly created `SceneDelegate` class:
 
-Set `UISceneConfiguration` delegate to be our newly created `SceneDelegate` class: 
 ```swift {6}
 class AppDelegate: NSObject, UIApplicationDelegate {
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
@@ -73,7 +75,7 @@ Using `@UIApplicationDelegateAdaptor` property wrapper, we can now use our `AppD
 @main
 struct WindowResizingApp: App {
     @UIApplicationDelegateAdaptor var delegate: AppDelegate
-    
+
     var body: some Scene {
         WindowGroup {
             ContentView()
@@ -82,9 +84,9 @@ struct WindowResizingApp: App {
 }
 ```
 
-
 ## Window resizing options
-Now let's discuss the available resizing options that we have: 
+
+Now let's discuss the available resizing options that we have:
 
 ```swift
 public enum ResizingRestrictions {
@@ -95,21 +97,37 @@ public enum ResizingRestrictions {
 ```
 
 ### `uniform`
+
 Allows users to resize your windows in an uniform way
 
-<video controls width="100%" src='https://res.cloudinary.com/dangiiuvf/video/upload/f_auto:video,q_auto/se06efmc2ghxpotdrbun' />
+<video
+  controls
+  width="100%"
+  src="https://res.cloudinary.com/dangiiuvf/video/upload/f_auto:video,q_auto/se06efmc2ghxpotdrbun"
+/>
 
 ### `freeform`
+
 Default setting, users can resize the window however they want
 
-<video controls width="100%" src='https://res.cloudinary.com/dangiiuvf/video/upload/f_auto:video,q_auto/avduepgjyluyolyyig1j' />
+<video
+  controls
+  width="100%"
+  src="https://res.cloudinary.com/dangiiuvf/video/upload/f_auto:video,q_auto/avduepgjyluyolyyig1j"
+/>
 
 ### `none`
-Prevent's users from resizing your window
 
-<video controls width="100%" src='https://res.cloudinary.com/dangiiuvf/video/upload/f_auto:video,q_auto/iad0clg4aymogktzjidk' />
+Prevents users from resizing your window
+
+<video
+  controls
+  width="100%"
+  src="https://res.cloudinary.com/dangiiuvf/video/upload/f_auto:video,q_auto/iad0clg4aymogktzjidk"
+/>
 
 ## Handling window resizing
+
 Now it's time to implement scene resizing. Let's return to the empty `SceneDelegate` we created earlier and implement the `scene(_:willConnectTo:options:)` method.
 
 ```swift {7-9}
@@ -118,7 +136,7 @@ class SceneDelegate: NSObject, UIWindowSceneDelegate {
 
   func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
 	guard let windowScene = (scene as? UIWindowScene) else { return }
-	
+
 	let preferences = UIWindowScene.GeometryPreferences.Vision()
 	preferences.resizingRestrictions = UIWindowScene.ResizingRestrictions.uniform // Set it to none or uniform
 	windowScene.requestGeometryUpdate(preferences)
@@ -126,11 +144,10 @@ class SceneDelegate: NSObject, UIWindowSceneDelegate {
 }
 ```
 
-In the snippet above, I'm creating a new `UIWindowScene.GeometryPreferences.Vision()` class and setting its `resizingRestrictions` property to one of the options specified in the `ResizingRestrictions` enum. 
+In the snippet above, I'm creating a new `UIWindowScene.GeometryPreferences.Vision()` class and setting its `resizingRestrictions` property to one of the options specified in the `ResizingRestrictions` enum.
 
 Calling `windowScene.requestGeometryUpdate(preferences)` allows the maintenance of the specified geometry preference.
 
-
 ## That's all
-Thanks for reading! I hope you found this article useful. If you have any questions or feedback feel free to reach out to me on [Twitter](https://twitter.com/o_kwasniewski).
 
+Thanks for reading! I hope you found this article useful. If you have any questions or feedback feel free to reach out to me on [Twitter](https://twitter.com/o_kwasniewski).

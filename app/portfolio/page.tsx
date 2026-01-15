@@ -10,9 +10,5 @@ export const metadata: Metadata = {
 export default async function PortfolioPage() {
   const posts = await getPosts({ directory: "portfolio", limit: -1 });
 
-  return (
-    <div className="mt-10">
-      <Work posts={posts} />
-    </div>
-  );
+  return <Work posts={posts} />;
 }

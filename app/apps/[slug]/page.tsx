@@ -34,13 +34,13 @@ export default async function AppsPage({ params }: Props) {
   const { default: Content, meta } = post;
 
   return (
-    <div className="mt-10">
+    <>
       <h1 className="mb-4 text-3xl font-semibold dark:text-gray-200">
         {meta.title}
       </h1>
       <div className="mx-auto prose dark:prose-invert lg:prose-lg font-sans">
         <Content />
       </div>
-    </div>
+    </>
   );
 }
