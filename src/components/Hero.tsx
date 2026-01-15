@@ -5,8 +5,8 @@ const Hero = () => (
     <div className="flex items-center gap-4 mb-6">
       <Image
         src="/oskar.jpg"
-        width={80}
-        height={80}
+        width={60}
+        height={60}
         alt="Oskar Kwaśniewski"
         className="rounded-full"
       />

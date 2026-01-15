@@ -69,11 +69,12 @@ body {
 pre {
   padding-left: 0;
   padding-right: 0;
-  @apply rounded-lg;
+  @apply rounded-lg py-4;
 }
 
 code {
   line-height: 2;
+  font-size: 0.9rem;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -121,7 +122,7 @@ code[data-line-numbers] > [data-line]::before {
 }
 
 pre [data-line] {
-  @apply px-6 border-l-2 border-l-transparent;
+  @apply pl-4 pr-6 border-l-2 border-l-transparent;
 }
 
 [data-highlighted-line] {
