@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Post } from "@/lib/getAllPosts";
+import { FiArrowRight } from "react-icons/fi";
 
 interface WorkProps {
   posts: Post[];
@@ -8,23 +9,27 @@ interface WorkProps {
 
 const Work = ({ posts, showAllLink = false }: WorkProps) => (
   <section className="mb-16">
-    <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">
+    <h2 className="text-sm font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-4">
       Projects
     </h2>
-    <ul className="space-y-3">
+    <div>
       {posts.map(({ slug, meta }) => (
-        <li key={slug}>
-          <Link href={`/portfolio/${slug}`} className="group block">
-            <span className="text-gray-900 dark:text-gray-100 underline underline-offset-2 group-hover:text-gray-600 dark:group-hover:text-gray-400 transition-colors">
-              {meta.title}
-            </span>
-            <p className="text-gray-500 dark:text-gray-500 text-sm mt-1">
-              {meta.subtitle}
-            </p>
-          </Link>
-        </li>
+        <Link key={slug} href={`/portfolio/${slug}`} className="block group">
+          <article className="py-3 border-b border-gray-200 dark:border-gray-800 last:border-b-0">
+            <div className="flex items-start justify-between gap-4">
+              <div className="flex-1 min-w-0">
+                <h3 className="text-gray-900 dark:text-gray-100 font-medium group-hover:text-gray-600 dark:group-hover:text-gray-300 transition-colors">
+                  {meta.title}
+                </h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">
+                  {meta.subtitle}
+                </p>
+              </div>
+            </div>
+          </article>
+        </Link>
       ))}
-    </ul>
+    </div>
     {showAllLink && (
       <Link
         href="/portfolio"

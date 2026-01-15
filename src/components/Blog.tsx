@@ -1,5 +1,5 @@
-import Link from "next/link";
 import { Post } from "@/lib/getAllPosts";
+import { PostCard } from "./post-card";
 
 interface BlogProps {
   posts: Post[];
@@ -7,30 +7,17 @@ interface BlogProps {
 
 const Blog = ({ posts }: BlogProps) => (
   <>
-    <h1 className="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-6">
+    <h1 className="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-2">
       Blog
     </h1>
-    <ul className="space-y-3">
+    <p className="text-gray-600 dark:text-gray-400 mb-8">
+      Anything related to my hobbies, programming, and technology.
+    </p>
+    <div>
       {posts.map(({ slug, meta }) => (
-        <li key={slug}>
-          <Link href={`/blog/${slug}`} className="group block overflow-hidden">
-            <div className="flex items-baseline justify-between gap-4">
-              <span className="text-gray-900 dark:text-gray-100 underline underline-offset-2 group-hover:text-gray-600 dark:group-hover:text-gray-400 transition-colors truncate">
-                {meta.title}
-              </span>
-              {meta.date && (
-                <span className="text-gray-400 dark:text-gray-500 text-sm shrink-0">
-                  {meta.date}
-                </span>
-              )}
-            </div>
-            <p className="text-gray-500 dark:text-gray-500 text-sm mt-1 truncate">
-              {meta.subtitle}
-            </p>
-          </Link>
-        </li>
+        <PostCard key={slug} meta={meta} href={`/blog/${slug}`} />
       ))}
-    </ul>
+    </div>
   </>
 );
 
