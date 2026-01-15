@@ -8,29 +8,16 @@
 @theme {
   --color-dark-surface: #1e1d1d;
   --color-dark-surface-accent: #2d2c2c;
-}
-
-@utility gtc-auto {
-  grid-template-columns: repeat(
-    auto-fill,
-    minmax(min(calc(180px + 12vmin), 100%), 1fr)
-  );
+  --font-sans: var(--font-geist);
 }
 
 body {
   overflow-x: hidden;
 }
 
-.hero-background {
-  background: url("/hero.jpg");
-}
-
 @media (prefers-color-scheme: dark) {
   body {
     background-color: #111010;
-  }
-  .hero-background {
-    background: url("/hero-dark.jpg");
   }
 
   :root {
@@ -46,6 +33,7 @@ html,
 body {
   overflow-x: hidden;
 }
+
 body {
   position: relative;
 }
@@ -79,23 +67,15 @@ body {
   width: 50%;
 }
 
-.full-width {
-  width: 100vw;
-  position: relative;
-  left: 50%;
-  right: 50%;
-  margin-left: -50vw;
-  margin-right: -50vw;
-}
-
 pre {
   padding-left: 0;
   padding-right: 0;
-  @apply rounded-lg;
+  @apply rounded-lg py-4;
 }
 
 code {
   line-height: 2;
+  font-size: 0.9rem;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -140,24 +120,10 @@ code[data-line-numbers] > [data-line]::before {
 
 .prose {
   max-width: 55rem;
-  line-height: 1.75rem;
-}
-
-@media (min-width: 640px) {
-  .prose {
-    font-size: 1.125rem;
-    line-height: 2.25rem;
-  }
-}
-
-@media (min-width: 768px) {
-  .prose {
-    font-size: 1.25rem;
-  }
 }
 
 pre [data-line] {
-  @apply px-6 border-l-2 border-l-transparent;
+  @apply pl-4 pr-6 border-l-2 border-l-transparent;
 }
 
 [data-highlighted-line] {

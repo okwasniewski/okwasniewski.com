@@ -45,11 +45,10 @@ export default async function BlogPostPage({ params }: Props) {
       <BlogHeader
         title={meta.title || ""}
         subtitle={meta.subtitle || ""}
-        badges={meta.badges || []}
         date={meta.date}
         primaryAction={meta.primaryAction}
       />
-      <div className="mx-auto prose dark:prose-invert lg:prose-lg font-sans">
+      <div className="mx-auto prose dark:prose-invert prose-sm sm:prose-base font-sans">
         <Content />
       </div>
     </>

@@ -1,17 +1,11 @@
 import fs from "fs";
 import { join } from "path";
 
-export interface Badge {
-  text: string;
-  color: "blue" | "green" | "orange";
-}
-
 export interface PostMeta {
   title?: string;
   subtitle?: string;
   featuredImage?: string;
   date?: string;
-  badges?: Badge[];
   primaryAction?: {
     text: string;
     href: string;
@@ -57,15 +51,21 @@ function extractMeta(content: string): PostMeta {
 }
 
 export async function getPosts(options: Options): Promise<Post[]> {
-  const slugs = getPostSlugs(options);
-  const posts = slugs.map((slug) => {
-    const filePath = join(getDirectory(options.directory), slug);
-    const content = fs.readFileSync(filePath, "utf-8");
-    const meta = extractMeta(content);
-    return { slug: slug.replace(".mdx", ""), meta };
-  });
+  const slugs = getPostSlugs({ ...options, limit: -1 });
+  const posts = slugs
+    .map((slug) => {
+      const filePath = join(getDirectory(options.directory), slug);
+      const content = fs.readFileSync(filePath, "utf-8");
+      const meta = extractMeta(content);
+      return { slug: slug.replace(".mdx", ""), meta };
+    })
+    .sort(
+      (a, b) =>
+        new Date(b.meta.date ?? 0).getTime() -
+        new Date(a.meta.date ?? 0).getTime(),
+    );
 
-  return posts;
+  return options.limit === -1 ? posts : posts.slice(0, options.limit);
 }
 
 export async function getPostBySlug(
