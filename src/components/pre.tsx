@@ -15,9 +15,11 @@ export function Pre({ children, ...props }: PreProps) {
   }, []);
 
   return (
-    <pre ref={preRef} {...props}>
+    <div className="pre-wrapper">
       <CopyButton getCode={getCode} />
-      {children}
-    </pre>
+      <pre ref={preRef} {...props}>
+        {children}
+      </pre>
+    </div>
   );
 }

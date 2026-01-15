@@ -182,14 +182,15 @@ figcaption + pre {
 }
 
 /* Copy button for code blocks */
-pre:has(code) {
+.pre-wrapper {
   position: relative;
 }
 
-pre .copy-button {
+.pre-wrapper .copy-button {
   position: absolute;
   top: 0.5rem;
   right: 0.5rem;
+  z-index: 1;
   padding: 0.25rem;
   display: flex;
   align-items: center;
@@ -206,11 +207,11 @@ pre .copy-button {
     background 0.15s ease;
 }
 
-pre:hover .copy-button {
+.pre-wrapper:hover .copy-button {
   opacity: 1;
 }
 
-pre .copy-button:hover {
+.pre-wrapper .copy-button:hover {
   color: #fff;
   background: rgba(255, 255, 255, 0.2);
 }
