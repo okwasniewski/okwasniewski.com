@@ -23,12 +23,12 @@ const Hero = () => (
       <p>
         Building React Native apps at{" "}
         <a
-          href="https://www.callstack.com/"
+          href="https://www.born.com/"
           target="_blank"
           rel="noopener noreferrer"
           className="underline underline-offset-2 hover:text-gray-900 dark:hover:text-gray-100"
         >
-          Callstack
+          Born
         </a>
         . Open source enthusiast with 100+ merged PRs to React Native Core.
       </p>
