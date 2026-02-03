@@ -40,7 +40,7 @@ const Hero = () => (
         >
           Callstack
         </a>{" "}
-        for 3.5 years. Open source enthusiast with 100+ merged PRs to React Native Core.
+        Open source enthusiast with 100+ merged PRs to React Native Core.
       </p>
       <p>
         Creator of{" "}
