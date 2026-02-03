@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 const Hero = () => (
   <section className="mb-16">
@@ -30,11 +31,34 @@ const Hero = () => (
         >
           Born
         </a>
-        . Open source enthusiast with 100+ merged PRs to React Native Core.
+        . Previously at{" "}
+        <a
+          href="https://callstack.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="underline underline-offset-2 hover:text-gray-900 dark:hover:text-gray-100"
+        >
+          Callstack
+        </a>{" "}
+        Open source enthusiast with 100+ merged PRs to React Native Core.
       </p>
       <p>
-        Focused on native development in Swift, Objective-C, Java and Kotlin. In
-        my free time I enjoy gravel cycling and learning new things.
+        Creator of{" "}
+        <Link href="/portfolio/react-native-visionos" className="underline underline-offset-2 hover:text-gray-900 dark:hover:text-gray-100">
+          react-native-visionos
+        </Link>
+        ,{" "}
+        <Link href="/portfolio/react-native-bottom-tabs" className="underline underline-offset-2 hover:text-gray-900 dark:hover:text-gray-100">
+          react-native-bottom-tabs
+        </Link>
+        , and{" "}
+        <Link href="/portfolio/liquid-glass" className="underline underline-offset-2 hover:text-gray-900 dark:hover:text-gray-100">
+          Liquid Glass
+        </Link>
+        . Focused on bridging React Native with native platforms — iOS, Android, visionOS, macOS.
+      </p>
+      <p>
+        When not coding, I enjoy gravel cycling and building side projects.
       </p>
     </div>
   </section>

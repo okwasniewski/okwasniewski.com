@@ -141,7 +141,7 @@ export default function VideosContent() {
         Videos
       </h1>
       <p className="text-gray-600 dark:text-gray-400 mb-8">
-        Conference talks, tutorials, and podcast appearances. Subscribe to my{" "}
+        {conferencesTalks.length} conference talks, {podcasts.length} podcast appearances, {tutorials.length} tutorials — and more coming. Subscribe to my{" "}
         <Link
           href="https://www.youtube.com/@okwasniewski-dev"
           target="_blank"

@@ -12,7 +12,8 @@ export default function ContactContent() {
         Contact
       </h1>
       <p className="text-gray-600 dark:text-gray-400 mb-8">
-        Feel free to reach out. I&apos;m most active on{" "}
+        Open to interesting conversations about React Native, native development, and open source.
+        I&apos;m most active on{" "}
         <Link
           href="https://x.com/o_kwasniewski"
           target="_blank"
