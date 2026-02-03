@@ -1,6 +1,7 @@
 import Hero from "@/components/Hero";
 import Work from "@/components/Work";
 import Writing from "@/components/Writing";
+import Speaking from "@/components/Speaking";
 import { getPosts } from "@/lib/getAllPosts";
 
 export default async function HomePage() {
@@ -12,6 +13,7 @@ export default async function HomePage() {
       <Hero />
       <Work posts={projects} showAllLink />
       <Writing posts={posts} />
+      <Speaking />
     </>
   );
 }

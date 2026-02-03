@@ -17,6 +17,12 @@ const Header = () => (
           blog
         </Link>
         <Link
+          href="/portfolio"
+          className="hover:text-gray-900 dark:hover:text-gray-100 transition-colors"
+        >
+          portfolio
+        </Link>
+        <Link
           href="/videos"
           className="hover:text-gray-900 dark:hover:text-gray-100 transition-colors"
         >
