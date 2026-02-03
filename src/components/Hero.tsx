@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 const Hero = () => (
   <section className="mb-16">
@@ -43,17 +44,17 @@ const Hero = () => (
       </p>
       <p>
         Creator of{" "}
-        <a href="/portfolio/react-native-visionos" className="underline underline-offset-2 hover:text-gray-900 dark:hover:text-gray-100">
+        <Link href="/portfolio/react-native-visionos" className="underline underline-offset-2 hover:text-gray-900 dark:hover:text-gray-100">
           react-native-visionos
-        </a>
+        </Link>
         ,{" "}
-        <a href="/portfolio/react-native-bottom-tabs" className="underline underline-offset-2 hover:text-gray-900 dark:hover:text-gray-100">
+        <Link href="/portfolio/react-native-bottom-tabs" className="underline underline-offset-2 hover:text-gray-900 dark:hover:text-gray-100">
           react-native-bottom-tabs
-        </a>
+        </Link>
         , and{" "}
-        <a href="/portfolio/liquid-glass" className="underline underline-offset-2 hover:text-gray-900 dark:hover:text-gray-100">
+        <Link href="/portfolio/liquid-glass" className="underline underline-offset-2 hover:text-gray-900 dark:hover:text-gray-100">
           Liquid Glass
-        </a>
+        </Link>
         . Focused on bridging React Native with native platforms — iOS, Android, visionOS, macOS.
       </p>
       <p>
